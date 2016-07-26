@@ -14,7 +14,12 @@ var NodeSchema = new Schema({
 		enum: ['StarTrek', 'BulbCtrl']
 	},
 	params: {
-		volt: Number,
+		voltage: Number,
+		current: Number,
+		power: Number,
+		frequency: Number,
+		lifttime: Number,
+		location: String,		
 		brightness: {
 			type: Number,
 			validate: [
@@ -24,9 +29,6 @@ var NodeSchema = new Schema({
 				'Brightness is less 5'
 			]
 		},
-		walt: Number,
-		local: String,
-		comments: String
 	},
 	createdAt: {
 		type: Date,
