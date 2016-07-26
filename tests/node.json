@@ -1,0 +1,5 @@
+curl -X POST -H "Content-Type: application/json" -d '{"name": "A1","online":"true","group":"1","parent":"roots","params":"{'volt':'220','brightness':'5'}"}' localhost:3000/nodes
+
+curl -X PUT -H "Content-Type: application/json" -d '{"firstName": "Update"}' localhost:3000/users/578e13646d5af31c3948383e
+
+curl -X DELETE localhost:3000/users/578e13646d5af31c3948383e
