@@ -3,7 +3,7 @@ module.exports = function(app) {
 
 	app.get("/bulbctrl", bulbctrl.render);
 
-	app.route('/dev-bulk-ctrl/:name')
-		.post(users.create)
-		.get(users.list);
+	// app.route('/dev-bulk-ctrl/:name')
+	// 	.post(users.create)
+	// 	.get(users.list);
 };

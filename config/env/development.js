@@ -1,4 +1,4 @@
 module.exports = {
-	db: "mongodb://localhost/hcc-iot",
+	db: "mongodb://localhost/hc-iot",
 	sessionSecret: "developmentSessionSecret"
 };

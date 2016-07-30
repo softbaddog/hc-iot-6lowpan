@@ -4,15 +4,29 @@ var Mogoose = require("mongoose"),
 var NodeSchema = new Schema({
 	name: {
 		type: String,
-		trim: true
+		trim: true,
+		unqiue: true,
+		required: 'Node Name is required.'
 	},
-	online: Boolean,
-	group: Number,
+	online: {
+		type: Boolean,
+		default: false
+	},
+	group: {
+		type: Number,
+		validate: [
+			function(num) {
+				return num >= 0 && num < 5;
+			},
+			'Group Number should be 0 - 4.'
+		]
+	},
 	parent: String,
 	role: {
 		type: String,
 		enum: ['StarTrek', 'BulbCtrl']
 	},
+	devid: String,
 	params: {
 		voltage: Number,
 		current: Number,
@@ -30,11 +44,7 @@ var NodeSchema = new Schema({
 			]
 		},
 	},
-	createdAt: {
-		type: Date,
-		default: Date.now
-	},
-	updatedAt: {
+	updated: {
 		type: Date,
 		default: Date.now
 	}

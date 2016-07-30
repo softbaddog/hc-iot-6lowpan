@@ -1,4 +1,4 @@
-var Passport = require("passport"),
+var passport = require("passport"),
 	mongoose = require("mongoose");
 
 module.exports = function() {

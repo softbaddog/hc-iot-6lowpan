@@ -6,6 +6,7 @@ exports.render = function(req, res) {
 	req.session.lastVisit = new Date();
 
 	res.render("index", {
-		title: "HC大会IoT开发者展区"
+		title: "HC大会IoT开发者展区",
+		userFullName: req.user ? req.user.username : ''
 	});
 };
