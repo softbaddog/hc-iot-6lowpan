@@ -1,6 +1,6 @@
 exports.render = function(req, res) {
-	res.render('index', {
-		title: 'HC大会IoT开发者展区',
+	res.render('startrek', {
+		title: '星空图',
 		user: JSON.stringify(req.user)
 	});
 };

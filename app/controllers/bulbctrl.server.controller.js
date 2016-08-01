@@ -1,6 +1,6 @@
 exports.render = function(req, res) {
-	res.render('index', {
-		title: 'HC大会IoT开发者展区',
+	res.render('bulbctrl', {
+		title: '灯控图',
 		user: JSON.stringify(req.user)
 	});
 };

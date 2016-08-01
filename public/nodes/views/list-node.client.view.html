@@ -2,7 +2,7 @@
 	<h1>Nodes</h1>
 	<ul>
 		<li data-ng-repeat="node in nodes">
-			<a data-ng-href="#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
+			<a data-ng-href="/#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
 			<br>
 			<small data-ng-bind="node.updated | date:'medium'"></small>
 			<small>/</small>
