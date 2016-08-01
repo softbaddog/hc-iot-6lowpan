@@ -1,0 +1,15 @@
+<section data-ng-controller="NodesController" data-ng-init="findOne()">
+	<h1 data-ng-bind="node.name"></h1>
+	<div data-ng-show="authentication.user._id == node.creator._id">
+		<a href="/#!/nodes/{{node._id}}/edit">edit</a>
+		<a href="#" data-ng-click="delete();">delete</a>
+	</div>
+	<small>
+		<em>Posted on</em>
+		<em data-ng-bind="node.updated | date:'mediumDate'"></em>
+		<em>by</em>
+		<em data-ng-bind="node.creator.email"></em>
+	</small>
+	<p data-ng-bind="node.content"></p>
+	<a href="/">Go back</a>
+</section>

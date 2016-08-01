@@ -1,0 +1,17 @@
+<section data-ng-controller="NodesController" data-ng-init="find()">
+	<h1>Nodes</h1>
+	<ul>
+		<li data-ng-repeat="node in nodes">
+			<a data-ng-href="#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
+			<br>
+			<small data-ng-bind="node.updated | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="node.creator.email"></small>
+			<p data-ng-bind="node.online"></p>
+		</li>
+	</ul>
+	<div data-ng-hide="!nodes || nodes.length">
+		No nodes yet, why don't you <a href="/#!/nodes/create">create one</a>
+	</div>
+	<a href="/">Go back</a>
+</section>

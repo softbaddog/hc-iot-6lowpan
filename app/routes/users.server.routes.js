@@ -1,4 +1,4 @@
-var users = require("../controllers/users.server.controller"),
+var users = require('../controllers/users.server.controller'),
 	passport = require('passport');
 
 module.exports = function(app) {
@@ -16,14 +16,14 @@ module.exports = function(app) {
 
 	app.get('/signout', users.signout);
 
-	app.route('/users')
-		.post(users.create)
-		.get(users.list);
+	// app.route('/users')
+	// 	.post(users.create)
+	// 	.get(users.list);
 
-	app.route('/users/:userId')
-		.get(users.read)
-		.put(users.update)
-		.delete(users.delete);
+	// app.route('/users/:userId')
+	// 	.get(users.read)
+	// 	.put(users.update)
+	// 	.delete(users.delete);
 
-	app.param('userId', users.userById);
+	// app.param('userId', users.userById);
 };

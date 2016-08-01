@@ -1,0 +1,78 @@
+<section data-ng-controller="NodesController" data-ng-init="findOne()">
+	<h1>Edit Node</h1>
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="name">节点</label>
+			<div>
+				<input type="text" data-ng-model="name" id="name" placeholder="A1" required>
+			</div>
+		</div>
+		<div>
+			<label for="online">在线状态</label>
+			<div>
+				On<input type="radio" name="online" value="1" checked />
+				Off<input type="radio" name="online" value="0" />
+			</div>
+		</div>
+		<div>
+			<label for="group">分组</label>
+			<div>
+				<input type="text" data-ng-model="group" id="group" placeholder="0 - 4" required>
+			</div>
+		</div>
+		<div>
+			<label for="parent">父节点</label>
+			<div>
+				<input type="text" data-ng-model="parent" id="parent" placeholder="Roots" required>
+			</div>
+		</div>
+		<div>
+			<label for="voltage">电压</label>
+			<div>
+				<input data-ng-model="voltage" id="voltage" placeholder="220"></input>伏
+			</div>
+		</div>
+		<div>
+			<label for="current">电流</label>
+			<div>
+				<input data-ng-model="current" id="current" placeholder="10"></input>安
+			</div>
+		</div>
+		<div>
+			<label for="power">电量</label>
+			<div>
+				<input data-ng-model="power" id="power" placeholder="2200"></input>瓦
+			</div>
+		</div>
+		<div>
+			<label for="lifttime">剩余时间</label>
+			<div>
+				<input data-ng-model="lifttime" id="lifttime" placeholder="365"></input>天
+			</div>
+		</div>
+		<div>
+			<label for="location">位置信息</label>
+			<div>
+				<input data-ng-model="location" id="location" placeholder="上海奔驰文化中心"></input>
+			</div>
+		</div>
+		<div>
+			<label for="brightness">调光级别</label>
+			<div>
+				<select name="brightness" id="brightness">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
+			</div>
+		</div>
+		<div>
+			<input type="submit" value="Update">
+		</div>
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+</section>

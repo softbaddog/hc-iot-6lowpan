@@ -1,17 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title><%= title %></title>
-</head>
-<body>
-	<% if (userFullName ) { %>
-		<h2>Hello <%=userFullName%></h2>
-		<a href="/signout">Sig out</a>
-	<% } else { %>
-		<!-- <a href="/signup">Signup</a> -->
-		<a href="/signin">Signin</a>
-	<% } %>
-	</div>
+<html xmlns:ng="http://angularjs.org">
+	<head>
+		<meta charset="UTF-8">
+		<title><%= title %></title>
+	</head>
+	<body>
+	<section ng-view></section>
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+	<script src="/lib/angular/angular.js"></script>
+	<script src="/lib/angular-route/angular-route.js"></script>
+	<script src="/lib/angular-resource/angular-resource.js"></script>
+
+	<script src="/nodes/nodes.client.module.js"></script>
+	<script src="/nodes/controllers/nodes.client.controller.js"></script>
+	<script src="/nodes/services/nodes.client.service.js"></script>
+	<script src="/nodes/config/nodes.client.routes.js"></script>
+	
+	<script src="/bulbctrl/bulbctrl.client.module.js"></script>
+	<script src="/bulbctrl/controllers/bulbctrl.client.controller.js"></script>
+	<script src="/bulbctrl/config/bulbctrl.client.routes.js"></script>
+	
+	<script src="/users/users.client.module.js"></script>
+	<script src="/users/services/authentication.client.service.js"></script>
+	
+	<script src="/application.js"></script>
 </body>
 </html>

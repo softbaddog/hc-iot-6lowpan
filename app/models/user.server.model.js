@@ -3,11 +3,11 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-	username: {
+	email: {
 		type: String,
-		trim: true,
-		unique: true,
-		required: true
+		index: true,
+		required: 'eMail is required',
+		match: /.+\@.+\..+/
 	},
 	password: {
 		type: String,
@@ -53,7 +53,7 @@ userSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 	var possibleUsername = username + (suffix || '');
 
 	_this.findOne({
-		username: possibleUsername
+		email: possibleUsername
 	}, function(err, user) {
 		if (!err) {
 			if (!user) {

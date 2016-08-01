@@ -47,7 +47,11 @@ var NodeSchema = new Schema({
 	updated: {
 		type: Date,
 		default: Date.now
-	}
+	},
+	creator: {
+		type: Schema.ObjectId,
+		ref: 'User'
+	}	
 });
 
 Mogoose.model('Node', NodeSchema);
