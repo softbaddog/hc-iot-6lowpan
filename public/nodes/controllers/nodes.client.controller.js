@@ -6,7 +6,9 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 		$scope.create = function() {
 			var node = new Nodes({
 				name: this.name,
-				online: this.online
+				status: this.status,
+				group: this.group,
+				parent: this.parent
 			});
 
 			node.$save(function(response) {

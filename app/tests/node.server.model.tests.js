@@ -9,18 +9,16 @@ var user, node;
 describe('Node Model Unit Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			displayName: 'Full Name',
 			email: 'test@test.com',
-			username: 'username',
 			password: 'password'
 		});
 
 		user.save(function() {
 			node = new Node({
-				title: 'Node Title',
-				content: 'Node Content',
+				name: 'A1',
+				status: 0,
+				group: 0,
+				parent: 'roots',
 				user: user
 			});
 
@@ -35,8 +33,8 @@ describe('Node Model Unit Tests:', function() {
 			});
 		});
 
-		it('Should not be able to save an node without a title', function() {
-			node.title = '';
+		it('Should not be able to save an node without a name', function() {
+			node.name = '';
 
 			node.save(function(err) {
 				should.exist(err);

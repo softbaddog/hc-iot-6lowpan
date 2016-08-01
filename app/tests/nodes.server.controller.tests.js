@@ -10,18 +10,16 @@ var user, node;
 describe('Nodes Controller Uint Tests:', function() {
 	beforeEach(function(done) {
 		user = new User({
-			firstName: 'Full',
-			lastName: 'Name',
-			dispalyName: 'Full Name',
 			email: 'test@test.com',
-			username: 'username',
 			password: 'password'
 		});
 
 		user.save(function() {
 			node = new Node({
-				title: 'Node Title',
-				content: 'Node Content',
+				name: 'A1',
+				status: 0,
+				group: 0,
+				parent: 'roots',
 				user: user
 			});
 
@@ -39,8 +37,8 @@ describe('Nodes Controller Uint Tests:', function() {
 				.expect(200)
 				.end(function(err, res) {
 					res.body.should.be.an.Array.and.have.lengthOf(1);
-					res.body[0].should.have.property('title', node.title);
-					res.body[0].should.have.property('content', node.content);
+					res.body[0].should.have.property('name', node.name);
+					res.body[0].should.have.property('status', node.status);
 
 					done();
 				});
@@ -52,8 +50,8 @@ describe('Nodes Controller Uint Tests:', function() {
 				.expect('Content-Type', /json/)
 				.expect(200)
 				.end(function(err, res) {
-					res.body.should.be.an.Object.and.have.property('title', node.title);
-					res.body.should.have.property('content', node.content);
+					res.body.should.be.an.Object.and.have.property('name', node.name);
+					res.body.should.have.property('status', node.status);
 
 					done();
 				});

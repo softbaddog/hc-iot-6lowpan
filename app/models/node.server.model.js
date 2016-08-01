@@ -8,9 +8,9 @@ var NodeSchema = new Schema({
 		unqiue: true,
 		required: 'Node Name is required.'
 	},
-	online: {
-		type: Boolean,
-		default: false
+	status: {
+		type: Number,
+		default: 0
 	},
 	group: {
 		type: Number,
@@ -21,12 +21,16 @@ var NodeSchema = new Schema({
 			'Group Number should be 0 - 4.'
 		]
 	},
-	parent: String,
+	parent: {
+		type: String,
+		default: 'roots'
+	},
 	role: {
 		type: String,
-		enum: ['StarTrek', 'BulbCtrl']
+		enum: ['StarTrek', 'BulbCtrl'],
+		default: 'StarTrek'
 	},
-	devid: String,
+	deviceid: String,
 	params: {
 		voltage: Number,
 		current: Number,

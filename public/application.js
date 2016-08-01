@@ -1,6 +1,6 @@
 var mainApplicationModuleName = 'hc-iot';
 
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'index', 'nodes']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'app', 'nodes']);
 
 mainApplicationModule.config(['$locationProvider', 
 	function($locationProvider) {

@@ -4,10 +4,11 @@
 		<li data-ng-repeat="node in nodes">
 			<a data-ng-href="/#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
 			<br>
-			<small data-ng-bind="node.updated | date:'medium'"></small>
-			<small>/</small>
-			<small data-ng-bind="node.creator.email"></small>
-			<p data-ng-bind="node.online"></p>
+			<p>状态：<small data-ng-bind="node.status"></small></p>
+			<p>分组：<small data-ng-bind="node.group"></small></p>
+			<p>父节点：<small data-ng-bind="node.parent"></small></p>
+			<p>角色：<small data-ng-bind="node.role"></small></p>
+			<p>刷新时间：<small data-ng-bind="node.updated | date:'medium'"></small></p>
 		</li>
 	</ul>
 	<div data-ng-hide="!nodes || nodes.length">

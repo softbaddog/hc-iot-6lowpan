@@ -8,16 +8,24 @@
 			</div>
 		</div>
 		<div>
-			<label for="online">在线状态</label>
+			<label for="status">在线状态</label>
 			<div>
-				On<input type="radio" name="online" value="1" checked />
-				Off<input type="radio" name="online" value="0" />
+				<select data-ng-model="status" id="status">
+					<option value="0">离线</option>
+					<option value="1">在线</option>
+				</select>
 			</div>
 		</div>
-<!-- 		<div>
+		<div>
 			<label for="group">分组</label>
 			<div>
-				<input type="text" data-ng-model="group" id="group" placeholder="0 - 4" value="4" required>
+				<select data-ng-model="group" id="group">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
 			</div>
 		</div>
 		<div>
@@ -29,37 +37,37 @@
 		<div>
 			<label for="voltage">电压</label>
 			<div>
-				<input data-ng-model="voltage" id="voltage" placeholder="220"></input>伏
+				<input type="text" data-ng-model="voltage" id="voltage" placeholder="220"></input>伏
 			</div>
 		</div>
 		<div>
 			<label for="current">电流</label>
 			<div>
-				<input data-ng-model="current" id="current" placeholder="10"></input>安
+				<input type="text" data-ng-model="current" id="current" placeholder="10"></input>安
 			</div>
 		</div>
 		<div>
 			<label for="power">电量</label>
 			<div>
-				<input data-ng-model="power" id="power" placeholder="2200"></input>瓦
+				<input type="text" data-ng-model="power" id="power" placeholder="2200"></input>瓦
 			</div>
 		</div>
 		<div>
 			<label for="lifttime">剩余时间</label>
 			<div>
-				<input data-ng-model="lifttime" id="lifttime" placeholder="365"></input>天
+				<input type="text" data-ng-model="lifttime" id="lifttime" placeholder="365"></input>天
 			</div>
 		</div>
 		<div>
 			<label for="location">位置信息</label>
 			<div>
-				<input data-ng-model="location" id="location" placeholder="上海奔驰文化中心"></input>
+				<input type="text" data-ng-model="location" id="location" placeholder="上海奔驰文化中心"></input>
 			</div>
 		</div>
 		<div>
 			<label for="brightness">调光级别</label>
 			<div>
-				<select name="brightness" id="brightness">
+				<select data-ng-model="param.brightness" id="brightness">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -67,7 +75,7 @@
 					<option value="4">4</option>
 				</select>
 			</div>
-		</div> -->
+		</div>
 		<div>
 			<input type="submit">
 		</div>
