@@ -1,1 +1,5 @@
-style.css
+.list {
+	float: left;
+	border:0px solid red;
+	margin: 10px;
+}

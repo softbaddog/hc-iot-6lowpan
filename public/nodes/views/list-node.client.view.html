@@ -1,7 +1,7 @@
 <section data-ng-controller="NodesController" data-ng-init="find()">
-	<h1>Nodes</h1>
+	<a href="/"><h1>Nodes</h1></a>
 	<ul>
-		<li data-ng-repeat="node in nodes">
+		<li data-ng-repeat="node in nodes" class="list">
 			<a data-ng-href="/#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
 			<br>
 			<p>状态：<small data-ng-bind="node.status"></small></p>
@@ -14,5 +14,4 @@
 	<div data-ng-hide="!nodes || nodes.length">
 		No nodes yet, why don't you <a href="/#!/nodes/create">create one</a>
 	</div>
-	<a href="/">Go back</a>
 </section>
