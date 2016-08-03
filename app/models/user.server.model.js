@@ -19,7 +19,8 @@ var userSchema = new Schema({
 	},
 	role: {
 		type: String,
-		enum: ["admin", "guest"]
+		enum: ['admin', 'guest'],
+		default: 'guest'
 	},
 	salt: {
 		type: String

@@ -1,0 +1,182 @@
+<section ng-controller="BulbsController">
+	<div data-ng-show="authentication.user">
+		<h1>这里展示出所有灯平面效果图</h1>
+		<p>欢迎<span data-ng-bind="authentication.user.email"></span>使用IoT展台<strong>灯控应用中心</strong>。在这里，您可以随意操作展台上空漂亮球形灯，通过点击具体灯按钮获取更多信息。</p>
+		<ul data-ng-show="authentication.user.role == 'admin'">
+			<li><a href="/bulbctrl#!/nodes">List Nodes</a></li>
+			<li><a href="/bulbctrl#!/nodes/create">Create Node</a></li>
+		</ul>
+	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td class="enable">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
