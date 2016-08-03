@@ -4,3 +4,11 @@ exports.render = function(req, res) {
 		user: JSON.stringify(req.user)
 	});
 };
+
+exports.bulbctrl = function(node, level) {
+
+};
+
+exports.groupctrl = function(nodes, level) {
+
+};
