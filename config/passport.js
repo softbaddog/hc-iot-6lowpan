@@ -1,5 +1,5 @@
-var passport = require('passport'),
-	mongoose = require('mongoose');
+var passport = require('passport');
+var mongoose = require('mongoose');
 
 module.exports = function() {
 	var User = mongoose.model('User');
@@ -15,5 +15,6 @@ module.exports = function() {
 			done(err, user);
 		});
 	});
+	
 	require('./strategies/local.js')();
 };

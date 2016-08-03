@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
-	crypto = require('crypto'),
-	Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var	Schema = mongoose.Schema;
+var	crypto = require('crypto');
 
 var userSchema = new Schema({
 	email: {
@@ -16,6 +16,10 @@ var userSchema = new Schema({
 				return password && password.length >= 6;
 			}, 'Password should be longer'
 		]
+	},
+	role: {
+		type: String,
+		enum: ["admin", "guest"]
 	},
 	salt: {
 		type: String

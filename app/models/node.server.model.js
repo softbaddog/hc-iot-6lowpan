@@ -1,7 +1,7 @@
-var Mogoose = require("mongoose"),
-	Schema = Mogoose.Schema;
+var mongoose = require("mongoose");
+var	Schema = mongoose.Schema;
 
-var NodeSchema = new Schema({
+var nodeSchema = new Schema({
 	name: {
 		type: String,
 		trim: true,
@@ -25,10 +25,9 @@ var NodeSchema = new Schema({
 		type: String,
 		default: 'roots'
 	},
-	role: {
-		type: String,
-		enum: ['StarTrek', 'BulbCtrl'],
-		default: 'StarTrek'
+	priority: {
+		type: Number,
+		default: 0
 	},
 	deviceid: String,
 	params: {
@@ -38,13 +37,13 @@ var NodeSchema = new Schema({
 		frequency: Number,
 		lifttime: Number,
 		location: String,		
-		brightness: {
+		level: {
 			type: Number,
 			validate: [
 				function(value) {
-					return value > 5;
+					return value > 100;
 				},
-				'Brightness is less 5'
+				'Brightness level is less 100'
 			]
 		},
 	},
@@ -58,4 +57,4 @@ var NodeSchema = new Schema({
 	}	
 });
 
-Mogoose.model('Node', NodeSchema);
+mongoose.model('Node', nodeSchema);

@@ -1,5 +1,5 @@
-var users = require('../../app/controllers/users.server.controller'),
-	nodes = require('../../app/controllers/nodes.server.controller');
+var users = require('../../app/controllers/users.server.controller');
+var nodes = require('../../app/controllers/nodes.server.controller');
 
 module.exports = function(app) {
 	app.route('/api/nodes')
