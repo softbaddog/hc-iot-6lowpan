@@ -2,64 +2,21 @@
 	<a href="/bulbctrl"><h1>Edit Node</h1></a>
 	<form data-ng-submit="update()" novalidate>
 		<div>
-			<label for="name">节点</label>
+			<label for="name">名称</label>
 			<div>
-				<input type="text" data-ng-model="name" id="name" placeholder="A1" required>
+				<input type="text" data-ng-model="node.name" id="name" placeholder="A1" required>
 			</div>
 		</div>
 		<div>
-			<label for="online">在线状态</label>
+			<label for="deviceId">标识</label>
 			<div>
-				On<input type="radio" name="online" value="1" checked />
-				Off<input type="radio" name="online" value="0" />
+				<input type="text" data-ng-model="node.deviceId" id="deviceId" placeholder="2A006124A6000146" required>
 			</div>
-		</div>
-<!-- 		<div>
-			<label for="group">分组</label>
-			<div>
-				<input type="text" data-ng-model="group" id="group" placeholder="0 - 4" required>
-			</div>
-		</div>
+		</div>		
 		<div>
-			<label for="parent">父节点</label>
+			<label for="groupId">分组</label>
 			<div>
-				<input type="text" data-ng-model="parent" id="parent" placeholder="Roots" required>
-			</div>
-		</div>
-		<div>
-			<label for="voltage">电压</label>
-			<div>
-				<input data-ng-model="voltage" id="voltage" placeholder="220"></input>伏
-			</div>
-		</div>
-		<div>
-			<label for="current">电流</label>
-			<div>
-				<input data-ng-model="current" id="current" placeholder="10"></input>安
-			</div>
-		</div>
-		<div>
-			<label for="power">电量</label>
-			<div>
-				<input data-ng-model="power" id="power" placeholder="2200"></input>瓦
-			</div>
-		</div>
-		<div>
-			<label for="lifttime">剩余时间</label>
-			<div>
-				<input data-ng-model="lifttime" id="lifttime" placeholder="365"></input>天
-			</div>
-		</div>
-		<div>
-			<label for="location">位置信息</label>
-			<div>
-				<input data-ng-model="location" id="location" placeholder="上海奔驰文化中心"></input>
-			</div>
-		</div>
-		<div>
-			<label for="brightness">调光级别</label>
-			<div>
-				<select name="brightness" id="brightness">
+				<select data-ng-model="node.groupId" id="groupId">
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -67,7 +24,64 @@
 					<option value="4">4</option>
 				</select>
 			</div>
-		</div> -->
+		</div>
+		<div>
+			<label for="status">在线状态</label>
+			<div>
+				<select data-ng-model="node.status" id="status">
+					<option value="0">离线</option>
+					<option value="1">在线</option>
+				</select>
+			</div>
+		</div>
+		<div>
+			<label for="parent">父节点</label>
+			<div>
+				<input type="text" data-ng-model="node.parent" id="parent" placeholder="roots" required>
+			</div>
+		</div>
+		<div>
+			<label for="level">调光级别</label>
+			<div>
+				<select data-ng-model="node.level" id="level">
+					<option value="0">0</option>
+					<option value="25">1</option>
+					<option value="50">2</option>
+					<option value="75">3</option>
+					<option value="100">4</option>
+				</select>
+			</div>
+		</div>
+		<div>
+			<label for="voltage">电压</label>
+			<div>
+				<input type="text" data-ng-model="node.voltage" id="voltage" placeholder="220"></input>伏
+			</div>
+		</div>
+		<div>
+			<label for="current">电流</label>
+			<div>
+				<input type="text" data-ng-model="node.current" id="current" placeholder="10"></input>安
+			</div>
+		</div>
+		<div>
+			<label for="power">电量</label>
+			<div>
+				<input type="text" data-ng-model="node.power" id="power" placeholder="2200"></input>瓦
+			</div>
+		</div>
+		<div>
+			<label for="lifttime">剩余时间</label>
+			<div>
+				<input type="text" data-ng-model="node.lifttime" id="lifttime" placeholder="365"></input>天
+			</div>
+		</div>
+		<div>
+			<label for="location">位置信息</label>
+			<div>
+				<input type="text" data-ng-model="node.location" id="location" placeholder="上海奔驰文化中心"></input>
+			</div>
+		</div>
 		<div>
 			<input type="submit" value="Update">
 		</div>
