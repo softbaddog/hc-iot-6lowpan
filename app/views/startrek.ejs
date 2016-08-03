@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org">
-<head>
-	<meta charset="UTF-8">
-	<title><%= title %></title>
-    <script type="text/javascript" src="/js/three.js"></script>
-    <script type="text/javascript" src="/js/stats.js"></script>
-    <script type="text/javascript" src="/js/dat.gui.js"></script>	
-    <style>
-        body {
-            /* set margin to 0 and overflow to hidden, to go fullscreen */
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>    
-</head>
-<body>
+<script type="text/javascript" src="/js/three.js"></script>
+<script type="text/javascript" src="/js/stats.js"></script>
+<script type="text/javascript" src="/js/dat.gui.js"></script>
+
+<style>
+    body {
+        /* set margin to 0 and overflow to hidden, to go fullscreen */
+        margin: 0;
+        overflow: hidden;
+    }
+</style>
+
 <div id="Stats-output"></div>
 <div id="WebGL-output"></div>
 
@@ -162,5 +157,3 @@
     window.addEventListener('resize', onResize, false);
 
 </script>
-</body>
-</html>

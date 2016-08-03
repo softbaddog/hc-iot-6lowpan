@@ -1,8 +1,24 @@
 body {
   /*padding: 50px;*/
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px "Microsoft YaHei", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+table {
+	width: 90%;
+	border-collapse:collapse;
+	border:none;
+}
+
+tr, td {
+	width: 45px;
+	height: 40px;
+	border:solid #CCC 2px;
+}
+
+.enable {
+	background-color: red;
 }

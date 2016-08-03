@@ -1,26 +1,31 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title><%= title %></title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	<body>
-		<% for (var i in messages) { %>
-		<div class="flash"><%= messages[i] %></div>
-		<% } %>
-		<form action="/signup" method="post">
-			<div>
-				<label>Email:</label>
-				<input type="text" name="email">
+<% for (var i in messages) { %>
+<div class="flash"><%= messages[i] %></div>
+<% } %>
+<form class="form-horizontal" method="post" action="/signup">
+	<fieldset>
+		<legend>用户注册</legend>
+		<div class="control-group">
+			<label class="control-label" for="email">邮箱</label>
+			<div class="controls">
+				<input type="text" class="input-xlarge" id="email" name="email">
+				<p class="help-block">使用一个合法的邮箱账户，用于登录。 </p>
 			</div>
-			<div>
-				<label>Password:</label>
-				<input type="password" name="password">
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="password">口令</label>
+			<div class="controls">
+				<input type="password" class="input-xlarge" id="password" name="password">
 			</div>
-			<div>
-				<input type="submit" value="Sign up">
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="password-repeat">重复输入口令</label>
+			<div class="controls">
+				<input type="password" class="input-xlarge" id="password-repeat"
+				name="password-repeat">
 			</div>
-		</form>
-	</body>
-</html>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">注册</button>
+		</div>
+	</fieldset>
+</form>

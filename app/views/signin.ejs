@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title><%= title %></title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	<body>
-		<% for (var i in messages) { %>
-		<div class="flash"><%= messages[i] %></div>
-		<% } %>
-		<form action="/signin" method="post">
-			<div>
-				<label>Email:</label>
-				<input type="text" name="email">
+<% for (var i in messages) { %>
+<div class="flash"><%= messages[i] %></div>
+<% } %>
+<form class="form-horizontal" method="post">
+	<fieldset>
+		<legend>用户登入</legend>
+		<div class="control-group">
+			<label class="control-label" for="email">邮箱</label>
+			<div class="controls">
+				<input type="text" class="input-xlarge" id="email" name="email">
 			</div>
-			<div>
-				<label>Password:</label>
-				<input type="password" name="password">
+		</div>
+		<div class="control-group">
+			<label class="control-label" for="password">口令</label>
+			<div class="controls">
+				<input type="password" class="input-xlarge" id="password" name="password">
 			</div>
-			<div>
-				<input type="submit" value="Sign In">
-			</div>
-		</form>
-	</body>
-</html>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">登入</button>
+		</div>
+	</fieldset>
+</form>

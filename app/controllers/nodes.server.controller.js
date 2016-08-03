@@ -28,7 +28,7 @@ exports.create = function(req, res) {
 };
 
 exports.list = function(req, res) {
-	Node.find().sort('-name').populate('creator', 'email').exec(function(err, nodes) {
+	Node.find().sort('name').populate('creator', 'email').exec(function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
 				message: getErrorMessage(err)
