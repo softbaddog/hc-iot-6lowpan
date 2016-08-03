@@ -6,7 +6,7 @@ var userSchema = new Schema({
 	email: {
 		type: String,
 		index: true,
-		required: 'eMail is required',
+		required: '请填写合法邮箱',
 		match: /.+\@.+\..+/
 	},
 	password: {
@@ -14,7 +14,7 @@ var userSchema = new Schema({
 		validate: [
 			function(password) {
 				return password && password.length >= 6;
-			}, 'Password should be longer'
+			}, '密码必须大于6位'
 		]
 	},
 	role: {

@@ -8,7 +8,7 @@ var getErrorMessage = function(err) {
 			if (err.errors[errName].message) return err.errors[errName].message;
 		}
 	} else {
-		return 'Unknown server error';
+		return '未知错误';
 	}
 };
 
@@ -46,7 +46,7 @@ exports.nodeByID = function(req, res, next, id) {
 		}
 
 		if (!node) {
-			return next(new Error('Failed to load node ' + id));
+			return next(new Error('非法NodeId ' + id));
 		}
 
 		req.node = node;
@@ -61,11 +61,11 @@ exports.read = function(req, res) {
 exports.update = function(req, res) {
 	var node = req.node;
 
-		node.name = req.body.name;		
+		node.name = req.body.name;
 		node.deviceId = req.body.deviceId;
-		node.groupId = req.body.groupId;		
+		node.groupId = req.body.groupId;
 		node.status = req.body.status;
-		node.parent = req.body.parent;		
+		node.parent = req.body.parent;
 
 	if (req.body.level && node.level != req.body.level) {
 			node.level = req.body.level;
@@ -76,7 +76,7 @@ exports.update = function(req, res) {
 				level: node.level,
 			});
 
-			console.log(contents);			
+			console.log(contents);
 			// var options = {
 			// 	host: 'localhost',
 			// 	port: '3000',
@@ -94,7 +94,7 @@ exports.update = function(req, res) {
 			// 	});
 			// });
 			// req.write(contents);
-			// req.end();			
+			// req.end();
 	}
 
 	node.save(function(err) {
@@ -125,7 +125,7 @@ exports.delete = function(req, res) {
 exports.hasAuthorization = function(req, res, next) {
 	if (req.node.creator.id !== req.user.id) {
 		return res.status(403).send({
-			message: 'User is not authorized'
+			message: '用户未授权'
 		});
 	}
 	next();

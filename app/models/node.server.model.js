@@ -6,20 +6,17 @@ var nodeSchema = new Schema({
 		type: String,
 		trim: true,
 		unqiue: true,
-		required: 'Node Name is required.'
+		required: '请填写节点名称'
 	},
 	deviceId: {
 		type: String,
-		required: true
+		trim: true,
+		unqiue: true,
+		required: '请填写设备标识'
 	},
 	groupId: {
 		type: Number,
-		validate: [
-			function(num) {
-				return num >= 0 && num < 5;
-			},
-			'Group Number should be 0 - 4.'
-		]
+		default: 0
 	},
 	status: {
 		type: Number,

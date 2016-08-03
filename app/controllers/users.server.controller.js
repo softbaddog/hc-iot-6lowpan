@@ -8,10 +8,10 @@ var getErrorMessage = function(err) {
 		switch (err.code) {
 			case 11000:
 			case 11001:
-				message = 'Username already exists';
+				message = '该账号已经存在，请重新输入';
 				break;
 			default:
-				message = 'Something Wrong';
+				message = '未知错误';
 				break;
 		}
 	} else {
@@ -47,6 +47,12 @@ exports.renderSignup = function(req, res, next) {
 
 exports.signup = function(req, res, next) {
 	if (!req.user) {
+
+		if (req.body['password-repeat'] != req.body['password']) {
+			req.flash('error', '两次输入的口令不一致');
+			return res.redirect('/signup');
+		}
+
 		var user = new User(req.body);
 		var message = null;
 
@@ -78,7 +84,7 @@ exports.signout = function(req, res) {
 exports.requiresLogin = function(req, res, next) {
 	if (!req.isAuthenticated()) {
 		return res.status(401).send({
-			message: 'User is not logged in'
+			message: '用户未登录'
 		});
 	}
 	next();
