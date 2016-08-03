@@ -1,17 +1,18 @@
 <section data-ng-controller="NodesController" data-ng-init="find()">
-	<a href="/"><h1>Nodes</h1></a>
+	<a href="/bulbctrl"><h1>Nodes</h1></a>
 	<ul>
 		<li data-ng-repeat="node in nodes" class="list">
-			<a data-ng-href="/#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
+			<a data-ng-href="/bulbctrl#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
 			<br>
-			<p>状态：<small data-ng-bind="node.status"></small></p>
-			<p>分组：<small data-ng-bind="node.group"></small></p>
-			<p>父节点：<small data-ng-bind="node.parent"></small></p>
-			<p>角色：<small data-ng-bind="node.role"></small></p>
-			<p>刷新时间：<small data-ng-bind="node.updated | date:'medium'"></small></p>
+			<p>标识：<strong data-ng-bind="node.deviceId"></strong></p>
+			<p>分组：<strong data-ng-bind="node.groupId"></strong></p>
+			<p>状态：<strong data-ng-bind="node.status"></strong></p>
+			<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
+			<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
+			<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
 		</li>
 	</ul>
 	<div data-ng-hide="!nodes || nodes.length">
-		No nodes yet, why don't you <a href="/#!/nodes/create">create one</a>
+		No nodes yet, why don't you <a href="/bulbctrl#!/nodes/create">create one</a>
 	</div>
 </section>

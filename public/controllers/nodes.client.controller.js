@@ -6,9 +6,11 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 		$scope.create = function() {
 			var node = new Nodes({
 				name: this.name,
+				deviceId: this.deviceId,
+				groupId: this.groupId,
 				status: this.status,
-				group: this.group,
-				parent: this.parent
+				parent: this.parent,
+				level: this.level,
 			});
 
 			node.$save(function(response) {

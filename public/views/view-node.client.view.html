@@ -1,19 +1,19 @@
 <section data-ng-controller="NodesController" data-ng-init="findOne()">
-	<h1 data-ng-bind="node.name"></h1>
+	<a href="/bulbctrl"><h1 data-ng-bind="node.name"></h1></a>
+	<small>
+	<em>Posted on</em>
+	<em data-ng-bind="node.updated | date:'mediumDate'"></em>
+	<em>by</em>
+	<em data-ng-bind="node.creator.email"></em>
+	</small>
 	<div data-ng-show="authentication.user._id == node.creator._id">
-		<a href="/#!/nodes/{{node._id}}/edit">edit</a>
+		<a href="/bulbctrl#!/nodes/{{node._id}}/edit">edit</a>
 		<a href="#" data-ng-click="delete();">delete</a>
 	</div>
-	<small>
-		<em>Posted on</em>
-		<em data-ng-bind="node.updated | date:'mediumDate'"></em>
-		<em>by</em>
-		<em data-ng-bind="node.creator.email"></em>
-	</small>
-	<p data-ng-bind="node.status">状态</p>
-	<p data-ng-bind="node.group"></p>
-	<p data-ng-bind="node.parent"></p>
-	<p data-ng-bind="node.role"></p>
-	<p data-ng-bind="node.brightness"></p>
-	<a href="/">Go back</a>
+	<p>标识：<strong data-ng-bind="node.deviceId"></strong></p>
+	<p>分组：<strong data-ng-bind="node.groupId"></strong></p>
+	<p>状态：<strong data-ng-bind="node.status"></strong></p>
+	<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
+	<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
+	<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
 </section>

@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var	Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var nodeSchema = new Schema({
 	name: {
@@ -8,11 +8,11 @@ var nodeSchema = new Schema({
 		unqiue: true,
 		required: 'Node Name is required.'
 	},
-	status: {
-		type: Number,
-		default: 0
+	deviceId: {
+		type: String,
+		required: true
 	},
-	group: {
+	groupId: {
 		type: Number,
 		validate: [
 			function(num) {
@@ -20,6 +20,10 @@ var nodeSchema = new Schema({
 			},
 			'Group Number should be 0 - 4.'
 		]
+	},
+	status: {
+		type: Number,
+		default: 0
 	},
 	parent: {
 		type: String,
@@ -29,23 +33,17 @@ var nodeSchema = new Schema({
 		type: Number,
 		default: 0
 	},
-	deviceid: String,
+	level: {
+		type: Number,
+		default: 100
+	},
 	params: {
 		voltage: Number,
 		current: Number,
 		power: Number,
 		frequency: Number,
 		lifttime: Number,
-		location: String,		
-		level: {
-			type: Number,
-			validate: [
-				function(value) {
-					return value > 100;
-				},
-				'Brightness level is less 100'
-			]
-		},
+		location: String
 	},
 	updated: {
 		type: Date,
@@ -54,7 +52,7 @@ var nodeSchema = new Schema({
 	creator: {
 		type: Schema.ObjectId,
 		ref: 'User'
-	}	
+	}
 });
 
 mongoose.model('Node', nodeSchema);

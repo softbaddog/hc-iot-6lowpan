@@ -4,4 +4,5 @@ angular.module('users').factory('Authentication', [
 		return {
 			user: this.user
 		};
-}]);
+	}
+]);

@@ -6,27 +6,15 @@
 		<link rel="stylesheet" href="/css/style.css">
 	</head>
 	<body>
-	<section ng-view></section>
 	<script type="text/javascript">
 		window.user = <%- user || 'null' %>;
 	</script>
-	<script src="/lib/angular/angular.js"></script>
-	<script src="/lib/angular-route/angular-route.js"></script>
-	<script src="/lib/angular-resource/angular-resource.js"></script>
 
-	<script src="/services/nodes.client.service.js"></script>
-	<script src="/services/users.client.service.js"></script>
+	<ul>
+		<li><a href="/bulbctrl">灯控图</a></li>
+		<li><a href="/startrek">星空图</a></li>
+		<li><a href="/manuals">开发指南</a></li>
+	</ul>
 
-	<script src="/modules/app.client.module.js"></script>
-	<script src="/modules/nodes.client.module.js"></script>
-	<script src="/modules/users.client.module.js"></script>
-	
-	<script src="/controllers/app.client.controller.js"></script>
-	<script src="/controllers/nodes.client.controller.js"></script>
-
-	<script src="/config/app.client.routes.js"></script>
-	<script src="/config/nodes.client.routes.js"></script>
-	
-	<script src="/application.js"></script>	
 	</body>
 </html>

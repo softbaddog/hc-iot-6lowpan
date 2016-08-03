@@ -1,10 +1,28 @@
 <section data-ng-controller="NodesController">
-	<h1>New Node</h1>
+	<a href="/bulbctrl"><h1>创建节点</h1></a>
 	<form data-ng-submit="create()" novalidate>
 		<div>
-			<label for="name">节点</label>
+			<label for="name">名称</label>
 			<div>
 				<input type="text" data-ng-model="name" id="name" placeholder="A1" required>
+			</div>
+		</div>
+		<div>
+			<label for="deviceId">标识</label>
+			<div>
+				<input type="text" data-ng-model="deviceId" id="deviceId" placeholder="2A006124A6000146" required>
+			</div>
+		</div>		
+		<div>
+			<label for="groupId">分组</label>
+			<div>
+				<select data-ng-model="groupId" id="groupId">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+				</select>
 			</div>
 		</div>
 		<div>
@@ -17,21 +35,21 @@
 			</div>
 		</div>
 		<div>
-			<label for="group">分组</label>
-			<div>
-				<select data-ng-model="group" id="group">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-				</select>
-			</div>
-		</div>
-		<div>
 			<label for="parent">父节点</label>
 			<div>
 				<input type="text" data-ng-model="parent" id="parent" placeholder="roots" required>
+			</div>
+		</div>
+		<div>
+			<label for="level">调光级别</label>
+			<div>
+				<select data-ng-model="level" id="level">
+					<option value="0">0</option>
+					<option value="25">1</option>
+					<option value="50">2</option>
+					<option value="75">3</option>
+					<option value="100">4</option>
+				</select>
 			</div>
 		</div>
 		<div>
@@ -62,18 +80,6 @@
 			<label for="location">位置信息</label>
 			<div>
 				<input type="text" data-ng-model="location" id="location" placeholder="上海奔驰文化中心"></input>
-			</div>
-		</div>
-		<div>
-			<label for="brightness">调光级别</label>
-			<div>
-				<select data-ng-model="param.brightness" id="brightness">
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-				</select>
 			</div>
 		</div>
 		<div>
