@@ -34,11 +34,11 @@ module.exports = function(db) {
 		mongooseConnection: db.connection
 	});
 
-
 	app.use(session({
 		saveUninitialized: true,
 		resave: true,
-		secret: config.sessionSecret
+		secret: config.sessionSecret,
+		store: mongoStore
 	}));
 
 	app.set('views', './app/views');
@@ -72,5 +72,5 @@ module.exports = function(db) {
 
 	require('./socketio')(server, io, mongoStore);
 
-	return app;
+	return server;
 };

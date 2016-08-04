@@ -11,5 +11,8 @@ module.exports = function(app) {
 		.put(users.requiresLogin, nodes.hasAuthorization, nodes.update)
 		.delete(users.requiresLogin, nodes.hasAuthorization, nodes.delete);
 
+	app.route('/api/online')
+		.get(nodes.online);
+
 	app.param('nodeId', nodes.nodeByID);
 };

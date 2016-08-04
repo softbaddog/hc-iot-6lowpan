@@ -39,6 +39,18 @@ exports.list = function(req, res) {
 	});
 };
 
+exports.online = function(req, res) {
+	Node.find({'status':1}).sort('name').populate('creator', 'email').exec(function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			res.json(nodes);
+		}
+	});
+};
+
 exports.nodeByID = function(req, res, next, id) {
 	Node.findById(id).populate('creator', 'email').exec(function(err, node) {
 		if (err) {

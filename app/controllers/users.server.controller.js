@@ -1,5 +1,5 @@
 var User = require('mongoose').model('User');
-var	Passport = require('passport');
+var Passport = require('passport');
 
 var getErrorMessage = function(err) {
 	var message = '';
@@ -47,28 +47,32 @@ exports.renderSignup = function(req, res, next) {
 
 exports.signup = function(req, res, next) {
 	if (!req.user) {
-
 		if (req.body['password-repeat'] != req.body['password']) {
 			req.flash('error', '两次输入的口令不一致');
 			return res.redirect('/signup');
 		}
 
-		var user = new User(req.body);
-		var message = null;
+		User.count({}, function(err, count) {
 
-		user.provider = 'local';
+			var user = new User(req.body);
+			var message = null;
 
-		user.save(function(err) {
-			if (err) {
-				var message = getErrorMessage(err);
+			// 如果是首个注册用户，默认将其角色刷成admin
+			if (count === 0) user.role = 'admin';
+			user.provider = 'local';
 
-				req.flash('error', message);
-				return res.redirect('/signup');
-			}
+			user.save(function(err) {
+				if (err) {
+					var message = getErrorMessage(err);
 
-			req.login(user, function(err) {
-				if (err) return next(err);
-				return res.redirect('/');
+					req.flash('error', message);
+					return res.redirect('/signup');
+				}
+
+				req.login(user, function(err) {
+					if (err) return next(err);
+					return res.redirect('/');
+				});
 			});
 		});
 	} else {
