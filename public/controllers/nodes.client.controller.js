@@ -11,6 +11,13 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 				status: this.status,
 				parent: this.parent,
 				level: this.level,
+				voltage: this.voltage,
+				current: this.current,
+				power: this.power,
+				frequency: this.frequency,
+				energy: this.energy,
+				lifttime: this.lifttime,
+				location: this.location
 			});
 
 			node.$save(function(response) {

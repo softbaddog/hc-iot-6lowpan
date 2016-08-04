@@ -34,17 +34,46 @@ var nodeSchema = new Schema({
 		type: Number,
 		default: 100
 	},
-	params: {
-		voltage: Number,
-		current: Number,
-		power: Number,
-		frequency: Number,
-		lifttime: Number,
-		location: String
+	voltage: {
+		type: Number,
+		default: 140		
+	},
+	current: {
+		type: Number,
+		default: 10		
+	},
+	power: {
+		type: Number,
+		default: 15.3		
+	},
+	frequency: {
+		type: Number,
+		default: 200		
+	},
+	energy: {
+		type: Number,
+		default: 15.3		
+	},	
+	lifttime: {
+		type: Number,
+		default: 80		
+	},
+	location: {
+		type: String,
+		default: '上海奔驰文化中心'
 	},
 	updated: {
 		type: Date,
 		default: Date.now
+	},
+	hidden: Boolean,
+	meta: {
+		texture: String,
+		lightColor: String,
+		radius: Number,
+		x: Number,
+		y: Number,
+		z: Number
 	},
 	creator: {
 		type: Schema.ObjectId,

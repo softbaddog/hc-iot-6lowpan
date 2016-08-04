@@ -14,5 +14,13 @@ module.exports = function(app) {
 	app.route('/api/online')
 		.get(nodes.online);
 
+	app.route('/api/mesh')
+		.get(nodes.mesh);		
+
+	app.route('/api/:nodeName')
+		.get(nodes.read);
+
 	app.param('nodeId', nodes.nodeByID);
+
+	app.param('nodeName', nodes.nodeByName);
 };

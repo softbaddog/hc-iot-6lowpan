@@ -13,6 +13,13 @@
 			<p>状态：<strong data-ng-bind="node.status"></strong></p>
 			<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
 			<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
+			<p>电压：<strong data-ng-bind="node.voltage"></strong>V</p>
+			<p>电流：<strong data-ng-bind="node.current"></strong>A</p>
+			<p>电量：<strong data-ng-bind="node.power"></strong>kW</p>
+			<p>频率：<strong data-ng-bind="node.frequency"></strong>kHz</p>
+			<p>功率：<strong data-ng-bind="node.energy"></strong>kWh</p>
+			<p>剩余时间：<strong data-ng-bind="node.lifttime"></strong>%</p>
+			<p>位置信息：<strong data-ng-bind="node.location"></strong></p>
 			<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
 		</li>
 	</ul>

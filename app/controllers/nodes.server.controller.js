@@ -40,7 +40,19 @@ exports.list = function(req, res) {
 };
 
 exports.online = function(req, res) {
-	Node.find({'status':1}).sort('name').populate('creator', 'email').exec(function(err, nodes) {
+	Node.find({'status': 1},'name').sort('name').exec(function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			res.json(nodes.map(function(x) {return x.name;}));
+		}
+	});
+};
+
+exports.mesh = function(req, res) {
+	Node.find({'status': 1},'-_id name parent').exec(function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
 				message: getErrorMessage(err)
@@ -48,6 +60,21 @@ exports.online = function(req, res) {
 		} else {
 			res.json(nodes);
 		}
+	});
+};
+
+exports.nodeByName = function(req, res, next, name) {
+	Node.findOne({ name: name }, '-_id name voltage current power frequency energy lifttime location').exec(function(err, node) {
+		if (err) {
+			return next(err);
+		}
+
+		if (!node) {
+			return next(new Error('非法Name ' + name));
+		}
+
+		req.node = node;
+		next();
 	});
 };
 
