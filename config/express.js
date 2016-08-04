@@ -1,15 +1,20 @@
 var config = require('./config');
-var	express = require('express');
-var	morgan = require('morgan');
-var	compress = require('compression');
-var	bodyParser = require('body-parser');
-var	methodOverride = require('method-override');
-var	session = require('express-session');
-var	flash = require('connect-flash');
-var	passport = require('passport');
+var http = require('http');
+var socketio = require('socket.io');
+var express = require('express');
+var morgan = require('morgan');
+var compress = require('compression');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var flash = require('connect-flash');
+var passport = require('passport');
 
-module.exports = function() {
+module.exports = function(db) {
 	var app = express();
+	var server = http.createServer(app);
+	var io = socketio.listen(server);
 
 	if (process.env.NODE_ENV === 'development') {
 		app.use(morgan('dev'));
@@ -23,6 +28,11 @@ module.exports = function() {
 
 	app.use(bodyParser.json());
 	app.use(methodOverride());
+
+	var mongoStore = new MongoStore({
+		mongooseConnection: db.connection
+	});
+
 
 	app.use(session({
 		saveUninitialized: true,
@@ -42,9 +52,11 @@ module.exports = function() {
 	require('../app/routes/nodes.server.routes.js')(app);
 	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
-	
+
 	require('../app/routes/bulbctrl.server.routes.js')(app);
-	require('../app/routes/startrek.server.routes.js')(app);	
+	require('../app/routes/startrek.server.routes.js')(app);
+
+	require('./socketio')(server, io, mongoStore);
 
 	return app;
 };
