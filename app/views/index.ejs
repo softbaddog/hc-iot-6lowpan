@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html xmlns:ng="http://angularjs.org">
-	<head>
-		<meta charset="UTF-8">
-		<title><%= title %></title>
-		<link rel="stylesheet" href="/css/style.css">
-	</head>
-	<body>
-	<script type="text/javascript">
-		window.user = <%- user || 'null' %>;
-	</script>
 
-	<ul>
-		<li><a href="/bulbctrl">灯控图</a></li>
-		<li><a href="/startrek">星空图</a></li>
-		<li><a href="/manuals">开发指南</a></li>
-	</ul>
-
-	</body>
-</html>
+<div class="hero-unit">
+	<h2>欢迎来到华为全联接大会IoT展区</h2>
+	<p>6LoWPAN：无线嵌入式物联网</p>
+<% if (!user) { %>
+	<p>
+		<a class="btn btn-primary btn-large" href="/signin">登录</a>
+		<a class="btn btn-large" href="/signup">立即注册</a>
+	</p>
+<% } else { %>
+<ul>
+	<li><a href="/bulbctrl">灯控图</a></li>
+	<li><a href="/startrek">星空图</a></li>
+	<li><a href="/manuals">开发指南</a></li>
+</ul>
+<% } %>
+</div>

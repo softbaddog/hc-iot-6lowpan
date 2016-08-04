@@ -1,6 +1,6 @@
-angular.module('nodes').controller('NodesController', ['$scope', '$routeParams', '$location', 'Authentication', 'Nodes', 
+angular.module('nodes').controller('NodesController', ['$scope', '$routeParams', '$location', 'Authentication', 'Nodes',
 	function($scope, $routeParams, $location, Authentication, Nodes) {
-		
+
 		$scope.authentication = Authentication;
 
 		$scope.create = function() {
@@ -52,6 +52,6 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 					$location.path('nodes');
 				});
 			}
-		};		
-}]);
-
+		};
+	}
+]);

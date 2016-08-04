@@ -10,6 +10,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var passport = require('passport');
+var partials = require('express-partials');
 
 module.exports = function(db) {
 	var app = express();
@@ -44,10 +45,23 @@ module.exports = function(db) {
 	app.set('view engine', 'ejs');
 
 	app.use(flash());
+	app.use(partials());
 
 	app.use(passport.initialize());
 	app.use(passport.session());
 	app.use(express.static('./public'));
+
+	app.use(function(req, res, next) {
+		res.locals.user = req.session.user;
+
+		var err = req.flash('error');
+		var success = req.flash('success');
+
+		res.locals.error = err.length ? err : null;
+		res.locals.success = success.length ? success : null;
+
+		next();
+	});
 
 	require('../app/routes/nodes.server.routes.js')(app);
 	require('../app/routes/index.server.routes.js')(app);

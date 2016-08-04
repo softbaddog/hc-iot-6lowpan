@@ -1,6 +1,6 @@
 exports.render = function(req, res) {
 	res.render('index', {
-		title: 'HC大会IoT开发者展区',
+		title: '首页',
 		user: JSON.stringify(req.user)
 	});
 };
