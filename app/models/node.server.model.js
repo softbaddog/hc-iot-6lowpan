@@ -70,7 +70,6 @@ var nodeSchema = new Schema({
 	meta: {
 		texture: String,
 		lightColor: String,
-		radius: Number,
 		x: Number,
 		y: Number,
 		z: Number

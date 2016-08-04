@@ -15,7 +15,10 @@ module.exports = function(app) {
 		.get(nodes.online);
 
 	app.route('/api/mesh')
-		.get(nodes.mesh);		
+		.get(nodes.mesh);
+
+	app.route('/api/pp')
+		.get(nodes.pos);
 
 	app.route('/api/:nodeName')
 		.get(nodes.read);

@@ -19,6 +19,15 @@ tr, td {
 	border:solid #CCC 2px;
 }
 
+footer {
+	clear: both;
+}
+
 .enable {
 	background-color: red;
+}
+
+.bulb_list li {
+	float: left;
+	margin: 10px;
 }

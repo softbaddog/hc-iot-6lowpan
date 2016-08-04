@@ -63,6 +63,18 @@ exports.mesh = function(req, res) {
 	});
 };
 
+exports.pos = function(req, res) {
+	Node.find({},'-_id name meta.texture meta.lightColor meta.x meta.y meta.z').exec(function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			res.json(nodes);
+		}
+	});
+};
+
 exports.nodeByName = function(req, res, next, name) {
 	Node.findOne({ name: name }, '-_id name voltage current power frequency energy lifttime location').exec(function(err, node) {
 		if (err) {
@@ -105,6 +117,14 @@ exports.update = function(req, res) {
 		node.groupId = req.body.groupId;
 		node.status = req.body.status;
 		node.parent = req.body.parent;
+		node.voltage = req.body.voltage;
+		node.current = req.body.current;
+		node.power = req.body.power;
+		node.frequency = req.body.frequency;
+		node.energy = req.body.energy;
+		node.lifttime = req.body.lifttime;
+		node.location = req.body.location;
+		node.meta = req.body.meta;
 
 	if (req.body.level && node.level != req.body.level) {
 			node.level = req.body.level;

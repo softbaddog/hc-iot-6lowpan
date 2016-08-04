@@ -1,26 +1,35 @@
 <section data-ng-controller="NodesController" data-ng-init="findOne()">
 	<a href="/bulbctrl"><h1 data-ng-bind="node.name"></h1></a>
+	[<span data-ng-show="authentication.user._id == node.creator._id">
+		<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>
+	</span>]
+	<p>
 	<small>
 	<em>Posted on</em>
 	<em data-ng-bind="node.updated | date:'mediumDate'"></em>
 	<em>by</em>
 	<em data-ng-bind="node.creator.email"></em>
 	</small>
-	<div data-ng-show="authentication.user._id == node.creator._id">
-		<a href="/bulbctrl#!/nodes/{{node._id}}/edit">edit</a>
-		<a href="#" data-ng-click="delete();">delete</a>
-	</div>
-	<p>标识：<strong data-ng-bind="node.deviceId"></strong></p>
-	<p>分组：<strong data-ng-bind="node.groupId"></strong></p>
-	<p>状态：<strong data-ng-bind="node.status"></strong></p>
-	<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
-	<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
-	<p>电压：<strong data-ng-bind="node.voltage"></strong>V</p>
-	<p>电流：<strong data-ng-bind="node.current"></strong>A</p>
-	<p>电量：<strong data-ng-bind="node.power"></strong>kW</p>
-	<p>频率：<strong data-ng-bind="node.frequency"></strong>kHz</p>
-	<p>功率：<strong data-ng-bind="node.energy"></strong>kWh</p>
-	<p>剩余时间：<strong data-ng-bind="node.lifttime"></strong>%</p>
-	<p>位置信息：<strong data-ng-bind="node.location"></strong></p>
-	<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
-</section>
+		<p>标识：<strong data-ng-bind="node.deviceId"></strong></p>
+		<p>分组：<strong data-ng-bind="node.groupId"></strong></p>
+		<p>状态：<span data-ng-switch="node.status">
+			<strong data-ng-switch-when="1"><span>在线</span></strong>
+			<strong data-ng-switch-default><span>离线</strong></span>
+		</span></p>
+		<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
+		<p>调光级别：<strong data-ng-bind="node.level"></strong>%</p>
+		<p>电压：<strong data-ng-bind="node.voltage"></strong> V</p>
+		<p>电流：<strong data-ng-bind="node.current"></strong> A</p>
+		<p>电量：<strong data-ng-bind="node.power"></strong> kW</p>
+		<p>频率：<strong data-ng-bind="node.frequency"></strong> kHz</p>
+		<p>功率：<strong data-ng-bind="node.energy"></strong> kWh</p>
+		<p>剩余时间：<strong data-ng-bind="node.lifttime"></strong>%</p>
+		<p>位置信息：<strong data-ng-bind="node.location"></strong></p>
+		<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
+		<hr>
+		<p>材质位置：<strong data-ng-bind="node.meta.texture"></strong></p>
+		<p>光亮颜色：<strong data-ng-bind="node.meta.lightColor"></strong></p>
+		<p>X轴：<strong data-ng-bind="node.meta.x"></strong></p>
+		<p>Y轴：<strong data-ng-bind="node.meta.y"></strong></p>
+		<p>Z轴：<strong data-ng-bind="node.meta.z"></strong></p>		
+	</section>

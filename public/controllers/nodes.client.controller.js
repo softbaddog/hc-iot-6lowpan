@@ -17,7 +17,12 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 				frequency: this.frequency,
 				energy: this.energy,
 				lifttime: this.lifttime,
-				location: this.location
+				location: this.location,
+				meta: {
+					x: this.meta.x,
+					y: this.meta.y,
+					z: this.meta.z,
+				},
 			});
 
 			node.$save(function(response) {
