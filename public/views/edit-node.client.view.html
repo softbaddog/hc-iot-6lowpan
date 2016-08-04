@@ -12,7 +12,7 @@
 			<div>
 				<input type="text" data-ng-model="node.deviceId" id="deviceId" placeholder="2A006124A6000146" required>
 			</div>
-		</div>		
+		</div>
 		<div>
 			<label for="groupId">分组</label>
 			<div>
@@ -55,76 +55,76 @@
 		<div>
 			<label for="voltage">电压</label>
 			<div>
-				<input type="text" data-ng-model="node.voltage" id="voltage"></input>V
+				<input type="text" data-ng-model="node.params.voltage" id="voltage"></input>V
 			</div>
 		</div>
 		<div>
 			<label for="current">电流</label>
 			<div>
-				<input type="text" data-ng-model="node.current" id="current"></input>A
+				<input type="text" data-ng-model="node.params.current" id="current"></input>A
 			</div>
 		</div>
 		<div>
 			<label for="power">电量</label>
 			<div>
-				<input type="text" data-ng-model="node.power" id="power"></input>kW
+				<input type="text" data-ng-model="node.params.power" id="power"></input>kW
 			</div>
 		</div>
 		<div>
 			<label for="frequency">频率</label>
 			<div>
-				<input type="text" data-ng-model="node.frequency" id="frequency"></input>kHz
+				<input type="text" data-ng-model="node.params.frequency" id="frequency"></input>kHz
 			</div>
-		</div>		
+		</div>
 		<div>
 			<label for="energy">功率</label>
 			<div>
-				<input type="text" data-ng-model="node.energy" id="energy"></input>kWh
+				<input type="text" data-ng-model="node.params.energy" id="energy"></input>kWh
 			</div>
-		</div>						
+		</div>
 		<div>
 			<label for="lifttime">剩余时间</label>
 			<div>
-				<input type="text" data-ng-model="node.lifttime" id="lifttime"></input>%
+				<input type="text" data-ng-model="node.params.lifttime" id="lifttime"></input>%
 			</div>
 		</div>
 		<div>
 			<label for="location">位置信息</label>
 			<div>
-				<input type="text" data-ng-model="node.location" id="location"></input>
+				<input type="text" data-ng-model="node.params.location" id="location"></input>
 			</div>
 		</div>
 		<hr>
 		<div>
 			<label for="texture">材质位置</label>
 			<div>
-				<input type="text" data-ng-model="node.meta.texture" id="texture"></input>
+				<input type="text" data-ng-model="node.metadata.texture" id="texture"></input>
 			</div>
-		</div>		
+		</div>
 		<div>
 			<label for="lightColor">光亮颜色</label>
 			<div>
-				<input type="text" data-ng-model="node.meta.lightColor" id="lightColor"></input>
+				<input type="text" data-ng-model="node.metadata.lightColor" id="lightColor"></input>
 			</div>
 		</div>
 		<div>
 			<label for="x">X轴</label>
 			<div>
-				<input type="text" data-ng-model="node.meta.x" id="x"></input>
+				<input type="text" data-ng-model="node.metadata.x" id="x"></input>
 			</div>
 		</div>
 		<div>
 			<label for="y">Y轴</label>
 			<div>
-				<input type="text" data-ng-model="node.meta.y" id="y"></input>
+				<input type="text" data-ng-model="node.metadata.y" id="y"></input>
 			</div>
-		</div>		
+		</div>
 		<div>
 			<label for="z">Z轴</label>
 			<div>
-				<input type="text" data-ng-model="node.meta.z" id="z"></input>
+				<input type="text" data-ng-model="node.metadata.z" id="z"></input>
 			</div>
-		</div>		
+		</div>
 		<div>
 			<input type="submit" value="Update">
 		</div>

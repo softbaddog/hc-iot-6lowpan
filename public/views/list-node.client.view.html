@@ -15,20 +15,20 @@
 							 </span></p>
 			<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
 			<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
-			<p>电压：<strong data-ng-bind="node.voltage"></strong> V</p>
-			<p>电流：<strong data-ng-bind="node.current"></strong> A</p>
-			<p>电量：<strong data-ng-bind="node.power"></strong> kW</p>
-			<p>频率：<strong data-ng-bind="node.frequency"></strong> kHz</p>
-			<p>功率：<strong data-ng-bind="node.energy"></strong> kWh</p>
-			<p>剩余时间：<strong data-ng-bind="node.lifttime"></strong>%</p>
-			<p>位置信息：<strong data-ng-bind="node.location"></strong></p>
+			<p>电压：<strong data-ng-bind="node.params.voltage"></strong> V</p>
+			<p>电流：<strong data-ng-bind="node.params.current"></strong> A</p>
+			<p>电量：<strong data-ng-bind="node.params.power"></strong> kW</p>
+			<p>频率：<strong data-ng-bind="node.params.frequency"></strong> kHz</p>
+			<p>功率：<strong data-ng-bind="node.params.energy"></strong> kWh</p>
+			<p>剩余时间：<strong data-ng-bind="node.params.lifttime"></strong>%</p>
+			<p>位置信息：<strong data-ng-bind="node.params.location"></strong></p>
 			<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
 			<hr>
-			<p>材质位置：<strong data-ng-bind="node.meta.texture"></strong></p>
-			<p>光亮颜色：<strong data-ng-bind="node.meta.lightColor"></strong></p>
-			<p>X轴：<strong data-ng-bind="node.meta.x"></strong></p>
-			<p>Y轴：<strong data-ng-bind="node.meta.y"></strong></p>
-			<p>Z轴：<strong data-ng-bind="node.meta.z"></strong></p>
+			<p>材质位置：<strong data-ng-bind="node.metadata.texture"></strong></p>
+			<p>光亮颜色：<strong data-ng-bind="node.metadata.lightColor"></strong></p>
+			<p>X轴：<strong data-ng-bind="node.metadata.x"></strong></p>
+			<p>Y轴：<strong data-ng-bind="node.metadata.y"></strong></p>
+			<p>Z轴：<strong data-ng-bind="node.metadata.z"></strong></p>
 		</li>
 	</ul>
 	<div data-ng-hide="!nodes || nodes.length">

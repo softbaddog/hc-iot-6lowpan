@@ -14,60 +14,62 @@ var nodeSchema = new Schema({
 		unqiue: true,
 		required: '请填写设备标识'
 	},
-	groupId: {
+	groupId: { // 分组
 		type: Number,
 		default: 0
 	},
-	status: {
+	status: { // 是否在线
 		type: Number,
 		default: 0
 	},
-	parent: {
+	parent: { // 父节点，空节点为null
 		type: String,
-		default: 'roots'
+		default: 'null'
 	},
-	priority: {
+	priority: { // 控制优先级
 		type: Number,
 		default: 0
 	},
-	level: {
+	level: { // 调光级别
 		type: Number,
 		default: 100
 	},
-	voltage: {
-		type: Number,
-		default: 140		
-	},
-	current: {
-		type: Number,
-		default: 10		
-	},
-	power: {
-		type: Number,
-		default: 15.3		
-	},
-	frequency: {
-		type: Number,
-		default: 200		
-	},
-	energy: {
-		type: Number,
-		default: 15.3		
-	},	
-	lifttime: {
-		type: Number,
-		default: 80		
-	},
-	location: {
-		type: String,
-		default: '上海奔驰文化中心'
+	params: { // 电参数
+		voltage: { // 电压
+			type: Number,
+			default: 140
+		},
+		current: { // 电流
+			type: Number,
+			default: 10
+		},
+		power: { // 电量
+			type: Number,
+			default: 15.3
+		},
+		frequency: { // 频率
+			type: Number,
+			default: 200
+		},
+		energy: { // 功率
+			type: Number,
+			default: 15.3
+		},
+		lifttime: { // 剩余寿命
+			type: Number,
+			default: 80
+		},
+		location: { // 位置信息
+			type: String,
+			default: '上海奔驰文化中心'
+		},
 	},
 	updated: {
 		type: Date,
 		default: Date.now
 	},
 	hidden: Boolean,
-	meta: {
+	metadata: { // 其他与产品无关源数据
 		texture: String,
 		lightColor: String,
 		x: Number,

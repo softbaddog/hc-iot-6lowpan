@@ -114,17 +114,13 @@ exports.update = function(req, res) {
 
 		node.name = req.body.name;
 		node.deviceId = req.body.deviceId;
+
 		node.groupId = req.body.groupId;
 		node.status = req.body.status;
 		node.parent = req.body.parent;
-		node.voltage = req.body.voltage;
-		node.current = req.body.current;
-		node.power = req.body.power;
-		node.frequency = req.body.frequency;
-		node.energy = req.body.energy;
-		node.lifttime = req.body.lifttime;
-		node.location = req.body.location;
-		node.meta = req.body.meta;
+
+		node.params = req.body.params;
+		node.metadata = req.body.metadata;
 
 	if (req.body.level && node.level != req.body.level) {
 			node.level = req.body.level;
@@ -156,6 +152,7 @@ exports.update = function(req, res) {
 			// req.end();
 	}
 
+	node.updated = new Date();
 	node.save(function(err) {
 		if (err) {
 			return res.status(400).send({
