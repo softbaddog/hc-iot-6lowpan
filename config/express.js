@@ -15,7 +15,8 @@ var partials = require('express-partials');
 module.exports = function(db) {
 	var app = express();
 	var server = http.createServer(app);
-	var io = socketio.listen(server);
+	// var io = socketio.listen(server);
+	var io = socketio(server);
 
 	if (process.env.NODE_ENV === 'development') {
 		app.use(morgan('dev'));

@@ -1,7 +1,22 @@
-angular.module('nodes').controller('NodesController', ['$scope', '$routeParams', '$location', 'Authentication', 'Nodes',
-	function($scope, $routeParams, $location, Authentication, Nodes) {
+angular.module('nodes').controller('NodesController', ['$scope', '$routeParams', '$location', 'Authentication', 'Nodes', 'Socket',
+	function($scope, $routeParams, $location, Authentication, Nodes, Socket) {
 
 		$scope.authentication = Authentication;
+
+		Socket.on('nodeChanged', function(node) {
+			console.log('received node changed.', node);
+			if ($scope.node && $scope.node._id === node._id) {
+				// 刷新当前节点数据
+				$scope.node = node;
+			}
+			if ($scope.nodes) {
+				$scope.nodes.forEach(function(element, index) {
+					if (element._id === node._id) {
+						$scope.nodes[index] = node;
+					}
+				});
+			}
+		});
 
 		$scope.create = function() {
 			var node = new Nodes({
@@ -35,6 +50,9 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 		$scope.update = function() {
 			$scope.node.$update(function() {
 				$location.path('nodes/' + $scope.node._id);
+
+				// 同时触发nodeChanged事件
+				Socket.emit('nodeChanged', $scope.node);
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
