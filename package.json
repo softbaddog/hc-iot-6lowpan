@@ -1,7 +1,7 @@
 {
   "name": "hcc-iot",
-  "version": "0.0.2",
-  "description": "HC旗舰大会展示项目",
+  "version": "0.8.0",
+  "description": "HC旗舰大会IoT展示项目",
   "main": "server.js",
   "script": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,6 +29,6 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "socket.io": "^1.4.8"    
+    "socket.io": "^1.4.8"
   }
 }
