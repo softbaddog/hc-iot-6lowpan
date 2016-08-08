@@ -72,6 +72,7 @@ module.exports = function(db) {
 	require('../app/routes/startrek.server.routes.js')(app);
 
 	require('./socketio')(server, io, mongoStore);
+	setTimeout(require('./socketio-client')(), 2000);
 
 	return server;
 };

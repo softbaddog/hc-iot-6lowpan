@@ -28,7 +28,7 @@ exports.post = function(api, nodes, node, callback) {
 			if (node) {
 				contents = '';
 				path = 'system/action/urn:huawei:iotdm:advoper/' + api + '?esn=' + node.deviceId;
-			} else if (nodes) {
+			} else {
 				contents = '';
 				path = 'system/action/urn:huawei:iotdm:advoper/' + api + '?domain=' + config.domain;
 			}
