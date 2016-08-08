@@ -1,7 +1,5 @@
 var Node = require('mongoose').model('Node');
-var http = require('http');
-var querystring = require('querystring');
-var config = require('../../config/config');
+var request = require('../../config/request');
 
 var getErrorMessage = function(err) {
 	if (err.errors) {
@@ -135,30 +133,7 @@ exports.update = function(req, res) {
 		node.level = req.body.level;
 
 		// 如果刷新了调光级别，需要下发http request到EEM平台
-		var contents = querystring.stringify({
-			index: '0',
-			level: node.level,
-		});
-
-		console.log(contents);
-		// var options = {
-		// 	host: config.eemHost,
-		// 	port: config.eemPort,
-		// 	path: '/iotdm/nb/v1/device/set/' + node.deviceId + 'urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:dim-level',
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/x-www-form-urlencoded',
-		// 		'Content-Length': contents.length
-		// 	}
-		// };
-		// var newReq = http.request(options, function(res) {
-		// 	res.setEncoding('utf8');
-		// 	res.on('data', function(data) {
-		// 		console.log(data);
-		// 	});
-		// });
-		// newReq.write(contents);
-		// newReq.end();
+		request.post('dim-level', null, node);
 	}
 
 	node.updated = new Date();
