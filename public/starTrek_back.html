@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>HCC 灯光界面</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="styles/audioControls.css">
+    <link rel="stylesheet" href="styles/hccMain.css">
+
+    <!-- libs -->
+    <script src="src/tools/libs/jquery-3.0.0.js"></script>
+    <script src="src/tools/libs/jquery-ui.js"></script>
+    <script src="src/tools/libs/three.js"></script>
+    <script src="src/tools/libs/dat.gui.min.js"></script>
+
+    <!-- tools -->
+    <script src="src/tools/liaohengfan/InitThree.js"></script>
+    <script src="src/com/controls/OrbitControls.js"></script>
+
+    <!-- resource -->
+    <script src="src/com/Textures.js"></script>
+    <script src="src/com/Shaders.js"></script>
+
+    <!-- music -->
+    <script src="src/com/audio/AudioVisualizer.js"></script>
+    <script src="src/com/audio/AudioContols.js"></script>
+
+    <!-- scene -->
+    <script src="src/com/Main.js"></script>
+    <script src="src/com/Sky.js"></script>
+    <script src="src/com/effects/ParticlesEnv.js"></script>
+
+    <!-- stars -->
+    <script src="src/com/effects/CurveAni.js"></script>
+    <script src="src/com/stars/LineManager.js"></script>
+    <script src="src/com/stars/Star.js"></script>
+    <script src="src/com/stars/StarScene.js"></script>
+
+    <!-- data -->
+    <script src="src/com/DataInterface.js"></script>
+
+</head>
+<body onload="HCC_LIGHTS.init();">
+    <div id="player">
+        <div class="ctrl">
+            <div class="control">
+                <div class="left">
+                    <div class="rewind icon"></div>
+                    <div class="playback icon" data-action="play" ></div>
+                    <div class="fastforward icon"></div>
+                </div>
+                <div class="volume right">
+                    <div class="tag"></div>
+                </div>
+            </div>
+            <div class="progress">
+                <div class="slider">
+                    <div class="loaded"></div>
+                    <div class="pace"></div>
+                </div>
+                <div class="timer left">0:00</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="controls_div"></div>
+    <div id="webgl_div">
+        <canvas id="webgl_canvas"></canvas>
+    </div>
+</body>
+</html>

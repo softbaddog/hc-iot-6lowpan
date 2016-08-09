@@ -1,6 +1,8 @@
 var Node = require('mongoose').model('Node');
 var request = require('../../config/request');
 
+var level_table = [0, 25, 50, 75, 100, 125];
+
 var getErrorMessage = function(err) {
 	if (err.errors) {
 		for (var errName in err.errors) {
@@ -69,7 +71,7 @@ exports.mesh = function(req, res) {
 };
 
 exports.pos = function(req, res) {
-	Node.find({}, '-_id name meta.texture meta.lightColor meta.x meta.y meta.z').exec(function(err, nodes) {
+	Node.find({}, '-_id name groupId metadata.x metadata.y metadata.z').exec(function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
 				message: getErrorMessage(err)
@@ -83,7 +85,7 @@ exports.pos = function(req, res) {
 exports.nodeByName = function(req, res, next, name) {
 	Node.findOne({
 		name: name
-	}, '-_id name voltage current power frequency energy lifttime location').exec(function(err, node) {
+	}, '-_id name switch status level params.voltage params.current params.power params.frequency params.energy params.lifttime params.location').exec(function(err, node) {
 		if (err) {
 			return next(err);
 		}
@@ -121,10 +123,10 @@ exports.update = function(req, res) {
 
 	node.name = req.body.name;
 	node.deviceId = req.body.deviceId;
-
 	node.groupId = req.body.groupId;
 	node.status = req.body.status;
 	node.parent = req.body.parent;
+	node.switch = req.body.switch;
 
 	node.params = req.body.params;
 	node.metadata = req.body.metadata;
@@ -146,6 +148,81 @@ exports.update = function(req, res) {
 			res.json(node);
 		}
 	});
+};
+
+exports.bulbctrl = function(req, res) {
+	console.log(req.body);
+	req.body.devices.forEach(function(element, index) {
+		Node.findOne({
+			name: element.name
+		}).exec(function(err, node) {
+			if (err) {
+				return next(err);
+			}
+
+			if (!node) {
+				return next(new Error('非法Name ' + element.name));
+			}
+
+			if (node.level !== level_table[element.brightness]) {
+				node.level = level_table[element.brightness];
+				node.save(function(err) {
+					if (err) {
+						console.log(err);
+					} else {
+						// 调光通知
+						// io.emit('nodeChanged', node);
+
+						// 如果刷新了调光级别，需要下发http request到EEM平台
+						request.post('dim-level', null, node);
+					}
+				});
+			}
+		});
+	});
+	res.end();
+};
+
+exports.groupctrl = function(req, res) {
+	console.log(req.body);
+	req.body.group.forEach(function(element, index) {
+		Node.find({
+			groupId: element.name
+		}).exec(function(err, nodes) {
+			if (err) {
+				return next(err);
+			}
+
+			if (!nodes) {
+				return next(new Error('非法Group ' + element.name));
+			}
+
+			nodes.forEach(function(node, index) {
+				if (node.level !== level_table[element.brightness]) {
+					node.level = level_table[element.brightness];
+					node.save(function(err) {
+						if (err) {
+							console.log(err);
+						} else {
+							// 调光通知
+							// io.emit('nodeChanged', node);
+						}
+					});
+				}
+			});
+
+			// 如果刷新了调光级别，需要下发http request到EEM平台
+			request.post('dim-level', nodes, null);			
+		});
+	});
+	res.end();
+};
+
+exports.ctrl = function(req, res) {
+	console.log(req.node);
+	console.log(req.body);
+	console.log("ctrl=====");
+	res.json({});
 };
 
 exports.delete = function(req, res) {

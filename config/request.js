@@ -13,15 +13,15 @@ exports.post = function(api, nodes, node, callback) {
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 			} else if (nodes) {
 				contents = querystring.stringify({
-					'gid': nodes[0].group,
+					'gid': nodes[0].groupId,
 					'type': 'set',
 					'path': '/huawei-iotdm-device:data/huawei-iotdm-device-sensor:' + api,
 					'body': {
 						'index': 0,
-						'level': node.level
+						'level': nodes[0].level
 					}
 				});
-				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm:device/huawei-iotdm-device-common:multicast';
+				path = 'device/action/' + config.gateway + '/urn:huawei:iotdm:device/huawei-iotdm-device-common:multicast';
 			}
 			break;
 		case 'dev-online-status':
@@ -58,22 +58,22 @@ exports.post = function(api, nodes, node, callback) {
 		}
 	};
 
-	console.log(options);
-	var req = http.request(options, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function(data) {
-			console.log(api, data);
-			if (callback) {
-				callback(data);
-			}
-		});
-		res.on('error', function(err) {
-			console.log(err);
-		});
-	});
+	// console.log(options);
+// 	var req = http.request(options, function(res) {
+// 		res.setEncoding('utf8');
+// 		res.on('data', function(data) {
+// 			console.log(api, data);
+// 			if (callback) {
+// 				callback(data);
+// 			}
+// 		});
+// 		res.on('error', function(err) {
+// 			console.log(err);
+// 		});
+// 	});
 
-	req.write(contents);
-	req.end();
+// 	req.write(contents);
+// 	req.end();
 };
 
 exports.get = function(api, nodes, node, callback) {
@@ -102,19 +102,19 @@ exports.get = function(api, nodes, node, callback) {
 			'Content-Length': contents.length
 		}
 	};
-	var req = http.request(options, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function(data) {
-			console.log(data);
-			if (callback) {
-				callback(api, data);
-			}
-		});
-		res.on('error', function(err) {
-			console.log(err);
-		});
-	});
+	// var req = http.request(options, function(res) {
+	// 	res.setEncoding('utf8');
+	// 	res.on('data', function(data) {
+	// 		console.log(data);
+	// 		if (callback) {
+	// 			callback(api, data);
+	// 		}
+	// 	});
+	// 	res.on('error', function(err) {
+	// 		console.log(err);
+	// 	});
+	// });
 
-	req.write(contents);
-	req.end();
+	// req.write(contents);
+	// req.end();
 };

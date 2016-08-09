@@ -1,5 +1,5 @@
 <section data-ng-controller="NodesController" data-ng-init="findOne()">
-	<a href="/bulbctrl"><h1 data-ng-bind="node.name"></h1></a>
+	<a href="/bulbctrl#!/nodes"><h1 data-ng-bind="node.name"></h1></a>
 	[<span data-ng-show="authentication.user._id == node.creator._id">
 		<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>
 	</span>]
@@ -17,7 +17,8 @@
 			<strong data-ng-switch-default><span>离线</strong></span>
 		</span></p>
 		<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
-		<p>调光级别：<strong data-ng-bind="node.level"></strong>%</p>
+		<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
+		<p>开光状态：<strong data-ng-bind="node.switch"></strong></p>
 		<p>电压：<strong data-ng-bind="node.params.voltage"></strong> V</p>
 		<p>电流：<strong data-ng-bind="node.params.current"></strong> A</p>
 		<p>电量：<strong data-ng-bind="node.params.power"></strong> kW</p>
@@ -27,8 +28,6 @@
 		<p>位置信息：<strong data-ng-bind="node.params.location"></strong></p>
 		<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
 		<hr>
-		<p>材质位置：<strong data-ng-bind="node.metadata.texture"></strong></p>
-		<p>光亮颜色：<strong data-ng-bind="node.metadata.lightColor"></strong></p>
 		<p>X轴：<strong data-ng-bind="node.metadata.x"></strong></p>
 		<p>Y轴：<strong data-ng-bind="node.metadata.y"></strong></p>
 		<p>Z轴：<strong data-ng-bind="node.metadata.z"></strong></p>

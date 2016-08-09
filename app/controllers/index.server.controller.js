@@ -1,6 +1,7 @@
 exports.render = function(req, res) {
 	res.render('index', {
 		title: '首页',
-		user: JSON.stringify(req.user)
+		user: JSON.stringify(req.user),
+		role: req.user.role
 	});
 };

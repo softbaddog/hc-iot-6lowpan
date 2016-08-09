@@ -16,7 +16,7 @@ module.exports = function(db) {
 	var app = express();
 	var server = http.createServer(app);
 	// var io = socketio.listen(server);
-	var io = socketio(server);
+	io = socketio(server);  // 引入到全局变量中
 
 	if (process.env.NODE_ENV === 'development') {
 		app.use(morgan('dev'));

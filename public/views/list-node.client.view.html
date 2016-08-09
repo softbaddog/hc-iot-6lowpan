@@ -1,5 +1,8 @@
 <section data-ng-controller="NodesController" data-ng-init="find()">
-	<a href="/bulbctrl"><h1>Nodes</h1></a>
+	<a href="/bulbctrl#!/nodes"><h1>Nodes List</h1></a>
+	<ul data-ng-show="authentication.user.role == 'admin'">
+	<li><a href="/bulbctrl#!/nodes/create">Create Node</a></li>
+	</ul>
 	<ul class="bulb_list">
 		<li data-ng-repeat="node in nodes" class="list">
 			<a data-ng-href="/bulbctrl#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
@@ -15,6 +18,7 @@
 							 </span></p>
 			<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
 			<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
+			<p>开光状态：<strong data-ng-bind="node.switch"></strong></p>
 			<p>电压：<strong data-ng-bind="node.params.voltage"></strong> V</p>
 			<p>电流：<strong data-ng-bind="node.params.current"></strong> A</p>
 			<p>电量：<strong data-ng-bind="node.params.power"></strong> kW</p>
@@ -24,8 +28,6 @@
 			<p>位置信息：<strong data-ng-bind="node.params.location"></strong></p>
 			<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
 			<hr>
-			<p>材质位置：<strong data-ng-bind="node.metadata.texture"></strong></p>
-			<p>光亮颜色：<strong data-ng-bind="node.metadata.lightColor"></strong></p>
 			<p>X轴：<strong data-ng-bind="node.metadata.x"></strong></p>
 			<p>Y轴：<strong data-ng-bind="node.metadata.y"></strong></p>
 			<p>Z轴：<strong data-ng-bind="node.metadata.z"></strong></p>

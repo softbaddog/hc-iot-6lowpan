@@ -26,6 +26,7 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 				status: this.status,
 				parent: this.parent,
 				level: this.level,
+				switch: this.switch,
 				params: this.params,
 				metadata: this.metadata
 			});

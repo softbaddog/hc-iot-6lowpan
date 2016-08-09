@@ -1,5 +1,5 @@
 <section data-ng-controller="NodesController">
-	<a href="/bulbctrl"><h1>创建节点</h1></a>
+	<a href="/bulbctrl#!/nodes"><h1>创建节点</h1></a>
 	<form data-ng-submit="create()" novalidate>
 		<div>
 			<label for="name">名称</label>
@@ -53,6 +53,16 @@
 			</div>
 		</div>
 		<div>
+			<label for="switch">开关状态</label>
+			<div>
+				<select data-ng-model="switch" id="switch">
+					<option value="1">开</option>
+					<option value="0">关</option>
+				</select>
+			</div>
+		</div>
+		<div>		
+		<div>
 			<label for="voltage">电压</label>
 			<div>
 				<input type="text" data-ng-model="params.voltage" id="voltage" placeholder="140"></input>V
@@ -95,18 +105,6 @@
 			</div>
 		</div>
 		<hr>
-		<div>
-			<label for="texture">材质位置</label>
-			<div>
-				<input type="text" data-ng-model="metadata.texture" id="texture" placeholder="textures/star/moon_1024.jpg"></input>
-			</div>
-		</div>
-		<div>
-			<label for="lightColor">光亮颜色</label>
-			<div>
-				<input type="text" data-ng-model="metadata.lightColor" id="lightColor" placeholder="#0xFF0000"></input>
-			</div>
-		</div>
 		<div>
 			<label for="x">X轴</label>
 			<div>

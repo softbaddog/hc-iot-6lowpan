@@ -20,8 +20,15 @@ module.exports = function(app) {
 	app.route('/api/pp')
 		.get(nodes.pos);
 
+	app.route('/api/bulbctrl')
+		.post(nodes.bulbctrl);
+
+	app.route('/api/groupctrl')
+		.post(nodes.groupctrl);		
+	
 	app.route('/api/:nodeName')
-		.get(nodes.read);
+		.get(nodes.read)
+		.post(nodes.ctrl);
 
 	app.param('nodeId', nodes.nodeByID);
 

@@ -34,6 +34,10 @@ var nodeSchema = new Schema({
 		type: Number,
 		default: 100
 	},
+	switch: { // 开关
+		type: Number,
+		default: 1
+	},
 	params: { // 电参数
 		voltage: { // 电压
 			type: Number,
