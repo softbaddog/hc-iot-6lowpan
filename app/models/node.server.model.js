@@ -73,12 +73,19 @@ var nodeSchema = new Schema({
 		default: Date.now
 	},
 	hidden: Boolean,
-	metadata: { // 其他与产品无关源数据
-		texture: String,
-		lightColor: String,
-		x: Number,
-		y: Number,
-		z: Number
+	metadata: { // 与产品无关源数据
+		x: {
+			type:Number,
+			default: 0
+		},
+		y: {
+			type:Number,
+			default: 0
+		},
+		z: {
+			type:Number,
+			default: 0
+		}
 	},
 	creator: {
 		type: Schema.ObjectId,
