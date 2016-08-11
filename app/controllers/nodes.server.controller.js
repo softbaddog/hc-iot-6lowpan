@@ -123,16 +123,24 @@ exports.update = function(req, res) {
 
 	node.name = req.body.name;
 	node.deviceId = req.body.deviceId;
-	node.groupId = req.body.groupId;
+
 	node.parent = req.body.parent;
 
 	node.params = req.body.params;
 	node.metadata = req.body.metadata;
 
+	if (node.groupId != req.body.groupId) {
+		node.groupId = req.body.groupId;
+
+		// 刷新分组信息
+		request.post('group-list', null, node);
+	}
+
+
 	if (node.level != req.body.level) {
 		node.level = req.body.level;
 
-		// 如果刷新了调光级别，需要下发http request到EEM平台
+		// 刷新调光信息
 		request.post('dim-level', null, node);
 	}
 
@@ -141,19 +149,20 @@ exports.update = function(req, res) {
 
 		// 如果状态转成离线，需要将路由节点置空，且需要将其作为父节点的Node状态同时置空
 		if (node.status === 0) {
-		 	node.parent = 'null';
-		 } 
+			node.parent = 'null';
+		}
 	}
 
 	if (node.switch != req.body.switch) {
 		node.switch = req.body.switch;
 
+		// 同步开光状态
 		request.post('switch-status', null, node);
 
 		// 如果开关设置为关，调光级别无意义，默认重置为0
 		if (node.switch === 0) {
-		 	node.level = 0;
-		 } 
+			node.level = 0;
+		}
 	}
 
 	node.updated = new Date();
@@ -186,7 +195,7 @@ exports.bulbctrl = function(req, res) {
 
 			// 如果查找到节点，不刷新数据库，直接下发指令到EEM
 			request.post('dim-level', null, node);
-		});		
+		});
 	});
 	res.end();
 };
@@ -208,7 +217,7 @@ exports.groupctrl = function(req, res) {
 			nodes[0].level = level_table[element.brightness];
 
 			// 如果刷新了调光级别，需要下发http request到EEM平台
-			request.post('dim-level', nodes, null);			
+			request.post('dim-level', nodes, null);
 		});
 	});
 	res.end();

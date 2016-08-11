@@ -39,15 +39,15 @@ exports.post = function(api, nodes, node, callback) {
 					"status": node.switch == 1 ? 'on' : 'off'
 				});
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
-			}		
+			}
 			break;
 		case 'group-list':
 			if (node) {
-				contents = JSON.stringify({
+				contents = JSON.stringify(
 					node.groupId
-				});
+				);
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
-			}		
+			}
 			break;
 		default:
 			console.log('No Support!');
@@ -67,21 +67,24 @@ exports.post = function(api, nodes, node, callback) {
 	};
 
 	console.log(options);
-	var req = http.request(options, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function(data) {
-			console.log(api, data);
-			if (callback) {
-				callback(data);
-			}
+	if (require('./socketio-client').success()) {
+		var req = http.request(options, function(res) {
+			res.setEncoding('utf8');
+			res.on('data', function(data) {
+				console.log(api, data);
+				if (callback) {
+					callback(data);
+				}
+			});
+			res.on('error', function(err) {
+				console.log(err);
+			});
 		});
-		res.on('error', function(err) {
-			console.log(err);
-		});
-	});
 
-	req.write(contents);
-	req.end();
+		req.write(contents);
+		req.end();
+	}
+
 };
 
 exports.get = function(api, nodes, node, callback) {
@@ -92,7 +95,7 @@ exports.get = function(api, nodes, node, callback) {
 			} else {
 				path = 'system/action/urn:huawei:iotdm:advoper/' + api + '?domain=' + config.domain;
 			}
-			break;		
+			break;
 		case 'net-topo':
 			path = 'device/get/' + config.gateway + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
@@ -113,18 +116,20 @@ exports.get = function(api, nodes, node, callback) {
 	};
 
 	console.log(options);
-	var req = http.request(options, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function(data) {
-			console.log(api, data);
-			if (callback) {
-				callback(data);
-			}
+	if (require('./socketio-client').success()) {
+		var req = http.request(options, function(res) {
+			res.setEncoding('utf8');
+			res.on('data', function(data) {
+				console.log(api, data);
+				if (callback) {
+					callback(data);
+				}
+			});
+			res.on('error', function(err) {
+				console.log(err);
+			});
 		});
-		res.on('error', function(err) {
-			console.log(err);
-		});
-	});
 
-	req.end();
+		req.end();
+	}
 };
