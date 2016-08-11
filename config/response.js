@@ -3,6 +3,7 @@ var querystring = require('querystring');
 var config = require('./config');
 var Node = require('mongoose').model('Node');
 
+// { "online": [ "FFFF010203FCE000", "2E00000000000031", "2E00000000000030" ] }
 exports.devStatus = function(devices) {
 	devices.forEach(function(element, index) {
 		Node.findOne({
@@ -27,6 +28,7 @@ exports.devStatus = function(devices) {
 	});
 };
 
+// r = '[ { "device-id": "FFFF010203FCE000", "status": "online", "node-id": 1, "parent-node-id": 0, "hop-count": 0 }, { "device-id": "2E00000000000030", "status": "online", "node-id": 2, "parent-node-id": 1, "hop-count": 1 }, { "device-id": "2E00000000000032", "status": "online", "node-id": 3, "parent-node-id": 1, "hop-count": 1 } ]';
 exports.devTopo = function(devices) {
 	// console.log(devices);
 	var map = {};
