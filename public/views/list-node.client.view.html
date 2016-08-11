@@ -2,11 +2,13 @@
 	<a href="/bulbctrl#!/nodes"><h1>Nodes List</h1></a>
 	<ul data-ng-show="authentication.user.role == 'admin'">
 	<li><a href="/bulbctrl#!/nodes/create">Create Node</a></li>
+	<li><a href="/api/init">Initialize Nodes</a></li>
+	<li><a href="/api/output">Output All Nodes</a></li>
 	</ul>
 	<ul class="bulb_list">
 		<li data-ng-repeat="node in nodes" class="list">
 			<a data-ng-href="/bulbctrl#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
-			[<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>]
+			[ <a href="/bulbctrl#!/nodes/{{node._id}}/edit">Edit</a> | <a href="#" data-ng-click="delete(node);">Delete</a> ]
 			<p>
 			<p>标识：<strong data-ng-bind="node.deviceId"></strong></p>
 			<p>分组：<strong data-ng-bind="node.groupId"></strong></p>

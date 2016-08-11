@@ -14,4 +14,4 @@ require('./config/socketio-client').initialize();
 
 module.exports = app;
 
-console.log("HC-IoT-6LoWPAN Server running at http://localhost:3000");
+console.log('HC-IoT-6LoWPAN Server running at http://localhost:3000');

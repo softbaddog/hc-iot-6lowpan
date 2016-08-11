@@ -1,6 +1,6 @@
 <div class="hero-unit">
-	<h2>欢迎来到华为全联接大会IoT展区</h2>
-	<p>6LoWPAN：无线嵌入式物联网</p>
+	<h2><%= welcome %></h2>
+	<p><%= topic %></p>
 <% if (!user) { %>
 	<p>
 		<a class="btn btn-primary btn-large" href="/signin">登录</a>
@@ -10,7 +10,7 @@
 <ul>
 	<li><a href="/bulbctrl#!/nodes">灯控后台</a></li>
 	<li><a href="/index2.html">展示应用</a></li>
-	<li><a href="/manuals">开发指南</a></li>
+	<li><a href="/manual">开发指南</a></li>
 </ul>
 <% } %>
 </div>

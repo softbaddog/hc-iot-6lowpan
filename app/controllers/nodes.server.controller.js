@@ -1,8 +1,6 @@
 var Node = require('mongoose').model('Node');
 var request = require('../../config/request');
 
-var level_table = [0, 25, 50, 75, 100, 125];
-
 var getErrorMessage = function(err) {
 	if (err.errors) {
 		for (var errName in err.errors) {
@@ -28,50 +26,42 @@ exports.create = function(req, res) {
 	});
 };
 
+exports.init = function(req, res) {
+	Node.find({}, function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			nodes.forEach(function(element, index) {
+				element.groupId = 0;
+				element.status = 0;
+				element.parent = 'null';
+				element.level = 0;
+				element.switch = 0;
+				element.params.voltage = 0;
+				element.params.current = 0;
+				element.params.power = 0;
+				element.params.frequency = 0;
+				element.params.energy = 0;
+				element.params.lifttime = 0;
+				element.params.location = '';
+				element.updated = new Date();
+				element.save(function(err) {
+					if (err) {
+						return res.status(400).send({
+							message: '未知错误'
+						});
+					}
+				});
+			});
+		}
+		res.redirect('/bulbctrl#!/nodes');
+	});
+};
+
 exports.list = function(req, res) {
 	Node.find().sort('name').populate('creator', 'email').exec(function(err, nodes) {
-		if (err) {
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
-		} else {
-			res.json(nodes);
-		}
-	});
-};
-
-exports.online = function(req, res) {
-	Node.find({
-		'status': 1
-	}, 'name').sort('name').exec(function(err, nodes) {
-		if (err) {
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
-		} else {
-			res.json(nodes.map(function(x) {
-				return x.name;
-			}));
-		}
-	});
-};
-
-exports.mesh = function(req, res) {
-	Node.find({
-		'status': 1
-	}, '-_id name parent').exec(function(err, nodes) {
-		if (err) {
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
-		} else {
-			res.json(nodes);
-		}
-	});
-};
-
-exports.pos = function(req, res) {
-	Node.find({}, '-_id name groupId metadata.x metadata.y metadata.z').exec(function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
 				message: getErrorMessage(err)
@@ -175,59 +165,6 @@ exports.update = function(req, res) {
 			res.json(node);
 		}
 	});
-};
-
-exports.bulbctrl = function(req, res) {
-	console.log(req.body);
-	req.body.devices.forEach(function(element, index) {
-		Node.findOne({
-			name: element.name
-		}).exec(function(err, node) {
-			if (err) {
-				return next(err);
-			}
-
-			if (!node) {
-				return next(new Error('非法Name ' + element.name));
-			}
-
-			node.level = level_table[element.brightness];
-
-			// 如果查找到节点，不刷新数据库，直接下发指令到EEM
-			request.post('dim-level', null, node);
-		});
-	});
-	res.end();
-};
-
-exports.groupctrl = function(req, res) {
-	console.log(req.body);
-	req.body.group.forEach(function(element, index) {
-		Node.find({
-			groupId: element.name
-		}).exec(function(err, nodes) {
-			if (err) {
-				return next(err);
-			}
-
-			if (!nodes) {
-				return next(new Error('非法Group ' + element.name));
-			}
-
-			nodes[0].level = level_table[element.brightness];
-
-			// 如果刷新了调光级别，需要下发http request到EEM平台
-			request.post('dim-level', nodes, null);
-		});
-	});
-	res.end();
-};
-
-exports.ctrl = function(req, res) {
-	console.log(req.node);
-	console.log(req.body);
-	console.log("ctrl=====");
-	res.json({});
 };
 
 exports.delete = function(req, res) {
