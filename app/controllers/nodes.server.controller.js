@@ -148,6 +148,8 @@ exports.update = function(req, res) {
 	if (node.switch != req.body.switch) {
 		node.switch = req.body.switch;
 
+		request.post('switch-status', null, node);
+
 		// 如果开关设置为关，调光级别无意义，默认重置为0
 		if (node.switch === 0) {
 		 	node.level = 0;

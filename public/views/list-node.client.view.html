@@ -6,9 +6,7 @@
 	<ul class="bulb_list">
 		<li data-ng-repeat="node in nodes" class="list">
 			<a data-ng-href="/bulbctrl#!/nodes/{{node._id}}" data-ng-bind="node.name"></a>
-			[<span data-ng-show="authentication.user._id == node.creator._id">
-				<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>
-			</span>]
+			[<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>]
 			<p>
 			<p>标识：<strong data-ng-bind="node.deviceId"></strong></p>
 			<p>分组：<strong data-ng-bind="node.groupId"></strong></p>

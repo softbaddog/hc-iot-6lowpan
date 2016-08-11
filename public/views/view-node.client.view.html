@@ -1,8 +1,6 @@
 <section data-ng-controller="NodesController" data-ng-init="findOne()">
 	<a href="/bulbctrl#!/nodes"><h1 data-ng-bind="node.name"></h1></a>
-	[<span data-ng-show="authentication.user._id == node.creator._id">
-		<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>
-	</span>]
+	[<a href="/bulbctrl#!/nodes/{{node._id}}/edit">编辑</a> | <a href="#" data-ng-click="delete(node);">删除</a>]
 	<p>
 	<small>
 	<em>Posted on</em>
