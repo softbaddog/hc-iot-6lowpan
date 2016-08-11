@@ -41,6 +41,14 @@ exports.post = function(api, nodes, node, callback) {
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 			}		
 			break;
+		case 'group-list':
+			if (node) {
+				contents = JSON.stringify({
+					node.groupId
+				});
+				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
+			}		
+			break;
 		default:
 			console.log('No Support!');
 			break;
