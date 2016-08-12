@@ -8,6 +8,23 @@ exports.render = function(req, res) {
 	});
 };
 
+exports.nodeByName = function(req, res, next, name) {
+	Node.findOne({
+		name: name
+	}, '-_id name switch status level params.voltage params.current params.power params.frequency params.energy params.lifttime params.location').exec(function(err, node) {
+		if (err) {
+			return next(err);
+		}
+
+		if (!node) {
+			return next(new Error('非法Name ' + name));
+		}
+
+		req.node = node;
+		next();
+	});
+};
+
 exports.online = function(req, res) {
 	Node.find({
 		'status': 1

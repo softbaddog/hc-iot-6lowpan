@@ -4,16 +4,13 @@ var nodes = require('../../app/controllers/nodes.server.controller');
 module.exports = function(app) {
 	app.get("/bulbctrl", bulbctrl.render);
 
-	app.route('/api/online')
-		.get(bulbctrl.online);
+	app.get('/api/online', bulbctrl.online);
 
-	app.route('/api/mesh')
-		.get(bulbctrl.mesh);
+	app.get('/api/mesh', bulbctrl.mesh);
 
-	app.route('/api/:nodeName')
+	app.route('/api/name/:nodeName')
 		.get(nodes.read)
 		.post(bulbctrl.ctrl);
 
-
-	app.param('nodeName', nodes.nodeByName);
+	app.param('nodeName', bulbctrl.nodeByName);
 };

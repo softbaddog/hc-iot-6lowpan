@@ -131,3 +131,12 @@ body {
   height: 100%;
 }
 /*右边main end*/
+
+.main-left-box table .greyCircle {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #DDD;
+  cursor: pointer;
+}

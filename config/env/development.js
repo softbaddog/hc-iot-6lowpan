@@ -4,6 +4,6 @@ module.exports = {
 	host: "10.93.145.59",
 	port: "8181",
 	socketPort: "8282",
-	gateway: "000D6F00055CCF08",
+	gateway: "0000010203FCE000",
 	domain: "root"
 };

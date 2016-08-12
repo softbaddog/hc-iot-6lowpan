@@ -10,91 +10,81 @@
 
     <!-- libs -->
     <script src="/socket.io/socket.io.js"></script>
-    <script src="src/tools/libs/jquery-3.0.0.js"></script>
-    <script src="src/tools/libs/jquery-ui.js"></script>
-    <script src="src/tools/libs/three.js"></script>
-    <script src="src/tools/libs/dat.gui.min.js"></script>
-    <script src="src/tools/libs/tween.min.js"></script>
+    <script src="plug/jquery-3.0.0.js"></script>
+    <script src="plug/jquery-ui.js"></script>
+    <script src="plug/three.js"></script>
+    <script src="plug/dat.gui.min.js"></script>
+    <script src="plug/tween.min.js"></script>
 
     <!-- lib effects -->
-    <script src="src/js/postprocessing/EffectComposer.js"></script>
-    <script src="src/js/postprocessing/ShaderPass.js"></script>
-    <script src="src/js/postprocessing/FilmPass.js"></script>
-    <script src="src/js/postprocessing/MaskPass.js"></script>
-    <script src="src/js/postprocessing/TexturePass.js"></script>
-    <script src="src/js/postprocessing/SMAAPass.js"></script>
-    <script src="src/js/shaders/DotScreenShader.js"></script>
-    <script src="src/js/shaders/FXAAShader.js"></script>
-    <script src="src/js/shaders/SSAOShader.js"></script>
-    <script src="src/js/shaders/SMAAShader.js"></script>
-    <script src="src/js/postprocessing/DotScreenPass.js"></script>
-    <script src="src/js/shaders/FilmShader.js"></script>
-    <script src="src/js/shaders/ConvolutionShader.js"></script>
-    <script src="src/js/shaders/CopyShader.js"></script>
-    <script src="src/js/postprocessing/BloomPass.js"></script>
-    <script src="src/js/postprocessing/RenderPass.js"></script>
+    <script src="plug/postprocessing/EffectComposer.js"></script>
+    <script src="plug/postprocessing/ShaderPass.js"></script>
+    <script src="plug/postprocessing/MaskPass.js"></script>
+    <script src="plug/shaders/FXAAShader.js"></script>
+    <script src="plug/shaders/CopyShader.js"></script>
+    <script src="plug/shaders/ConvolutionShader.js"></script>
+    <script src="plug/postprocessing/BloomPass.js"></script>
+    <script src="plug/postprocessing/RenderPass.js"></script>
 
     <!-- mesh -->
-    <script src="src/js/loaders/OBJLoader.js"></script>
-    <script src="src/js/loaders/MTLLoader.js"></script>
+    <script src="plug/loaders/OBJLoader.js"></script>
+    <script src="plug/loaders/MTLLoader.js"></script>
 
     <!-- tools -->
-    <script src="src/com/tools/EffectJudge.js"></script>
-    <script src="src/tools/liaohengfan/InitThree.js"></script>
-    <script src="src/com/controls/OrbitControls.js"></script>
-    <script src="src/com/tools/Sel3DObject.js"></script>
-    <script src="src/com/tools/CameraControls.js"></script>
+    <script src="js/startrek/InitThree.js"></script>
+    <script src="plug/OrbitControls.js"></script>
+    <script src="js/startrek/Sel3DObject.js"></script>
+    <script src="js/startrek/CameraControls.js"></script>
 
     <!-- resource -->
-    <script src="src/com/Textures.js"></script>
-    <script src="src/com/Shaders.js"></script>
+    <script src="js/startrek/Textures.js"></script>
+    <script src="js/startrek/Shaders.js"></script>
 
     <!-- music -->
-    <script src="src/com/audio/AudioVisualizer.js"></script>
-    <script src="src/com/audio/AudioContols.js"></script>
+    <script src="js/startrek/AudioVisualizer.js"></script>
+    <script src="js/startrek/AudioControls.js"></script>
 
     <!-- scene -->
-    <script src="src/com/Main.js"></script>
-    <script src="src/com/Sky.js"></script>
-    <script src="src/com/effects/ParticlesEnv.js"></script>
+    <script src="js/startrek/Main.js"></script>
+    <script src="js/startrek/Sky.js"></script>
 
     <!-- stars -->
-    <script src="src/com/statelite/Statelites.js"></script>
-    <script src="src/com/effects/CurveAni.js"></script>
-    <script src="src/com/stars/LineManager.js"></script>
-    <script src="src/com/stars/Star.js"></script>
-    <script src="src/com/stars/StarScene.js"></script>
+    <script src="js/startrek/Statelites.js"></script>
+    <script src="js/startrek/CurveAni.js"></script>
+    <script src="js/startrek/LineManager.js"></script>
+    <script src="js/startrek/Star.js"></script>
+    <script src="js/startrek/StarScene.js"></script>
 
     <!-- data -->
-    <script src="src/com/DataInterface.js"></script>
+    <script src="js/startrek/DataInterface.js"></script>
 
 </head>
-<body onload="HCC_LIGHTS.init();">
-    <div id="player">
-        <div class="ctrl">
-            <div class="control">
-                <div class="left">
-                    <div class="rewind icon"></div>
-                    <div class="playback icon" data-action="play" ></div>
-                    <div class="fastforward icon"></div>
-                </div>
-                <div class="volume right">
-                    <div class="tag"></div>
-                </div>
+<body onload="HCC_LIGHTS.loadIni();">
+<div id="player">
+    <div class="ctrl">
+        <div class="control">
+            <div class="left">
+                <div class="rewind icon"></div>
+                <div class="playback icon" data-action="play" ></div>
+                <div class="fastforward icon"></div>
             </div>
-            <div class="progress">
-                <div class="slider">
-                    <div class="loaded"></div>
-                    <div class="pace"></div>
-                </div>
-                <div class="timer left">0:00</div>
+            <div class="volume right">
+                <div class="tag"></div>
             </div>
         </div>
+        <div class="progress">
+            <div class="slider">
+                <div class="loaded"></div>
+                <div class="pace"></div>
+            </div>
+            <div class="timer left">0:00</div>
+        </div>
     </div>
+</div>
 
-    <div id="controls_div"></div>
-    <div id="webgl_div">
-        <canvas id="webgl_canvas"></canvas>
-    </div>
+<div id="controls_div"></div>
+<div id="webgl_div">
+    <canvas id="webgl_canvas"></canvas>
+</div>
 </body>
 </html>

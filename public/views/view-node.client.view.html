@@ -19,12 +19,12 @@
 		<p>开光状态：<strong data-ng-bind="node.switch"></strong></p>
 		<p>电压：<strong data-ng-bind="node.params.voltage"></strong> V</p>
 		<p>电流：<strong data-ng-bind="node.params.current"></strong> A</p>
-		<p>电量：<strong data-ng-bind="node.params.power"></strong> kW</p>
+		<p>有功功率：<strong data-ng-bind="node.params.power"></strong> kW</p>
 		<p>频率：<strong data-ng-bind="node.params.frequency"></strong> kHz</p>
-		<p>功率：<strong data-ng-bind="node.params.energy"></strong> kWh</p>
+		<p>电能：<strong data-ng-bind="node.params.energy"></strong> kWh</p>
 		<p>剩余时间：<strong data-ng-bind="node.params.lifttime"></strong>%</p>
 		<p>位置信息：<strong data-ng-bind="node.params.location"></strong></p>
-		<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
+		<p>刷新时间：<strong data-ng-bind="node.updated | date:'short'"></strong></p>
 		<hr>
 		<p>X轴：<strong data-ng-bind="node.metadata.x"></strong></p>
 		<p>Y轴：<strong data-ng-bind="node.metadata.y"></strong></p>

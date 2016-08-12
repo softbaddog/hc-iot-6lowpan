@@ -1,9 +1,9 @@
 <section data-ng-controller="NodesController" data-ng-init="find()">
-	<a href="/bulbctrl#!/nodes"><h1>Nodes List</h1></a>
+	<a href="/bulbctrl#!/nodes"><h1>Nodes Admin（节点管理页）</h1></a>
 	<ul data-ng-show="authentication.user.role == 'admin'">
-	<li><a href="/bulbctrl#!/nodes/create">Create Node</a></li>
-	<li><a href="/api/init">Initialize Nodes</a></li>
-	<li><a href="/api/output">Output All Nodes</a></li>
+	<li><a href="/bulbctrl#!/nodes/create">Create New Node（创建新节点，只需要填写名称和对应标识，默认分组为0）</a></li>
+	<li><a href="/api/init">Initialize All Nodes（重置所有节点，节点数据清零，在线状态为离线，开关状态为关）</a></li>
+	<li><a href="/api/sync">Synchronized All Nodes（同步所有节点，节点数据来源于EEM，耗时较长，请谨慎点击）</a></li>
 	</ul>
 	<ul class="bulb_list">
 		<li data-ng-repeat="node in nodes" class="list">
@@ -21,12 +21,12 @@
 			<p>开光状态：<strong data-ng-bind="node.switch"></strong></p>
 			<p>电压：<strong data-ng-bind="node.params.voltage"></strong> V</p>
 			<p>电流：<strong data-ng-bind="node.params.current"></strong> A</p>
-			<p>电量：<strong data-ng-bind="node.params.power"></strong> kW</p>
+			<p>有功功率：<strong data-ng-bind="node.params.power"></strong> kW</p>
 			<p>频率：<strong data-ng-bind="node.params.frequency"></strong> kHz</p>
-			<p>功率：<strong data-ng-bind="node.params.energy"></strong> kWh</p>
+			<p>电能：<strong data-ng-bind="node.params.energy"></strong> kWh</p>
 			<p>剩余时间：<strong data-ng-bind="node.params.lifttime"></strong>%</p>
 			<p>位置信息：<strong data-ng-bind="node.params.location"></strong></p>
-			<p>刷新时间：<strong data-ng-bind="node.updated | date:'medium'"></strong></p>
+			<p>刷新时间：<strong data-ng-bind="node.updated | date:'short'"></strong></p>
 			<hr>
 			<p>X轴：<strong data-ng-bind="node.metadata.x"></strong></p>
 			<p>Y轴：<strong data-ng-bind="node.metadata.y"></strong></p>

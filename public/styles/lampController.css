@@ -331,3 +331,21 @@
     padding: 20px;
   }
 }
+
+.main-right-box .light-controller .bottom-box .detail-box .button-arr-box .button-right .button-gray {
+  width: 35px;
+  height: 35px;
+  margin: auto;
+  background: url("../images/lampController/button_reset_gray.png") no-repeat;
+  cursor: pointer;
+  background-size: 100% 100%;
+}
+
+.main-right-box .light-controller .bottom-box .detail-box .button-arr-box .button-right .button-green {
+  width: 35px;
+  height: 35px;
+  margin: auto;
+  background: url("../images/lampController/button_reset_green.png") no-repeat;
+  cursor: pointer;
+  background-size: 100% 100%;
+}

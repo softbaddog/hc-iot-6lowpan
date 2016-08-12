@@ -1,6 +1,6 @@
 var http = require('http');
-var querystring = require('querystring');
 var config = require('./config');
+var connect = require('./socketio-client');
 
 exports.post = function(api, nodes, node, callback) {
 	switch (api) {
@@ -43,9 +43,7 @@ exports.post = function(api, nodes, node, callback) {
 			break;
 		case 'group-list':
 			if (node) {
-				contents = JSON.stringify(
-					node.groupId
-				);
+				contents = '[' + node.groupId + ']';
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			}
 			break;
@@ -67,7 +65,7 @@ exports.post = function(api, nodes, node, callback) {
 	};
 
 	console.log(options);
-	if (require('./socketio-client').success()) {
+	if (connect.success === true) {
 		var req = http.request(options, function(res) {
 			res.setEncoding('utf8');
 			res.on('data', function(data) {
@@ -83,8 +81,9 @@ exports.post = function(api, nodes, node, callback) {
 
 		req.write(contents);
 		req.end();
+	} else {
+		console.log('no connect to server!');
 	}
-
 };
 
 exports.get = function(api, nodes, node, callback) {
@@ -101,7 +100,13 @@ exports.get = function(api, nodes, node, callback) {
 			break;
 		case 'voltage':
 		case 'current':
+		case 'active-power':
+		case 'power-grid':
+		case 'total-energy':
 			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/group/huawei-iotdm-device-energy:' + api;
+			break;
+		case 'group-list':
+			path = 'device/get/' + node.deviceId + '/urn:huawei.iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
 		default:
 			console.log('No Support!');
@@ -116,7 +121,7 @@ exports.get = function(api, nodes, node, callback) {
 	};
 
 	console.log(options);
-	if (require('./socketio-client').success()) {
+	if (connect.success === true) {
 		var req = http.request(options, function(res) {
 			res.setEncoding('utf8');
 			res.on('data', function(data) {
@@ -131,5 +136,7 @@ exports.get = function(api, nodes, node, callback) {
 		});
 
 		req.end();
+	} else {
+		console.log('no connect to server!');
 	}
 };

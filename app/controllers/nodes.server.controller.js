@@ -44,8 +44,8 @@ exports.init = function(req, res) {
 				element.params.power = 0;
 				element.params.frequency = 0;
 				element.params.energy = 0;
-				element.params.lifttime = 0;
-				element.params.location = '';
+				element.params.lifttime = 100;
+				element.params.location = '上海';
 				element.updated = new Date();
 				element.save(function(err) {
 					if (err) {
@@ -60,6 +60,50 @@ exports.init = function(req, res) {
 	});
 };
 
+exports.sync = function(req, res) 	{
+	Node.find().sort('name').exec(function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			nodes.forEach(function(node) {
+				// 在线状态
+				request.get('dev-online-status', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devStatus(obj, node);
+				});
+				// 电压
+				request.get('voltage', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devVoltage(obj, node);
+				});
+				// 电流
+				request.get('current', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devCurrent(obj, node);
+				});
+				// 有功功率
+				request.get('active-power', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devPower(obj, node);
+				});
+				// 频率
+				request.get('power-grid', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devFrequency(obj, node);
+				});
+				// 电能
+				request.get('total-energy', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devEnergy(obj, node);
+				});
+			});
+		}
+	});
+	res.redirect('/bulbctrl#!/nodes');
+};
+
 exports.list = function(req, res) {
 	Node.find().sort('name').populate('creator', 'email').exec(function(err, nodes) {
 		if (err) {
@@ -69,23 +113,6 @@ exports.list = function(req, res) {
 		} else {
 			res.json(nodes);
 		}
-	});
-};
-
-exports.nodeByName = function(req, res, next, name) {
-	Node.findOne({
-		name: name
-	}, '-_id name switch status level params.voltage params.current params.power params.frequency params.energy params.lifttime params.location').exec(function(err, node) {
-		if (err) {
-			return next(err);
-		}
-
-		if (!node) {
-			return next(new Error('非法Name ' + name));
-		}
-
-		req.node = node;
-		next();
 	});
 };
 
@@ -152,6 +179,8 @@ exports.update = function(req, res) {
 		// 如果开关设置为关，调光级别无意义，默认重置为0
 		if (node.switch === 0) {
 			node.level = 0;
+		} else {
+			node.level = 100;
 		}
 	}
 
