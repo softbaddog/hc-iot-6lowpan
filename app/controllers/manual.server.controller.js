@@ -4,14 +4,12 @@ exports.render = function(req, res) {
 
 exports.renderZh = function(req, res) {
 	res.render('manual', {
-		title: '首页',
-		user: JSON.stringify(req.user)
+		layout: false
 	});
 };
 
 exports.renderEn = function(req, res) {
 	res.render('manual', {
-		title: 'Index',
-		user: JSON.stringify(req.user)
+		layout: false
 	});
 };

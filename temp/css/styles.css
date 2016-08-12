@@ -1,0 +1,110 @@
+body, html {
+	width: 100%;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	text-align: center;
+	width: 50%;
+	min-height: 600px;
+	padding-top: 50px;
+	margin: 0 auto;
+}
+
+.slider {
+	width: 100%;
+	overflow: hidden;
+	height: 500px;
+	position: relative;
+}
+
+.sliderList {
+	position: absolute;
+	top: 0;
+	width: 300%;
+	height: 100%;
+	list-style: none;
+}
+
+.sliderList li {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow: hidden;
+	width: 33.333333%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.sliderList li img {
+	width: 100%;
+	min-height: 100%;
+	border: none;
+}
+
+.bulletList {
+	position: absolute;
+	bottom: 15px;
+	width: 100%;
+	margin: 0 auto;
+	list-style: none;
+}
+
+.bulletList li{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin: 0 5px;
+	-webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+	background-color: #fff;
+	cursor: pointer;
+}
+
+.bulletList .bulletActive {
+	background-color: #0b0d18;
+}
+
+.content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	font-size: 48px;
+	color: #fff;
+}
+
+.button {
+	position: absolute;
+	bottom: 15px;
+	z-index: 2;
+	display: block;
+	width: 40px;
+	height: 40px;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	border: none;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+	background-color: rgba(5, 0, 36, 0.6);
+	color: #fff;
+}
+
+.button-prev {
+	left: 15px;
+}
+
+.button-next {
+	right: 15px;
+}
