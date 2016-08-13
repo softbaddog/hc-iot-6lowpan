@@ -171,7 +171,6 @@ exports.update = function(req, res) {
 			node.parent = 'null';
 		} else {
 			node.parent = 'roots';
-			io.emit('nodeChanged', node);
 		}
 	}
 

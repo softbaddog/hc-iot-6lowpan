@@ -105,8 +105,6 @@ exports.ctrl = function(req, res) {
 		}
 	}
 
-	console.log(node);
-
 	node.updated = new Date();
 	node.save(function(err) {
 		if (err) {
@@ -114,7 +112,8 @@ exports.ctrl = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
-			res.json(node);
+			io.emit('nodeChanged', node);
+			res.end();
 		}
 	});
 };

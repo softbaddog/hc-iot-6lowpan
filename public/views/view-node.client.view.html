@@ -16,7 +16,10 @@
 		</span></p>
 		<p>父节点：<strong data-ng-bind="node.parent"></strong></p>
 		<p>调光级别：<strong data-ng-bind="node.level"></strong></p>
-		<p>开光状态：<strong data-ng-bind="node.switch"></strong></p>
+		<p>开光状态：<span data-ng-switch="node.switch">
+			<strong data-ng-switch-when="1"><span>开</span></strong>
+			<strong data-ng-switch-default><span>关</strong></span>
+		</span></p>
 		<p>电压：<strong data-ng-bind="node.params.voltage"></strong> V</p>
 		<p>电流：<strong data-ng-bind="node.params.current"></strong> A</p>
 		<p>有功功率：<strong data-ng-bind="node.params.power"></strong> kW</p>
