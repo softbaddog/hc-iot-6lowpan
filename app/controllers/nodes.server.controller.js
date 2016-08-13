@@ -35,7 +35,9 @@ exports.init = function(req, res) {
 		} else {
 			nodes.forEach(function(element, index) {
 				element.groupId = 0;
-				element.status = 0;
+				if (element.name != 'roots') {
+					element.status = 0;
+				}
 				element.parent = 'null';
 				element.level = 0;
 				element.switch = 0;
@@ -167,6 +169,9 @@ exports.update = function(req, res) {
 		// 如果状态转成离线，需要将路由节点置空，且需要将其作为父节点的Node状态同时置空
 		if (node.status === 0) {
 			node.parent = 'null';
+		} else {
+			node.parent = 'roots';
+			io.emit('nodeChanged', node);
 		}
 	}
 

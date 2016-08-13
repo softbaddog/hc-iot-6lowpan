@@ -9,7 +9,7 @@ module.exports = function(app) {
 	app.get('/api/mesh', bulbctrl.mesh);
 
 	app.route('/api/name/:nodeName')
-		.get(nodes.read)
+		.get(bulbctrl.read)
 		.post(bulbctrl.ctrl);
 
 	app.param('nodeName', bulbctrl.nodeByName);

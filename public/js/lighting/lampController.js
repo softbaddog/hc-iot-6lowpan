@@ -31,7 +31,7 @@ function getEnergyInfo(id){
                 $('#energy').html(msg.params.energy);
                 var div2 = document.getElementById("div2");
                 var div1 = document.getElementById("div1");
-                if(msg.switch === true){
+                if(msg.switch === 1){
                     div1.className = "open1";
                     div2.className = "open2";
                 }else{
@@ -141,7 +141,7 @@ function reset(id){
 
     $.ajax({
         type: "POST",
-        url : "/api/name"+id,
+        url : "/api/name/"+id,
         //url : "/dev-bulk-ctrl",
         //url: "data/lampController.json",
         data: _dataCtrl,

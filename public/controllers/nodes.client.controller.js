@@ -50,7 +50,7 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 
 		$scope.update = function() {
 			$scope.node.$update(function() {
-				$location.path('nodes/' + $scope.node._id);
+				$location.path('nodes/');
 
 				// 同时触发nodeChanged事件
 				Socket.emit('nodeChanged', $scope.node);

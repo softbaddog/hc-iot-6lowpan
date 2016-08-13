@@ -4,13 +4,13 @@ module.exports = function(io, socket) {
 		socket.broadcast.emit('nodeChanged', node);
 	});
 
-	socket.on('nodeOpened', function(node) {
-		console.log('node opened', node.name);
+	socket.on('nodeLocked', function(node) {
+		console.log('node locked', node.name);
 		socket.broadcast.emit('nodeOpened', node);
 	});
 
-	socket.on('nodeClosed', function(node) {
-		console.log('node closed', node.name);
+	socket.on('nodeUnlocked', function(node) {
+		console.log('node unlocked', node.name);
 		socket.broadcast.emit('nodeClosed', node);
 	});
 };

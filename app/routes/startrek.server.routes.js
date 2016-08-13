@@ -8,6 +8,7 @@ module.exports = function(app) {
 
 	// 获取元数据，用于布局星空模型位置
 	app.get('/api/metadata', startrek.metadata);
+	app.get('/api/pp', startrek.metadata);
 
 	// 星空2种灯控方式：1、按节点控；2、按组控
 	app.post('/api/bulbctrl', startrek.bulbctrl);

@@ -82,7 +82,7 @@ exports.post = function(api, nodes, node, callback) {
 		req.write(contents);
 		req.end();
 	} else {
-		console.log('no connect to server!');
+		// console.log('no connect to server!');
 	}
 };
 
@@ -120,7 +120,7 @@ exports.get = function(api, nodes, node, callback) {
 		method: 'GET'
 	};
 
-	console.log(options);
+	// console.log(options);
 	if (connect.success === true) {
 		var req = http.request(options, function(res) {
 			res.setEncoding('utf8');
@@ -137,6 +137,6 @@ exports.get = function(api, nodes, node, callback) {
 
 		req.end();
 	} else {
-		console.log('no connect to server!');
+		// console.log('no connect to server!');
 	}
 };
