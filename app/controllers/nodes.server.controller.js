@@ -27,7 +27,7 @@ exports.create = function(req, res) {
 };
 
 exports.init = function(req, res) {
-	var map = {
+	var mapX = {
 		'A': -900,
 		'B': -800,
 		'C': -700,
@@ -38,6 +38,31 @@ exports.init = function(req, res) {
 		'H': -200,
 		'I': -100,
 		'J': 0,
+	};
+
+	var mapY = {
+		'1': -150,
+		'2': -150,
+		'3': -150,
+		'4': -50,
+		'5': -50,
+		'6': -50,
+		'7': 50,
+		'8': 50,
+		'9': 50,
+		'10': 150,
+		'11': 150,
+		'12': 150,
+		'13': 150,
+	};
+
+	var gArray = {
+		0 : ['roots'],
+		1 : ['H1','H2','H3','I1','I2','I3','J1','J2','J3'],
+		2 : ['F4','F5','F6','G4','G5','G6','H4','H5','H6'],
+		3 : ['D7','D8','D9','E7','E8','E9','F7','F8','F9'],
+		4 : ['A10','A11','A12','A13','B10','B11','B12','B13','C10','C11','C12','C13','D10','D11','D12','D13'],
+		5 : ['devices1','devices2','devices3','devices4','devices5'],
 	};
 
 	Node.find({}, function(err, nodes) {
@@ -62,10 +87,30 @@ exports.init = function(req, res) {
 				// 按规律刷新灯节点位置信息
 				if (element.name !== 'roots' && element.name.substr(0, 7) !== "devices") {
 					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100;
-					element.metadata.y = 0;
-					element.metadata.z = map[element.name.substr(0, 1)];
-					console.log(map[element.name.substr(0, 1)], 0, parseInt(element.name.substr(1, element.name.length - 1)) * 100);
+					element.metadata.y = mapY[element.name.substr(1, element.name.length - 1)];
+					element.metadata.z = mapX[element.name.substr(0, 1)];
+					console.log(mapX[element.name.substr(0, 1)], mapY[element.name.substr(1, element.name.length - 1)], parseInt(element.name.substr(1, element.name.length - 1)) * 100);
 				}
+
+				function findGroup(name) {
+					for(var i = 0; i <= 5; i++) {
+						for(j in gArray[i]) {
+							if (gArray[i][j] === name) {
+								return i;
+							}
+						}
+					}
+				}
+				element.groupId = findGroup(element.name);
+				console.log(element.name, element.groupId);	
+
+				// 为便于测试，新增随机路由
+				if (element.name !== 'roots') {
+					// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
+					element.parent = gArray[element.groupId-1][0];
+					console.log(element.name, element.parent);					
+				}
+
 
 				element.updated = new Date();
 				element.save(function(err) {
@@ -73,6 +118,9 @@ exports.init = function(req, res) {
 						return res.status(400).send({
 							message: '未知错误'
 						});
+					} else {
+						// 同步数据到所有终端
+						// io.emit('onlineChanged', node);
 					}
 				});
 			});
@@ -162,7 +210,12 @@ exports.update = function(req, res) {
 	node.name = req.body.name;
 	node.deviceId = req.body.deviceId;
 
-	node.parent = req.body.parent;
+	if (node.parent != req.body.parent) {
+		node.parent = req.body.parent;
+
+		// 拓扑数据变更，同步数据到所有终端
+		io.emit('topoChanged', node);
+	}
 
 	node.params = req.body.params;
 	node.metadata = req.body.metadata;
@@ -188,9 +241,9 @@ exports.update = function(req, res) {
 		// 如果状态转成离线，需要将路由节点置空，且需要将其作为父节点的Node状态同时置空
 		if (node.status === 0) {
 			node.parent = 'null';
-		} else {
-			node.parent = 'roots';
 		}
+
+		io.emit('onlineChanged', node);
 	}
 
 	if (node.switch != req.body.switch) {

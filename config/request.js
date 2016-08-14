@@ -52,7 +52,7 @@ exports.post = function(api, nodes, node, callback) {
 			break;
 	}
 
-	console.log(contents);
+	// console.log(contents);
 	var options = {
 		host: config.host,
 		port: config.port,
@@ -64,7 +64,7 @@ exports.post = function(api, nodes, node, callback) {
 		}
 	};
 
-	console.log(options);
+	// console.log(options);
 	if (connect.success === true) {
 		var req = http.request(options, function(res) {
 			res.setEncoding('utf8');

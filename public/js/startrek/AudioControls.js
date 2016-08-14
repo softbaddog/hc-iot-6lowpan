@@ -143,8 +143,8 @@ HCC_IOT.AudioControls=function(visualizer){
         loadMusic(currentTrack);
     };
     $.ajax({//获取歌曲列表
-        //url: "/api/mp3list",
-        url: "/data/mp3List.json",
+        url: "/api/mp3list",
+        // url: "/data/mp3List.json",
         dataType: "json",
         async: true,
         type: "GET",

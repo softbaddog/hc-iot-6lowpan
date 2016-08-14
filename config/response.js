@@ -11,6 +11,7 @@ exports.devStatus = function(devices, node) {
 			if (!err) {
 				console.log(node.name, node.status);
 				io.emit('nodeChanged', node);
+				io.emit('onlineChanged', node);
 			}
 		});
 	} else {
@@ -33,6 +34,7 @@ exports.devStatus = function(devices, node) {
 						if (!err) {
 							console.log(node.name);
 							io.emit('nodeChanged', node);
+							io.emit('onlineChanged', node);
 						}
 					});
 				});
@@ -89,6 +91,7 @@ exports.devTopo = function(devices, map) {
 					if (!err) {
 						console.log(node.name);
 						io.emit('nodeChanged', node);
+						io.emit('onlineChanged', node);
 					}
 				});
 			});

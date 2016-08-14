@@ -47,7 +47,7 @@ HCC_IOT.AudioVisualizer.prototype={
 
     },
     loadAudio:function(url_){
-        scope._request.open('GET', url_, true);
+        scope._request.open('GET', '/audio/' + url_, true);
         scope._request.responseType = 'arraybuffer';
         // 对音频进行进一步操作
         scope._request.onload = function() {
