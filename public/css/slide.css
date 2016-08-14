@@ -1,5 +1,6 @@
 body, html {
 	width: 100%;
+	background: #494A5F;
 }
 
 ul {
@@ -9,7 +10,7 @@ ul {
 
 .container {
 	text-align: center;
-	width: 50%;
+	width: 800px;
 	min-height: 600px;
 	padding-top: 50px;
 	margin: 0 auto;
@@ -18,7 +19,7 @@ ul {
 .slider {
 	width: 100%;
 	overflow: hidden;
-	height: 500px;
+	height: 550px;
 	position: relative;
 }
 

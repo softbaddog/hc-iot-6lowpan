@@ -6,28 +6,28 @@ $(function() {
 	bulletList = $('<ul></ul'),
 	sliderJSON = [
 	{
-		"imagePath": "images/1.jpg",
-		"order": "2",
-		"url": "#",
-		"slideText": "Appreciate It!"
-	},
-	{
-		"imagePath": "images/2.jpg",
-		"order": "3",
-		"url": "#",
-		"slideText": "I really do!"
-	}, 
-	{
-		"imagePath": "images/3.jpg",
+		"imagePath": "images/幻灯片1.jpg",
 		"order": "1",
 		"url": "#",
-		"slideText": "Thank you, Egor!"
+		"slideText": "标题1"
 	},
 	{
-		"imagePath": "images/4.jpg",
+		"imagePath": "images/幻灯片2.jpg",
+		"order": "2",
+		"url": "#",
+		"slideText": "标题2"
+	}, 
+	{
+		"imagePath": "images/幻灯片3.jpg",
+		"order": "3",
+		"url": "#",
+		"slideText": "标题3"
+	},
+	{
+		"imagePath": "images/幻灯片4.jpg",
 		"order": "4",
 		"url": "#",
-		"slideText": "eks dee"
+		"slideText": "标题4"
 	}
 ];
 	//сортируем массив по order

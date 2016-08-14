@@ -6,11 +6,11 @@ module.exports = function(io, socket) {
 
 	socket.on('nodeLocked', function(node) {
 		console.log('node locked', node.name);
-		socket.broadcast.emit('nodeOpened', node);
+		socket.broadcast.emit('nodeLocked', node);
 	});
 
 	socket.on('nodeUnlocked', function(node) {
 		console.log('node unlocked', node.name);
-		socket.broadcast.emit('nodeClosed', node);
+		socket.broadcast.emit('nodeUnlocked', node);
 	});
 };

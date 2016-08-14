@@ -232,7 +232,7 @@ function dynamicLoadLamp(){
         async: false,
         success: function (msg) {
             // var allRowName = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
-            var allRowName = ['A','B','C','D','E','F','G'];
+            var allRowName = ['A','B','C','D','E','F','G','H','I','J'];
             //var allLampArr = msg.item;
             var allLampArr = msg;
             var allLampIdArr = [];

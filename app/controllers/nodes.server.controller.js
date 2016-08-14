@@ -27,6 +27,19 @@ exports.create = function(req, res) {
 };
 
 exports.init = function(req, res) {
+	var map = {
+		'A': -900,
+		'B': -800,
+		'C': -700,
+		'D': -600,
+		'E': -500,
+		'F': -400,
+		'G': -300,
+		'H': -200,
+		'I': -100,
+		'J': 0,
+	};
+
 	Node.find({}, function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
@@ -34,13 +47,10 @@ exports.init = function(req, res) {
 			});
 		} else {
 			nodes.forEach(function(element, index) {
-				element.groupId = 0;
-				if (element.name != 'roots') {
-					element.status = 0;
-				}
+				element.status = 1;
 				element.parent = 'null';
-				element.level = 0;
-				element.switch = 0;
+				element.level = 100;
+				element.switch = 1;
 				element.params.voltage = 0;
 				element.params.current = 0;
 				element.params.power = 0;
@@ -48,6 +58,15 @@ exports.init = function(req, res) {
 				element.params.energy = 0;
 				element.params.lifttime = 100;
 				element.params.location = '上海';
+
+				// 按规律刷新灯节点位置信息
+				if (element.name !== 'roots' && element.name.substr(0, 7) !== "devices") {
+					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100;
+					element.metadata.y = 0;
+					element.metadata.z = map[element.name.substr(0, 1)];
+					console.log(map[element.name.substr(0, 1)], 0, parseInt(element.name.substr(1, element.name.length - 1)) * 100);
+				}
+
 				element.updated = new Date();
 				element.save(function(err) {
 					if (err) {
@@ -62,7 +81,7 @@ exports.init = function(req, res) {
 	});
 };
 
-exports.sync = function(req, res) 	{
+exports.sync = function(req, res) {
 	Node.find().sort('name').exec(function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
