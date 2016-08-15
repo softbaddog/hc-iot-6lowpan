@@ -1,6 +1,5 @@
 var http = require('http');
 var config = require('./config');
-var connect = require('./websocket-client');
 
 exports.post = function(api, nodes, node, callback) {
 	switch (api) {
@@ -52,7 +51,7 @@ exports.post = function(api, nodes, node, callback) {
 			break;
 	}
 
-	// console.log(contents);
+	console.log(contents);
 	var options = {
 		host: config.host,
 		port: config.port,
@@ -64,26 +63,22 @@ exports.post = function(api, nodes, node, callback) {
 		}
 	};
 
-	// console.log(options);
-	if (connect.success === true) {
-		var req = http.request(options, function(res) {
-			res.setEncoding('utf8');
-			res.on('data', function(data) {
-				console.log(api, data);
-				if (callback) {
-					callback(data);
-				}
-			});
-			res.on('error', function(err) {
-				console.log(err);
-			});
+	console.log(options);
+	var req = http.request(options, function(res) {
+		res.setEncoding('utf8');
+		res.on('data', function(data) {
+			console.log(api, data);
+			if (callback) {
+				callback(data);
+			}
 		});
+		res.on('error', function(err) {
+			console.log(err);
+		});
+	});
 
-		req.write(contents);
-		req.end();
-	} else {
-		// console.log('no connect to server!');
-	}
+	req.write(contents);
+	req.end();
 };
 
 exports.get = function(api, nodes, node, callback) {
@@ -95,9 +90,11 @@ exports.get = function(api, nodes, node, callback) {
 				path = 'system/action/urn:huawei:iotdm:advoper/' + api + '?domain=' + config.domain;
 			}
 			break;
+			
 		case 'net-topo':
 			path = 'device/get/' + config.gateway + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
+			
 		case 'voltage':
 		case 'current':
 		case 'active-power':
@@ -105,8 +102,14 @@ exports.get = function(api, nodes, node, callback) {
 		case 'total-energy':
 			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/group/huawei-iotdm-device-energy:' + api;
 			break;
-		case 'group-list':
-			path = 'device/get/' + node.deviceId + '/urn:huawei.iotdm:device/data/huawei-iotdm-device-common:' + api;
+			
+		case 'switch-status':
+		case 'dim-level':
+			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
+			break;
+			
+		case 'group-list':			
+			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
 		default:
 			console.log('No Support!');
@@ -120,23 +123,19 @@ exports.get = function(api, nodes, node, callback) {
 		method: 'GET'
 	};
 
-	// console.log(options);
-	if (connect.success === true) {
-		var req = http.request(options, function(res) {
-			res.setEncoding('utf8');
-			res.on('data', function(data) {
-				console.log(api, data);
-				if (callback) {
-					callback(data);
-				}
-			});
-			res.on('error', function(err) {
-				console.log(err);
-			});
+	console.log(options);
+	var req = http.request(options, function(res) {
+		res.setEncoding('utf8');
+		res.on('data', function(data) {
+			console.log(api, data);
+			if (callback) {
+				callback(data);
+			}
 		});
+		res.on('error', function(err) {
+			console.log(err);
+		});
+	});
 
-		req.end();
-	} else {
-		// console.log('no connect to server!');
-	}
+	req.end();
 };
