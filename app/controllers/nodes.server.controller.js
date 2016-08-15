@@ -1,5 +1,6 @@
 var Node = require('mongoose').model('Node');
 var request = require('../../config/request');
+var response = require('../../config/response');
 
 var getErrorMessage = function(err) {
 	if (err.errors) {
@@ -72,7 +73,7 @@ exports.init = function(req, res) {
 			});
 		} else {
 			nodes.forEach(function(element, index) {
-				element.status = 1;
+				element.status = 0;
 				element.parent = 'null';
 				element.level = 100;
 				element.switch = 1;
@@ -130,42 +131,75 @@ exports.init = function(req, res) {
 };
 
 exports.sync = function(req, res) {
-	Node.find().sort('name').exec(function(err, nodes) {
-		if (err) {
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
-		} else {
-			nodes.forEach(function(node) {
-				// 在线状态
-				request.get('dev-online-status', null, node, function(data) {
-					var obj = JSON.parse(data.replace(/-/g, ''));
-					reponse.devStatus(obj, node);
-				});
+	var node = req.node;
+
+	// 数据清空
+	node.status = 0;
+	node.level = 0;
+	node.switch = 0;
+	node.params.voltage = 0;
+	node.params.current = 0;
+	node.params.power = 0;
+	node.params.frequency = 0;
+	node.params.energy = 0;
+
+	if (node.name === 'roots') { return; }
+
+	// 在线状态
+	request.get('dev-online-status', null, node, function(data) {
+		var obj = JSON.parse(data.replace(/-/g, ''));
+		response.devStatus(obj, node);
+
+		if (node.status === 1) {
+			// 将当前分组信息刷新到服务器
+			// request.post('group-list', null, node);
+
+			// 开光状态
+			request.get('switch-status', null, node, function(data) {
+				var obj = JSON.parse(data.replace(/-/g, ''));
+				response.devSwitch(obj, node);
+
+				if (node.switch === 1) {
+					// 调光级别
+					request.get('dim-level', null, node, function(data) {
+						var obj = JSON.parse(data.replace(/-/g, ''));
+						response.devLevel(obj, node);
+
+						// 电流
+						request.get('current', null, node, function(data) {
+							var obj = JSON.parse(data.replace(/-/g, ''));
+							response.devCurrent(obj, node);
+
+							// 有功功率
+							request.get('active-power', null, node, function(data) {
+								var obj = JSON.parse(data.replace(/-/g, ''));
+								response.devPower(obj, node);							
+							});
+						});
+					});
+				}
+
 				// 电压
 				request.get('voltage', null, node, function(data) {
 					var obj = JSON.parse(data.replace(/-/g, ''));
-					reponse.devVoltage(obj, node);
-				});
-				// 电流
-				request.get('current', null, node, function(data) {
-					var obj = JSON.parse(data.replace(/-/g, ''));
-					reponse.devCurrent(obj, node);
-				});
-				// 有功功率
-				request.get('active-power', null, node, function(data) {
-					var obj = JSON.parse(data.replace(/-/g, ''));
-					reponse.devPower(obj, node);
-				});
-				// 频率
-				request.get('power-grid', null, node, function(data) {
-					var obj = JSON.parse(data.replace(/-/g, ''));
-					reponse.devFrequency(obj, node);
-				});
-				// 电能
-				request.get('total-energy', null, node, function(data) {
-					var obj = JSON.parse(data.replace(/-/g, ''));
-					reponse.devEnergy(obj, node);
+					response.devVoltage(obj, node);		
+
+					// 电能
+					request.get('total-energy', null, node, function(data) {
+						var obj = JSON.parse(data.replace(/-/g, ''));
+						response.devEnergy(obj, node);
+
+						// 频率
+						request.get('power-grid', null, node, function(data) {
+							var obj = JSON.parse(data.replace(/-/g, ''));
+							response.devFrequency(obj, node);
+
+							// 分组
+							request.get('group-list', null, node, function() {
+								console.log(node.name, node.groupId);
+							});	
+						});		
+					});
 				});
 			});
 		}
