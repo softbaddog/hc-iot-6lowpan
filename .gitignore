@@ -30,11 +30,10 @@ build/Release
 node_modules
 jspm_packages
 data
+
 public/lib
 public/audio
-public/data
 public/models
-public/plug
 public/textures
 
 # Optional npm cache directory
