@@ -1,0 +1,31 @@
+{
+  /*音乐队列*/
+  "mp3list":[
+
+  ],
+
+  /*灯光亮度推送间隔时间*/
+  "postBrightnessDelay":10000,
+
+  /*默认视角*/
+  "defaultView":{
+
+      //是否自动归位
+      "autoRest":true,
+
+      //视角还原时间
+      "restTime":10000,
+
+      /*视角目标点,摄像头中心轴点*/
+      "lookTarget":{        "x":671,        "y":-116,        "z":-390      },
+
+      /*最佳摄像头位置*/
+      "spherical":{"radius":2083, "phi":2.50, "theta":0.6},
+
+      /*摄像头上下范围  - 经线范围 PI*/
+      "lonRectangle":{"max":2.1,"min":0.7},
+
+      /*摄像头最近距离最远距离*/
+      "distance":{"max":2000,"min":1000}
+  }
+}

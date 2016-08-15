@@ -1,0 +1,16 @@
+{
+  "mp3list":[
+    "audio/AloneOnTheWay.mp3",
+    "audio/Hello,myfriend.mp3",
+    "audio/Spring.mp3"
+  ],
+  "postBrightnessDelay":10000,
+  "defaultView":{
+      "autoRest":true,
+      "restTime":10000,
+      "lookTarget":{        "x":671,        "y":-116,        "z":-390      },
+      "spherical":{"radius":2083, "phi":2.50, "theta":0.6},
+      "lonRectangle":{"max":2.5,"min":0.7},
+      "distance":{"max":3000,"min":1000}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name":"A1",
+  "params":{
+    "location":"上海奔驰文化中心",
+    "lifttime":80,
+    "energy":15.3,
+    "frequency":200,
+    "power":15.3,
+    "current":10,
+    "voltage":140
+  }
+}
