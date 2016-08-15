@@ -30,6 +30,8 @@ build/Release
 node_modules
 jspm_packages
 
+data
+
 public/audio
 public/models
 public/textures

@@ -1,6 +1,6 @@
 var http = require('http');
 var config = require('./config');
-var connect = require('./socketio-client');
+var connect = require('./websocket-client');
 
 exports.post = function(api, nodes, node, callback) {
 	switch (api) {
