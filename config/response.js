@@ -231,7 +231,7 @@ exports.devStatusChanged = function(status, deviceId) {
 					io.emit('nodeChanged', node);
 					io.emit('onlineChanged', node);
 				}
-			});			
+			});
 		}
 	});
 }

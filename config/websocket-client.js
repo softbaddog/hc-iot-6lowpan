@@ -22,7 +22,7 @@ exports.initialize = function() {
 			request.get('dev-online-status', null, null, function(data) {
 				var devices = JSON.parse(data);
 				response.devStatus(devices);
-				setTimeout(devOnlineStatus, 600000);
+				setTimeout(devOnlineStatus, config.onlineTimeout);
 			});
 		};
 		devOnlineStatus();
@@ -37,11 +37,11 @@ exports.initialize = function() {
 					map[key] = value;
 				});
 				response.devTopo(devices, map);
-				setTimeout(netTopo, 150000);
+				setTimeout(netTopo, config.topoTimeout);
 			});
 		};
 		netTopo();
-		
+
 		connection.on('error', function(error) {
 			console.log("Connection Error: " + error.toString());
 		});
@@ -49,7 +49,7 @@ exports.initialize = function() {
 		connection.on('close', function() {
 			console.log('echo-protocol Connection Closed');
 		});
-		
+
 		// Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"online-status":"offline"},"gateway":"000D6
 		// F00052AE47E","timestamp":"2016-08-15T15:27:55Z","esn":"2E00216EFC000255"}'
 		// Received: '{"type":"huawei-iotdm-device:data-report","data":{"huawei-iotdm-device-common:online-status":"offline","huawe
@@ -63,7 +63,7 @@ exports.initialize = function() {
 		connection.on('message', function(message) {
 			if (message.type === 'utf8') {
 				var obj = JSON.parse(message.utf8Data.replace(/-/g, ''));
-				switch(obj.type) {
+				switch (obj.type) {
 					case 'huaweiiotdmdevicecommon:onlinestatuschange':
 						console.log("Received: '" + message.utf8Data + "'");
 						if (obj.data.onlinestatus === 'online') {
@@ -78,6 +78,5 @@ exports.initialize = function() {
 				}
 			}
 		});
-
 	});
 };

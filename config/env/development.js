@@ -5,5 +5,7 @@ module.exports = {
 	port: "8181",
 	socketPort: "8282",
 	gateway: "0000010203FCE000",
-	domain: "root"
+	domain: "root",
+	onlineTimeout: 60000,
+	topoTimeout: 60000
 };

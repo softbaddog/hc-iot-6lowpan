@@ -20,7 +20,7 @@ module.exports = function(server, io, mongoStore) {
     //         });
     //     });
     // });
-    
+
     io.on('connection', function(socket) {
         require('../app/controllers/notify.server.controller')(io, socket);
     });
