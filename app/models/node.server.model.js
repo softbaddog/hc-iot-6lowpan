@@ -20,7 +20,7 @@ var nodeSchema = new Schema({
 	},
 	status: { // 是否在线
 		type: Number,
-		default: 0
+		default: 1
 	},
 	parent: { // 父节点，空节点为null
 		type: String,
@@ -41,31 +41,31 @@ var nodeSchema = new Schema({
 	params: { // 电参数
 		voltage: { // 电压
 			type: Number,
-			default: 140
+			default: 0
 		},
 		current: { // 电流
 			type: Number,
-			default: 10
+			default: 0
 		},
 		power: { // 电量
 			type: Number,
-			default: 15.3
+			default: 0
 		},
 		frequency: { // 频率
 			type: Number,
-			default: 200
+			default: 0
 		},
 		energy: { // 功率
 			type: Number,
-			default: 15.3
+			default: 0
 		},
 		lifttime: { // 剩余寿命
 			type: Number,
-			default: 80
+			default: 100
 		},
 		location: { // 位置信息
 			type: String,
-			default: '上海奔驰文化中心'
+			default: '上海'
 		},
 	},
 	updated: {

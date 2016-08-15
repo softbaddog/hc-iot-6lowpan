@@ -9,11 +9,44 @@
     <link rel="stylesheet" href="styles/base.css"/>
     <link rel="stylesheet" href="styles/common.css"/>
     <link rel="stylesheet" href="styles/lampController.css"/>
+    <style>
+        #div1{
+            width: 70px;
+            height: 40px;
+            border-radius: 50px;
+            position: relative;
+        }
+        #div2{
+            width: 36px;
+            height: 36px;
+            border-radius: 48px;
+            position: absolute;
+            background: white;
+            box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+            cursor: pointer;
+        }
+        .open1{
+            background: rgba(0,184,0,0.8);
+        }
+        .open2{
+            top: 2px;
+            right: 1px;
+        }
+        .close1{
+            background: rgba(255,255,255,0.4);
+            border:2px solid transparent;
+        }
+        .close2{
+            left: 0px;
+            top: 0px;
+            border:2px solid rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 <div class="main-left-box border-box floatLeft">
-    <table>
-        <tr class="head">
+    <table id="lampTableId">
+        <!--<tr class="head">
             <td style="border-bottom: none;"></td>
             <td class="bottom-line">1</td>
             <td class="bottom-line">2</td>
@@ -197,13 +230,13 @@
             <td class="grid"><span class="circle" id="G18"></span></td>
             <td class="grid"><span class="circle" id="G19"></span></td>
             <td class="grid"><span class="circle" id="G20"></span></td>
-        </tr>
+        </tr>-->
     </table>
-    <div class="bottom-box">
+    <!--<div class="bottom-box">
         <div class="five-star floatLeft">AR</div>
         <div class="five-star floatLeft">AR</div>
         <div class="five-star floatLeft">AR</div>
-    </div>
+    </div>-->
 </div>
 
 <div class="main-right-box border-box floatLeft">
@@ -226,10 +259,13 @@
                 <div class="button-arr-box">
                     <div class="button-left floatLeft">
                         <p class="button-text">Switch</p>
-                        <div class="toggle">
+                        <!--<div class="toggle">
                             <input id="switch" type="checkbox" class="check on" data-type="on"/>
                             <b class="b switch"></b>
                             <b class="b track"></b>
+                        </div>-->
+                        <div id="div1" class="open1">
+                            <div id="div2" class="open2"></div>
                         </div>
                     </div>
                     <div class="button-middle floatLeft">
@@ -247,7 +283,7 @@
                     </div>
                     <div class="button-right floatLeft">
                         <p class="button-text">Reset</p>
-                        <div id="button_close" class="button-close"></div>
+                        <div id="button_close" class="button-green"></div>
                     </div>
                 </div>
             </div>
@@ -296,9 +332,9 @@
 
 
 
-<script src="plug/jquery/2.1.3/jquery.min.js"></script>
+<script src="plug/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script src="js/common.js"></script>
-<script src="js/lampController.js"></script>
+<script src="js/lighting/common.js"></script>
+<script src="js/lighting/lampController.js"></script>
 </body>
 </html>

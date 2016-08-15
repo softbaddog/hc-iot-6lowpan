@@ -41,11 +41,11 @@ exports.bulbctrl = function(req, res) {
 			name: element.name
 		}).exec(function(err, node) {
 			if (err) {
-				return next(err);
+				return err;
 			}
 
 			if (!node) {
-				return next(new Error('非法Name ' + element.name));
+				return new Error('非法Name ' + element.name);
 			}
 
 			node.level = level_table[element.brightness];

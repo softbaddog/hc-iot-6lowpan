@@ -4,6 +4,7 @@ var nodes = require('../../app/controllers/nodes.server.controller');
 module.exports = function(app) {
 
 	app.get('/api/init', nodes.init);
+	app.get('/api/sync', nodes.sync);
 
 	app.route('/api/nodes')
 		.get(nodes.list)

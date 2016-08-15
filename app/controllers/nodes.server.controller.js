@@ -27,6 +27,44 @@ exports.create = function(req, res) {
 };
 
 exports.init = function(req, res) {
+	var mapX = {
+		'A': -900,
+		'B': -800,
+		'C': -700,
+		'D': -600,
+		'E': -500,
+		'F': -400,
+		'G': -300,
+		'H': -200,
+		'I': -100,
+		'J': 0,
+	};
+
+	var mapY = {
+		'1': -150,
+		'2': -150,
+		'3': -150,
+		'4': -50,
+		'5': -50,
+		'6': -50,
+		'7': 50,
+		'8': 50,
+		'9': 50,
+		'10': 150,
+		'11': 150,
+		'12': 150,
+		'13': 150,
+	};
+
+	var gArray = {
+		0 : ['roots'],
+		1 : ['H1','H2','H3','I1','I2','I3','J1','J2','J3'],
+		2 : ['F4','F5','F6','G4','G5','G6','H4','H5','H6'],
+		3 : ['D7','D8','D9','E7','E8','E9','F7','F8','F9'],
+		4 : ['A10','A11','A12','A13','B10','B11','B12','B13','C10','C11','C12','C13','D10','D11','D12','D13'],
+		5 : ['devices1','devices2','devices3','devices4','devices5'],
+	};
+
 	Node.find({}, function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
@@ -34,30 +72,105 @@ exports.init = function(req, res) {
 			});
 		} else {
 			nodes.forEach(function(element, index) {
-				element.groupId = 0;
-				element.status = 0;
+				element.status = 1;
 				element.parent = 'null';
-				element.level = 0;
-				element.switch = 0;
+				element.level = 100;
+				element.switch = 1;
 				element.params.voltage = 0;
 				element.params.current = 0;
 				element.params.power = 0;
 				element.params.frequency = 0;
 				element.params.energy = 0;
-				element.params.lifttime = 0;
-				element.params.location = '';
+				element.params.lifttime = 100;
+				element.params.location = '上海';
+
+				// 按规律刷新灯节点位置信息
+				if (element.name !== 'roots' && element.name.substr(0, 7) !== "devices") {
+					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100;
+					element.metadata.y = mapY[element.name.substr(1, element.name.length - 1)];
+					element.metadata.z = mapX[element.name.substr(0, 1)];
+					console.log(mapX[element.name.substr(0, 1)], mapY[element.name.substr(1, element.name.length - 1)], parseInt(element.name.substr(1, element.name.length - 1)) * 100);
+				}
+
+				function findGroup(name) {
+					for(var i = 0; i <= 5; i++) {
+						for(j in gArray[i]) {
+							if (gArray[i][j] === name) {
+								return i;
+							}
+						}
+					}
+				}
+				element.groupId = findGroup(element.name);
+				console.log(element.name, element.groupId);	
+
+				// 为便于测试，新增随机路由
+				if (element.name !== 'roots') {
+					// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
+					element.parent = gArray[element.groupId-1][0];
+					console.log(element.name, element.parent);					
+				}
+
+
 				element.updated = new Date();
 				element.save(function(err) {
 					if (err) {
 						return res.status(400).send({
 							message: '未知错误'
 						});
+					} else {
+						// 同步数据到所有终端
+						// io.emit('onlineChanged', node);
 					}
 				});
 			});
 		}
 		res.redirect('/bulbctrl#!/nodes');
 	});
+};
+
+exports.sync = function(req, res) {
+	Node.find().sort('name').exec(function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			nodes.forEach(function(node) {
+				// 在线状态
+				request.get('dev-online-status', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devStatus(obj, node);
+				});
+				// 电压
+				request.get('voltage', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devVoltage(obj, node);
+				});
+				// 电流
+				request.get('current', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devCurrent(obj, node);
+				});
+				// 有功功率
+				request.get('active-power', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devPower(obj, node);
+				});
+				// 频率
+				request.get('power-grid', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devFrequency(obj, node);
+				});
+				// 电能
+				request.get('total-energy', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					reponse.devEnergy(obj, node);
+				});
+			});
+		}
+	});
+	res.redirect('/bulbctrl#!/nodes');
 };
 
 exports.list = function(req, res) {
@@ -69,23 +182,6 @@ exports.list = function(req, res) {
 		} else {
 			res.json(nodes);
 		}
-	});
-};
-
-exports.nodeByName = function(req, res, next, name) {
-	Node.findOne({
-		name: name
-	}, '-_id name switch status level params.voltage params.current params.power params.frequency params.energy params.lifttime params.location').exec(function(err, node) {
-		if (err) {
-			return next(err);
-		}
-
-		if (!node) {
-			return next(new Error('非法Name ' + name));
-		}
-
-		req.node = node;
-		next();
 	});
 };
 
@@ -114,7 +210,12 @@ exports.update = function(req, res) {
 	node.name = req.body.name;
 	node.deviceId = req.body.deviceId;
 
-	node.parent = req.body.parent;
+	if (node.parent != req.body.parent) {
+		node.parent = req.body.parent;
+
+		// 拓扑数据变更，同步数据到所有终端
+		io.emit('topoChanged', node);
+	}
 
 	node.params = req.body.params;
 	node.metadata = req.body.metadata;
@@ -141,6 +242,8 @@ exports.update = function(req, res) {
 		if (node.status === 0) {
 			node.parent = 'null';
 		}
+
+		io.emit('onlineChanged', node);
 	}
 
 	if (node.switch != req.body.switch) {
@@ -152,6 +255,8 @@ exports.update = function(req, res) {
 		// 如果开关设置为关，调光级别无意义，默认重置为0
 		if (node.switch === 0) {
 			node.level = 0;
+		} else {
+			node.level = 100;
 		}
 	}
 
