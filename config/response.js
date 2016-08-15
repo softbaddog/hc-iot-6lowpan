@@ -148,7 +148,7 @@ exports.devFrequency = function(frequency, node) {
 };
 
 // { "total-active-energy": 0 }
-exports.devEnergy = function(energy, name) {
+exports.devEnergy = function(energy, node) {
 	node.params.energy = energy.totalactiveenergy;
 	node.updated = new Date();
 	node.save(function(err) {
@@ -170,3 +170,68 @@ exports.devGroup = function(group, node) {
 		}
 	});
 };
+
+// [{"index":0,"status":"on"}]
+exports.devSwitch = function(devices, node) {
+	if (devices.length > 0) {
+		node.switch = devices[0].status === 'on' ? 1 : 0;
+		node.updated = new Date();
+		node.save(function(err) {
+			if (!err) {
+				console.log(node.name, node.switch);
+				io.emit('nodeChanged', node);
+			}
+		});
+	}
+}
+
+// [{"index":0,"level":0}]
+exports.devLevel = function(devices, node) {
+	if (devices.length > 0) {
+		node.level = devices[0].level;
+		node.updated = new Date();
+		node.save(function(err) {
+			if (!err) {
+				console.log(node.name, node.level);
+				io.emit('nodeChanged', node);
+			}
+		});
+	}
+}
+
+// Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"online-status":"offline"},"gateway":"000D6
+// F00052AE47E","timestamp":"2016-08-15T15:27:55Z","esn":"2E00216EFC000255"}'
+// Received: '{"type":"huawei-iotdm-device:data-report","data":{"huawei-iotdm-device-common:online-status":"offline","huawe
+// i-iotdm-device-common:offline-reason":"normal"},"gateway":"000D6F00052AE47E","timestamp":"2016-08-15T15:27:55Z","esn":"2
+// E00216EFC000255"}'
+
+
+// Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"on
+// line-status":"online"},"gateway":"000D6F00052AE47E","timestamp":"2016-08-15T15:2
+// 6:02Z","esn":"2E00216EFC000255"}'
+exports.devStatusChanged = function(status, deviceId) {
+	Node.findOne({
+		deviceId: deviceId
+	}).exec(function(err, node) {
+		if (err) {
+			return err;
+		}
+
+		if (!node) {
+			return new Error('非法deviceId ' + element);
+		}
+
+		if (node.status !== status) {
+			node.status = status;
+
+			node.updated = new Date();
+			node.save(function(err) {
+				if (!err) {
+					console.log(node.name, node.status);
+					io.emit('nodeChanged', node);
+					io.emit('onlineChanged', node);
+				}
+			});			
+		}
+	});
+}
