@@ -2,8 +2,6 @@ var Node = require('mongoose').model('Node');
 var request = require('../../config/request');
 var fs = require('fs');
 
-var level_table = [0, 25, 50, 75, 100, 125];
-
 exports.render = function(req, res) {
 	res.render('startrek', {
 		layout: false
@@ -47,8 +45,12 @@ exports.bulbctrl = function(req, res) {
 			if (!node) {
 				return new Error('非法Name ' + element.name);
 			}
+			
+			if (node.status === 0 || node.switch === 0) {
+				return "设备离线";
+			}
 
-			node.level = level_table[element.brightness];
+			node.level = element.brightness;
 
 			// 如果查找到节点，不刷新数据库，直接下发指令到EEM
 			request.post('dim-level', null, node);
@@ -71,7 +73,7 @@ exports.groupctrl = function(req, res) {
 				return next(new Error('非法Group ' + element.name));
 			}
 
-			nodes[0].level = level_table[element.brightness];
+			nodes[0].level = element.brightness;
 
 			// 如果刷新了调光级别，需要下发http request到EEM平台
 			request.post('dim-level', nodes, null);
