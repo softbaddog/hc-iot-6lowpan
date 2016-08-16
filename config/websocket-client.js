@@ -19,16 +19,25 @@ exports.initialize = function() {
 		// 获取在线状态
 		var devOnlineStatus = function() {
 			// data = '{ "online": [ "FFFF010203FCE000", "2E00000000000031", "2E00000000000030" ] }';
-			request.get('dev-online-status', null, null, function(data) {
-				var devices = JSON.parse(data);
-				response.devStatus(devices);
-				setTimeout(devOnlineStatus, config.onlineTimeout);
+			// request.get('dev-online-status', null, null, function(data) {
+			// 	var devices = JSON.parse(data);
+			// 	response.devStatus(devices);
+			// 	setTimeout(devOnlineStatus, 600000);
+			// });
+
+			request.post('query-online-device-list', null, null, function(data) {
+				var devices = JSON.parse(data.replace(/-/g, ''));
+				response.queryStatus(devices.item);
+				setTimeout(devOnlineStatus, 600000);
 			});
+
 		};
-		devOnlineStatus();
+		//devOnlineStatus();
 
 		// 获取拓扑数据
 		var netTopo = function() {
+			// 先将设备在线和拓扑数据重置
+			response.devStatusInit();
 			// data = '[ { "device-id": "FFFF010203FCE000", "status": "online", "node-id": 1, "parent-node-id": 0, "hop-count": 0 }, { "device-id": "2E00000000000030", "status": "online", "node-id": 2, "parent-node-id": 1, "hop-count": 1 }, { "device-id": "2E00000000000032", "status": "online", "node-id": 3, "parent-node-id": 2, "hop-count": 1 } ]';
 			request.get('net-topo', null, null, function(data) {
 				var devices = JSON.parse(data.replace(/-/g, ''));
@@ -37,11 +46,11 @@ exports.initialize = function() {
 					map[key] = value;
 				});
 				response.devTopo(devices, map);
-				setTimeout(netTopo, config.topoTimeout);
+				setTimeout(netTopo, 150000);
 			});
 		};
 		netTopo();
-
+		
 		connection.on('error', function(error) {
 			console.log("Connection Error: " + error.toString());
 		});
@@ -49,7 +58,7 @@ exports.initialize = function() {
 		connection.on('close', function() {
 			console.log('echo-protocol Connection Closed');
 		});
-
+		
 		// Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"online-status":"offline"},"gateway":"000D6
 		// F00052AE47E","timestamp":"2016-08-15T15:27:55Z","esn":"2E00216EFC000255"}'
 		// Received: '{"type":"huawei-iotdm-device:data-report","data":{"huawei-iotdm-device-common:online-status":"offline","huawe
@@ -63,7 +72,7 @@ exports.initialize = function() {
 		connection.on('message', function(message) {
 			if (message.type === 'utf8') {
 				var obj = JSON.parse(message.utf8Data.replace(/-/g, ''));
-				switch (obj.type) {
+				switch(obj.type) {
 					case 'huaweiiotdmdevicecommon:onlinestatuschange':
 						console.log("Received: '" + message.utf8Data + "'");
 						if (obj.data.onlinestatus === 'online') {
@@ -78,5 +87,6 @@ exports.initialize = function() {
 				}
 			}
 		});
+
 	});
 };
