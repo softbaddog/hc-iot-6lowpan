@@ -104,7 +104,7 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
                 groupObj_=ary_[i_];
                 var item_={name:"",brightness:""};
                 item_.name=groupObj_.groupId;
-                item_.brightness=groupObj_.ary[0].brightness*25;
+                item_.brightness=groupObj_.ary[0].brightness;
                 data_.group.push(item_);
             }
 
@@ -121,7 +121,7 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
                     if(lampObj_.controlEnabled)continue;
                     var item_={name:" ",brightness:" "};
                     item_.name=lampObj_.starName;
-                    item_.brightness=lampObj_.brightness*25;
+                    item_.brightness=lampObj_.brightness;
                     data_.devices.push(item_);
                 }
             }

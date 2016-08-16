@@ -121,7 +121,7 @@ HCC_LIGHTS.StarScene=function(scene_){
     //earth.earth.position.set(0,-110,0);
 
 
-    //var star=new HCC_LIGHTS.Star(scope.starScene);
+
     /**
      * ±éÀú½Úµã
      * @param data
@@ -160,11 +160,13 @@ HCC_LIGHTS.StarScene=function(scene_){
                 addToGroups(statelite_,itemObj);
 
             }else {
-
+                if(itemObj.name.substr(0,4)=="root") {
+                    itemObj.lightColor=0xfeef43;
+                }
                 sprite_ = new HCC_LIGHTS.StarSprites(itemObj.lightColor);
                 sprite_.intensity = Math.random() * 5;//ÁÁ¶ÈÖµ
                 sprite_.brightness=parseInt(sprite_.intensity);
-                sprite_.setLightsScale(10);//³õÊ¼ÉÁË¸Öµ
+                sprite_.setLightsScale(100);//³õÊ¼ÉÁË¸Öµ
                 sprite_.starName = itemObj.name;
 
                 sprite_.sprites.starName = "s_" + itemObj.name;//test
@@ -178,6 +180,7 @@ HCC_LIGHTS.StarScene=function(scene_){
 
                 if(itemObj.name.substr(0,4)=="root"){
                     sprite_.objectType="roots";
+                    sprite_.controlEnabled=true;
                 }else{
                     sprite_.objectType="lamp";
                     addLampToGroups(sprite_,itemObj);//灯光分组
@@ -188,14 +191,41 @@ HCC_LIGHTS.StarScene=function(scene_){
 
         groupslength=scope.starGroups.length;
 
+        //debug
+        var span=document.createElement("span");
+        span.style.fontSize="50px";
+        span.style.color="#FF0000";
+        HCC_LIGHTS.ControlDiv.appendChild(span);
+        span.style.display="none";
+
+
         //Ñ¡ÖÐÊä³ö
         var selOutPutFun= function (obj) {
             console.log(obj.starName);
+            span.innerHTML=obj.starName;
         };
         var sel3d=new HCC_LIGHTS.Sel3DObject(scope.starScene.children,HCC_LIGHTS.ControlDiv,HCC_LIGHTS.three.main_camera,selOutPutFun);
+        sel3d.startOverList(scope.starScene.children,selOutPutFun);
+
+        scope.selClass=sel3d;
+
+        this.starClick=function(){
+            if(HCC_LIGHTS.effectController.StarClickName) {
+                span.style.display="block";
+                sel3d.overSelStar();
+            }else{
+                span.style.display="none";
+                sel3d.overSelRemove();
+            }
+        }
+        HCC_LIGHTS.effectController.StarClickName=false;
+        HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "StarClickName").onChange(this.starClick);
 
         var earth=new HCC_LIGHTS.Earth(scope.starScene);
         earth.earth.rotation.x=4;
+
+
+
 
         //earth.earth.position.set(-110,0,0);
         //earth.earth.position.set(-100,-150,0);
@@ -203,7 +233,9 @@ HCC_LIGHTS.StarScene=function(scene_){
         this.earth=earth;
 
         //Á¬Ïß
-        HCC_LIGHTS.lineMana.init(scope.starScene,this.starAry);//ÐÇ¿Õ½»»¥Êý¾Ý³õÊ¼»¯
+        //HCC_LIGHTS.lineMana.init(scope.starScene,this.starAry);//ÐÇ¿Õ½»»¥Êý¾Ý³õÊ¼»¯
+        //HCC_LIGHTS.lineMana.init(HCC_LIGHTS.three.main_scene,this.starAry);//ÐÇ¿Õ½»»¥Êý¾Ý³õÊ¼»¯
+        HCC_LIGHTS.lineMana.init(HCC_LIGHTS.three.main_scene,this.starAry);//ÐÇ¿Õ½»»¥Êý¾Ý³õÊ¼»¯
     };
 
     scope.startMusicAni=function(visualizer_){
@@ -257,6 +289,9 @@ HCC_LIGHTS.StarScene=function(scene_){
     }
 
     scope.update=function(delta){
+        if(scope.selClass){
+            scope.selClass.onOverEffectUpdate();
+        }
         if(scope.musicRate){
             scope.musicAniFun();
         }else{

@@ -4,6 +4,7 @@
 //全局变量
 var _commonId='';
 var allOnlincDeviceIdArr;
+var socket = io('/');
 /*
 //点击获取Id 调用函数
 $('.circle').on('click',function(){
@@ -39,7 +40,11 @@ function getEnergyInfo(id){
                     div2.className = "close2";
                 }
                 $("#light_count").val(msg.level);
-
+                if(msg.status == 1){
+                    $("#status").html("Online");
+                }else{
+                    $("#status").html("Offline");
+                }
                 //进度条
                 $('#lifetime').html(msg.params.lifttime);
                 $('.Jprogess').css({width:msg.params.lifttime+'%'});
@@ -85,7 +90,6 @@ function switchInfo(id,switchStatus){
         "switch": switchStatus
         //"reboot": "true" // 注意重启后，需要获取一次online状态
     };
-    //console.log(id,_switch);
     $.ajax({
         type: "POST",
         url : "/api/name/"+id,
@@ -112,7 +116,6 @@ function lightLevel(id,brightvalue){
         "brightness":brightvalue // 1-5级
         //"reboot": "true" // 注意重启后，需要获取一次online状态
     };
-
     $.ajax({
         type: "POST",
         url : "/api/name/"+id,
@@ -138,7 +141,6 @@ function reset(id){
         "devices": id,
         "reboot": "true" // 注意重启后，需要获取一次online状态
     };
-
     $.ajax({
         type: "POST",
         url : "/api/name/"+id,
@@ -151,7 +153,7 @@ function reset(id){
     });
 }
 //重启 end
-
+/*
 function getOnlineStatus(){
     if(_commonId !== null && _commonId !== "") {
         $.ajax({
@@ -178,7 +180,7 @@ function getOnlineStatus(){
         });
     }
 }
-/*
+
 function timerForOnlineStatus(){
     var _timer= setInterval(getOnlineStatus,5000);
     $('.Jbutton-close').on('click',function(){
@@ -205,8 +207,9 @@ function lampClick(obj){
 
     var _id = $(obj).attr('id');
     _commonId = _id;
+    socket.emit('nodeChanged', _commonId);
     getEnergyInfo(_id);
-    getOnlineStatus();
+    //getOnlineStatus();
 }
 function getAllOnlineDevices(){
     $.ajax({
@@ -306,14 +309,33 @@ function isExistInArray(array,value) {
     return isExist;
 }
 
-var socket = io('/');
 socket.on('connect', function () {
+
     socket.on('nodeChanged', function (msg) {
-        dynamicLoadLamp();
-        if(_commonId !== null && _commonId !== ""){
-            console.log("_commonId-->"+_commonId);
+        if(_commonId !== null && _commonId !== "" && _commonId == msg.name){
             getEnergyInfo(_commonId);
-            getOnlineStatus();
+        }
+    });
+
+    socket.on('onlineChanged', function (msg) {
+        if(msg.name != null && msg.name != ""){
+            var isCurrNodeOnline = false;
+            if($("#"+msg.name).attr("class") == "greyCircle"){
+                $("#"+msg.name).attr("class","circle");
+                $("#"+msg.name).attr("onclick","lampClick(this);");
+                isCurrNodeOnline = true;
+            }else{
+                $("#"+msg.name).attr("class","greyCircle");
+                $("#"+msg.name).attr("onclick","");
+                isCurrNodeOnline = false;
+            }
+            if(msg.name == _commonId){
+                if(isCurrNodeOnline){
+                    $("#status").html("Online");
+                }else{
+                    $("#status").html("Offline");
+                }
+            }
         }
     });
 });

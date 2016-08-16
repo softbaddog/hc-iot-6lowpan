@@ -29,7 +29,7 @@ HCC_LIGHTS.init=function(){
 
     //axis
     var axis=new THREE.AxisHelper(10000);
-    three.main_scene.add(axis);
+    three.starScene.add(axis);
     axis.visible=false;
     HCC_LIGHTS.effectController.axisEnabled=false;
     this.axisChange=function(){
@@ -37,13 +37,31 @@ HCC_LIGHTS.init=function(){
     }
     HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "axisEnabled").onChange(this.axisChange);
 
+    //lights
+    //var ambient = new THREE.AmbientLight( 0xFFFFFF,40 );
+    var ambient = new THREE.AmbientLight( 0xFFFFFF,4 );
+    three.starScene.add( ambient );
+
+    var directionalLight = new THREE.DirectionalLight( 0xffffff, 4.0 );
+    //var directionalLight = new THREE.DirectionalLight( 0x223366, 4.0 );
+    directionalLight.position.set(1000,200,500);
+    directionalLight.lookAt(new THREE.Vector3(0,0,0));
+    three.starScene.add( directionalLight );
+
+    var starDirect2=new THREE.DirectionalLight(0xFFFFFF,0.5);
+    starDirect2.position.set(0,-100,0);
+    three.starScene.add(starDirect2);
+
     //sky
-    var sky_=new HCC_LIGHTS.Sky(three.main_scene);
-    //var sky_=new HCC_LIGHTS.Sky(three.skyScene);
+    //var sky_=new HCC_LIGHTS.Sky(three.main_scene);
+    var sky_=new HCC_LIGHTS.Sky(three.starScene);
     HCC_LIGHTS.sky=sky_;
 
+    //var star=new HCC_LIGHTS.Star(three.starScene);
+
     //stars
-    var star=new HCC_LIGHTS.StarScene(three.main_scene);
+    //var star=new HCC_LIGHTS.StarScene(three.main_scene);
+    var star=new HCC_LIGHTS.StarScene(three.starScene);
     HCC_LIGHTS.star=star;
 
     //stars stuts 星空状态管理.. 连线/离线等..
@@ -68,8 +86,8 @@ HCC_LIGHTS.init=function(){
         var tw_=HCC_LIGHTS.ControlDiv.clientWidth;
         var th_=HCC_LIGHTS.ControlDiv.clientHeight;
         HCC_LIGHTS.camauto.onWindowResize();
-        $("#controls_div")[0].style.width = tw_;
-        $("#controls_div")[0].style.height = th_;
+        //$("#controls_div")[0].style.width = tw_;
+        //$("#controls_div")[0].style.height = th_;
 
         three.main_renderer.setSize(tw_, th_);
         three.onWindowResize(tw_,th_);

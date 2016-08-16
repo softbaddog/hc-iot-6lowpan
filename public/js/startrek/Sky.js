@@ -24,19 +24,7 @@ HCC_LIGHTS.Sky=function(scene_){
 
 
 
-    //var ambient = new THREE.AmbientLight( 0xFFFFFF,40 );
-    var ambient = new THREE.AmbientLight( 0xFFFFFF,4 );
-    scene_.add( ambient );
 
-    var directionalLight = new THREE.DirectionalLight( 0xffffff, 4.0 );
-    //var directionalLight = new THREE.DirectionalLight( 0x223366, 4.0 );
-    directionalLight.position.set(1000,200,500);
-    directionalLight.lookAt(new THREE.Vector3(0,0,0));
-    scene_.add( directionalLight );
-
-    var starDirect2=new THREE.DirectionalLight(0xFFFFFF,0.5);
-    starDirect2.position.set(0,-100,0);
-    scene_.add(starDirect2);
 
     //var particles=new HCC_LIGHTS.ParticlesEnv(sky);
     //this.particlesEnv=particles;
@@ -49,7 +37,7 @@ HCC_LIGHTS.Sky=function(scene_){
         sky.rotation.z=HCC_LIGHTS.effectController.rotationZ;
     }
 
-    HCC_LIGHTS.effectController.rotationX=1;
+    HCC_LIGHTS.effectController.rotationX=0;
     HCC_LIGHTS.effectController.rotationY=1;
     HCC_LIGHTS.effectController.rotationZ=0;
     HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "rotationX",-3.14159,3.14159,0).onChange(this.onRotationChange);

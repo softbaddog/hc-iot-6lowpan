@@ -7,10 +7,13 @@ HCC_LIGHTS.Sel3DObject=function(clicklist_,domObject,camera,callBackFun){
     scope.raycaster = new THREE.Raycaster();
     scope.moveRaycaster = new THREE.Raycaster();
     scope.mouse = new THREE.Vector2();
+    scope.overMouse = new THREE.Vector2();
     scope.camera=camera;
     scope.clickCallback=callBackFun;
     scope.domElement=domObject;
     scope.clickList=clicklist_;
+
+    scope.overselEnabled=false;
 
 
 
@@ -46,28 +49,34 @@ HCC_LIGHTS.Sel3DObject=function(clicklist_,domObject,camera,callBackFun){
         }
 
     }
-    /*
-    function onTouchEnd(event){
-
-        scope.touchEndPoint.set(event.touches[ 0 ].pageX, event.touches[ 0 ].pageY);
-        if((Math.abs(scope.touchEndPoint.x-scope.touchStartPoint.x)>3)||(Math.abs(scope.touchEndPoint.y-scope.touchStartPoint.y)>3)){            return;        }
-
-        scope.mouse.x = ( scope.touchEndPoint.x / domObject.clientWidth ) * 2 - 1;
-        scope.mouse.y = - ( scope.touchEndPoint.y / domObject.clientHeight ) * 2 + 1;
-        scope.raycaster.setFromCamera( scope.mouse, camera );
-        var intersects = scope.raycaster.intersectObjects( scope.clickList );
-
-        if(intersects.length>0){
-
-            scope.clickCallback(intersects[0].object);
-
-        }
-
-    }
-    */
-
     scope.domElement.addEventListener("click",onMouseClick,false);
     scope.domElement.addEventListener( 'touchstart', onTouchStart, false );
-    //scope.domElement.addEventListener( 'touchend', onTouchEnd, false );
+
+    this.startOverList=function(overlist_,overCallBack_){
+        scope.overCallback=overCallBack_;
+        scope.overList=overlist_;
+        //scope.domElement.addEventListener("mousemove",scope.onmouseMove,false);
+    }
+    this.overSelStar=function(){
+        scope.overselEnabled=true;
+        scope.domElement.addEventListener("mousemove",scope.onmouseMove,false);
+    }
+    this.overSelRemove=function(){
+        scope.overselEnabled=false;
+        scope.domElement.removeEventListener("mousemove",scope.onmouseMove,false);
+    }
+    this.onmouseMove=function(event){
+        scope.overMouse.x = ( event.clientX / domObject.clientWidth ) * 2 - 1;
+        scope.overMouse.y = - ( event.clientY / domObject.clientHeight ) * 2 + 1;
+    }
+
+    this.onOverEffectUpdate=function(){
+        if(!scope.overselEnabled)return;
+        scope.moveRaycaster.setFromCamera( scope.overMouse, scope.camera );
+        var intersects = scope.moveRaycaster.intersectObjects( scope.overList );
+        if ( intersects.length > 0 ) {
+            scope.overCallback(intersects[0].object);
+        }
+    }
 
 }

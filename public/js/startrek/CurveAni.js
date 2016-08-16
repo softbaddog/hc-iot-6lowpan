@@ -39,7 +39,7 @@ HCC_LIGHTS.CurveAni.prototype={
 
         } );
         this.lineMaterial_.needsUpdate=true;
-        var tubeGeo=new THREE.TubeGeometry(LineCurve,1,.5,3);
+        var tubeGeo=new THREE.TubeGeometry(LineCurve,1,.6,3);
         this.line=new THREE.Mesh(tubeGeo,this.lineMaterial_);
 
     },
@@ -47,7 +47,7 @@ HCC_LIGHTS.CurveAni.prototype={
         this.initObject=start_;
         this.endObject=end_;
         var LineCurve=new THREE.LineCurve3(start_.sprites.position,end_.sprites.position);
-        var tubeGeo=new THREE.TubeGeometry(LineCurve,1,.5,3);
+        var tubeGeo=new THREE.TubeGeometry(LineCurve,1,.8,3);
         this.line.geometry=tubeGeo;
     },
     //²¥·Å¶¯»­

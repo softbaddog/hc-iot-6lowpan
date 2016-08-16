@@ -37,11 +37,25 @@ HCC_LIGHTS.CameraContols=function() {
     //controls
 
     //中心点
-    //var lookTarget=new THREE.Vector3(671,-116,-390);
+    /*
+
+     x
+     :
+     385.6108726717072
+     y
+     :
+     -126.13450237024512
+     z
+     :
+     666.6932785427144
+     */
+    //var lookTarget=new THREE.Vector3(385,-124,666);
+
     var lookTarget=new THREE.Vector3();
     lookTarget.x=ini_.lookTarget.x;
     lookTarget.y=ini_.lookTarget.y;
     lookTarget.z=ini_.lookTarget.z;
+
 
     //auto delayTime 等待时间 ms
     //var autoDelayTime=5000;
@@ -57,20 +71,35 @@ HCC_LIGHTS.CameraContols=function() {
 
     //最佳视角
     //目标位置
+
+    /*
+     phi
+     :
+     1.196609498258578
+     radius
+     :
+     2301.6197572673764
+     theta
+     :
+     -0.9981101659842565
+     */
     var tweenLookSpherical = new THREE.Spherical(ini_.spherical.radius, ini_.spherical.phi, ini_.spherical.theta);
-    //var tweenLookSpherical = new THREE.Spherical(2083, 2.50, 0.6);
+    //var tweenLookSpherical = new THREE.Spherical(2305, 1.09, -.79);
 
     controls_.target0=lookTarget;
     controls_.target=lookTarget;
     controls_.autoRotateSpeed=1;
     controls_.autoRotateSpeed=1;
     controls_.autoRotate =false;
-    //controls_.enablePan = false;
+    controls_.enablePan = false;
     //controls_.minPolarAngle=.7;
     //controls_.maxPolarAngle=Math.PI/1.5;
 
     controls_.minPolarAngle=ini_.lonRectangle.min;
     controls_.maxPolarAngle=ini_.lonRectangle.max;
+
+    controls_.maxAzimuthAngle=Math.PI*.8;
+    controls_.minAzimuthAngle=-Math.PI*.7;
 
     controls_.maxDistance = ini_.distance.max;
     controls_.minDistance = ini_.distance.min;
@@ -165,16 +194,19 @@ HCC_LIGHTS.CameraContols=function() {
     if(ini_.autoRest)createAutoPosition();
     startTweenCameraAuto();
 
+
     this.changeCamera=function(){
         if(HCC_LIGHTS.effectController.orthocamera){
             HCC_LIGHTS.three.main_camera=scope.orthoCamera;
             controls_.object=scope.orthoCamera;
             HCC_LIGHTS.three.sceneRenderPass.camera=scope.orthoCamera;
+            HCC_LIGHTS.three.skyRender.camera=scope.orthoCamera;
         }else{
             HCC_LIGHTS.three.main_camera=scope.persCamera;
             controls_.object=scope.persCamera;
 
             HCC_LIGHTS.three.sceneRenderPass.camera=scope.persCamera;
+            HCC_LIGHTS.three.skyRender.camera=scope.persCamera;
         }
 
         controls_.reset();
@@ -183,7 +215,24 @@ HCC_LIGHTS.CameraContols=function() {
     }
 
     HCC_LIGHTS.effectController.orthocamera=false;
-    HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "orthocamera").onChange(this.changeCamera);
+    //HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "orthocamera").onChange(this.changeCamera);
+    this.lockCameraPoint=function(){
+        if(HCC_LIGHTS.effectController.CamreaLockCurPoint){
+            tweenLookSpherical.setFromVector3(HCC_LIGHTS.three.main_camera.position);
+            /*
+            tweenLookSpherical.radius=controls_.curSpherical.radius;
+            tweenLookSpherical.phi=controls_.curSpherical.phi;
+            tweenLookSpherical.theta=controls_.curSpherical.theta;
+            */
+        }else{
+
+            tweenLookSpherical.radius=ini_.spherical.radius;
+            tweenLookSpherical.phi=ini_.spherical.phi;
+            tweenLookSpherical.theta=ini_.spherical.theta;
+        }
+    };
+    HCC_LIGHTS.effectController.CamreaLockCurPoint=false;
+    HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "CamreaLockCurPoint").onChange(this.lockCameraPoint);
 
     this.changeCamera();
 

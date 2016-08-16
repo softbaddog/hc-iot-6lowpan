@@ -6,22 +6,55 @@ HCC_LIGHTS.Star=function(scene){//????
 
     var sphereGeo=new THREE.SphereGeometry(256,100,100);
     var sphereMaterial=new THREE.MeshLambertMaterial({
-        color:0x2c3545,
+        color:0xFFFFFF,
         map:HCC_LIGHTS.textureLoader.load("textures/earth/moon_1024.jpg")
     });
     var star_=new THREE.Mesh(sphereGeo,sphereMaterial);
 
 
-    var clondsMaterial=new THREE.MeshStandardMaterial({
+    var clondsMaterial=new THREE.MeshLambertMaterial({
+        color:0xFFFFFF,
         transparent: true,
         map:HCC_LIGHTS.textureLoader.load('textures/planets/earth_clouds_2048.png')
     });
     var clonds=new THREE.Mesh(sphereGeo,clondsMaterial);
     scene.add(star_);
-    star_.position.set(1000,-100,5600);
+    star_.position.set(1000,-100,-5600);
     scene.add(clonds);
-    clonds.position.set(1000,-100,5600);
+    clonds.position.set(1000,-100,-5600);
 }
+
+HCC_LIGHTS.Earth2=function(scene_){
+    var earth=new THREE.Object3D();
+    this.earth=earth;
+    scene_.add(earth);
+
+    var earthCloudsMat = new THREE.MeshLambertMaterial({
+        //color: 0x333333,
+        color: 0x111111,
+        blending: THREE.AdditiveBlending,
+        transparent: true,
+    });
+    var earthClouds = HCC_LIGHTS.textureLoader.load('textures/planets/earth_clouds_2048.png', function (tex) {
+        earthCloudsMat.map = tex;
+        earthCloudsMat.needsUpdate = true;
+    });
+
+    earthCloudsMat.bumpMap=textureLoader.load("textures/planets/earth_clouds_2048.png");
+    earthCloudsMat.bumpScale=1.0;
+
+    var earthGeo = new THREE.SphereGeometry(100, 100, 100);
+    var glowMaterial=new THREE.ShaderMaterial(glowShader);
+    var earthGlow=new THREE.Mesh(earthGeo,glowMaterial);
+    earthGlow.matrixAutoUpdate=false;
+    earth.add(earthGlow);
+
+    var cloudsGeo=new THREE.SphereGeometry(100.1, 100, 100);
+    var sphereCloudsMesh = new THREE.Mesh(cloudsGeo, earthCloudsMat);
+    earth.add(sphereCloudsMesh);
+
+}
+
 HCC_LIGHTS.Earth=function(scene_) {//????
 
     var earth=new THREE.Object3D();
@@ -250,8 +283,9 @@ HCC_LIGHTS.StarSprites=function(color_){//???
         if(this.controlEnabled)return;//处于非可控状态
         if(!this.enabled)return;
         val_+=this.amp;//????
-        this.brightness=parseInt(val_/25);
-        this.brightness>4?this.brightness=4:this.brightness;
+        this.brightness=parseInt(val_);
+        this.brightness>99?this.brightness=99:this.brightness;
+        this.brightness<1?this.brightness=1:this.brightness;
         this.glow.scale.set(val_,val_,val_);
 
     };
