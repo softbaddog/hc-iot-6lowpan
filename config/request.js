@@ -3,6 +3,11 @@ var config = require('./config');
 
 exports.post = function(api, nodes, node, callback) {
 	switch (api) {
+		case 'query-online-device-list':
+			contents = '';
+			path = 'device/action/' + config.gateway + '/urn:huawei:iotdm:device/huawei-iotdm-device-common:' + api;
+			break;
+			
 		case 'dim-level':
 			if (node) {
 				contents = JSON.stringify({
@@ -128,7 +133,7 @@ exports.get = function(api, nodes, node, callback) {
 		res.setEncoding('utf8');
 		res.on('data', function(data) {
 			console.log(api, data);
-			if (callback) {
+			if (res.headers['content-type'] === 'application/json' && callback) {
 				callback(data);
 			}
 		});
