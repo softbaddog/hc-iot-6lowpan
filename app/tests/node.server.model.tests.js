@@ -1,8 +1,8 @@
-var app = require('../../server.js'),
-	should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
-	Node = mongoose.model('Node');
+var app = require('../../server.js');
+var	should = require('should');
+var	mongoose = require('mongoose');
+var	User = mongoose.model('User');
+var	Node = mongoose.model('Node');
 
 var user, node;
 
@@ -17,8 +17,10 @@ describe('Node Model Unit Tests:', function() {
 			node = new Node({
 				name: 'A1',
 				status: 0,
-				group: 0,
+				groupId: 0,
 				parent: 'roots',
+				level: 0,
+				switch: 0,
 				user: user
 			});
 

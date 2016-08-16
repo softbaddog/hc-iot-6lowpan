@@ -1,9 +1,9 @@
-var app = require('../../server'),
-	request = require('supertest'),
-	should = require('should'),
-	mongoose = require('mongoose'),
-	User = mongoose.model('User'),
-	Node = mongoose.model('Node');
+var app = require('../../server');
+var	request = require('supertest');
+var	should = require('should');
+var	mongoose = require('mongoose');
+var	User = mongoose.model('User');
+var	Node = mongoose.model('Node');
 
 var user, node;
 
@@ -18,8 +18,10 @@ describe('Nodes Controller Uint Tests:', function() {
 			node = new Node({
 				name: 'A1',
 				status: 0,
-				group: 0,
+				groupId: 0,
 				parent: 'roots',
+				level: 0,
+				switch: 0,
 				user: user
 			});
 
