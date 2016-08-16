@@ -19,7 +19,7 @@ module.exports = function(io, socket) {
 				return next(new Error('非法Name ' + name));
 			}
 
-			socket.broadcast.emit('lockBrightness', node);
+			socket.broadcast.emit('nodeLocked', node);
 		});
 	});
 
@@ -36,7 +36,7 @@ module.exports = function(io, socket) {
 				return next(new Error('非法Name ' + name));
 			}
 
-			socket.broadcast.emit('openBrightness', node);
+			socket.broadcast.emit('nodeUnlocked', node);
 		});
 	});
 };

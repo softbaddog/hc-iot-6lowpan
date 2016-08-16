@@ -35,11 +35,11 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
             scope.onlineUpdate();
         });
 
-        socket.on('lockBrightness', function (msg) {
+        socket.on('nodeLocked', function (msg) {
             scope.lineMana.controlsBrightness(msg.name,(msg.level),true);
         });
 
-        socket.on('openBrightness', function (msg) {
+        socket.on('nodeUnlocked', function (msg) {
             scope.lineMana.controlsBrightness(msg.name,(msg.level),false);
         });
 
