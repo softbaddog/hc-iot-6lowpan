@@ -58,12 +58,12 @@ exports.init = function(req, res) {
 	};
 
 	var gArray = {
-		0: ['roots'],
-		1: ['H1', 'H2', 'H3', 'I1', 'I2', 'I3', 'J1', 'J2', 'J3'],
-		2: ['F4', 'F5', 'F6', 'G4', 'G5', 'G6', 'H4', 'H5', 'H6'],
-		3: ['D7', 'D8', 'D9', 'E7', 'E8', 'E9', 'F7', 'F8', 'F9'],
-		4: ['A10', 'A11', 'A12', 'A13', 'B10', 'B11', 'B12', 'B13', 'C10', 'C11', 'C12', 'C13', 'D10', 'D11', 'D12', 'D13'],
-		5: ['devices1', 'devices2', 'devices3', 'devices4', 'devices5'],
+		0 : ['roots'],
+		1 : ['H1','H2','H3','I1','I2','I3','J1','J2','J3'],
+		2 : ['F4','F5','F6','G4','G5','G6','H4','H5','H6'],
+		3 : ['D7','D8','D9','E7','E8','E9','F7','F8','F9'],
+		4 : ['A10','A11','A12','A13','B10','B11','B12','B13','C10','C11','C12','C13','D10','D11','D12','D13'],
+		5 : ['devices1','devices2','devices3','devices4','devices5'],
 	};
 
 	Node.find({}, function(err, nodes) {
@@ -75,15 +75,15 @@ exports.init = function(req, res) {
 			nodes.forEach(function(element, index) {
 				element.status = 0;
 				element.parent = 'null';
-				element.level = 0;
-				element.switch = 0;
+				element.level = 100;
+				element.switch = 1;
 				element.params.voltage = 0;
 				element.params.current = 0;
 				element.params.power = 0;
 				element.params.frequency = 0;
 				element.params.energy = 0;
 				element.params.lifttime = 100;
-				element.params.location = '上海世博展览馆';
+				element.params.location = '上海';
 
 				// 按规律刷新灯节点位置信息
 				if (element.name !== 'roots' && element.name.substr(0, 7) !== "devices") {
@@ -94,8 +94,8 @@ exports.init = function(req, res) {
 				}
 
 				function findGroup(name) {
-					for (var i = 0; i <= 5; i++) {
-						for (j in gArray[i]) {
+					for(var i = 0; i <= 5; i++) {
+						for(j in gArray[i]) {
 							if (gArray[i][j] === name) {
 								return i;
 							}
@@ -103,15 +103,14 @@ exports.init = function(req, res) {
 					}
 				}
 				element.groupId = findGroup(element.name);
-				console.log(element.name, element.groupId);
+				console.log(element.name, element.groupId);	
 
 				// 为便于测试，新增随机路由
-				if (element.name !== 'roots') {
-					// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
-					element.parent = gArray[element.groupId - 1][0];
-					console.log(element.name, element.parent);
-				}
-
+				// if (element.name !== 'roots') {
+				// 	// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
+				// 	element.parent = gArray[element.groupId-1][0];
+				// 	console.log(element.name, element.parent);					
+				// }
 
 				element.updated = new Date();
 				element.save(function(err) {
@@ -130,6 +129,59 @@ exports.init = function(req, res) {
 	});
 };
 
+exports.gtest = function(req, res) {
+	var levelList = [10,20,30,40,50,60,70,80,90,100];
+	var i = 0;
+	[1,2,3,4].forEach(function(element) {
+		Node.find({
+			groupId: element
+		}).exec(function(err, nodes) {
+			if (err) {
+				return err;
+			}
+
+			if (!nodes || nodes.length === 0) {
+				return new Error('非法Group ' + element.name);
+			}
+
+			var post = function() {
+				nodes[0].level = levelList[i++%levelList.length];
+				console.log(i, nodes[0].level);
+				request.post('dim-level', nodes, null);
+				if (i < levelList.length) {
+					setTimeout(post,5000);					
+				}
+			};
+			post();			
+		});
+	});
+	res.redirect('/bulbctrl#!/nodes');
+}
+
+exports.dtest = function(req, res) {
+	var levelList = [10,20,30,40,50,60,70,80,90,100];
+	Node.find({}, function(err, nodes) {
+		if (err) {
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			nodes.forEach(function(node, index) {
+				if (node.name === 'roots' || node.name.substr(0,7) == 'devices') {
+					return new Error('无需处理');
+				}
+				var post = function() {
+					node.level = levelList[Math.floor(Math.random()*levelList.length)];
+					console.log(node.name, node.level);
+					request.post('dim-level', null, node);
+				};
+				post();	
+			});
+		}	
+	});
+	res.redirect('/bulbctrl#!/nodes');
+}
+
 exports.sync = function(req, res) {
 	var node = req.node;
 
@@ -143,9 +195,7 @@ exports.sync = function(req, res) {
 	node.params.frequency = 0;
 	node.params.energy = 0;
 
-	if (node.name === 'roots') {
-		return;
-	}
+	if (node.name === 'roots') { return; }
 
 	// 在线状态
 	request.get('dev-online-status', null, node, function(data) {
@@ -175,7 +225,7 @@ exports.sync = function(req, res) {
 							// 有功功率
 							request.get('active-power', null, node, function(data) {
 								var obj = JSON.parse(data.replace(/-/g, ''));
-								response.devPower(obj, node);
+								response.devPower(obj, node);							
 							});
 						});
 					});
@@ -184,7 +234,7 @@ exports.sync = function(req, res) {
 				// 电压
 				request.get('voltage', null, node, function(data) {
 					var obj = JSON.parse(data.replace(/-/g, ''));
-					response.devVoltage(obj, node);
+					response.devVoltage(obj, node);		
 
 					// 电能
 					request.get('total-energy', null, node, function(data) {
@@ -199,8 +249,8 @@ exports.sync = function(req, res) {
 							// 分组
 							request.get('group-list', null, node, function() {
 								console.log(node.name, node.groupId);
-							});
-						});
+							});	
+						});		
 					});
 				});
 			});
@@ -237,6 +287,7 @@ exports.nodeByID = function(req, res, next, id) {
 };
 
 exports.read = function(req, res) {
+	// getNodeParams(req.node);
 	res.json(req.node);
 };
 
