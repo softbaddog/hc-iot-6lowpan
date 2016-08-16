@@ -8,9 +8,9 @@
   "defaultView":{
       "autoRest":true,
       "restTime":10000,
-      "lookTarget":{        "x":671,        "y":-116,        "z":-390      },
-      "spherical":{"radius":2083, "phi":2.50, "theta":0.6},
-      "lonRectangle":{"max":2.5,"min":0.7},
+      "lookTarget":{        "x":385,        "y":-124,        "z":666      },
+      "spherical":{"radius":2305, "phi":1.09, "theta":-0.8},
+      "lonRectangle":{"max":3.1415926,"min":0.0},
       "distance":{"max":3000,"min":1000}
   }
 }
