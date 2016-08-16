@@ -24,7 +24,7 @@ exports.devStatusInit = function() {
 			});
 		}
 	});
-}
+};
 
 // { "online": [] }
 // { "online": [ "FFFF010203FCE000"] }

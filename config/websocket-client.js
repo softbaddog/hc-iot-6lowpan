@@ -2,6 +2,8 @@ var config = require('./config');
 var request = require('./request');
 var response = require('./response');
 
+connectStatus = false;
+
 exports.initialize = function() {
 	var WebSocketClient = require('websocket').client;
 
@@ -11,28 +13,29 @@ exports.initialize = function() {
 
 	client.on('connectFailed', function(error) {
 		console.log('Connect Error: ' + error.toString());
+		connectStatus = false;
 	});
 
 	client.on('connect', function(connection) {
 		console.log('WebSocket Client Connected');
+		connectStatus = true;
 
 		// 获取在线状态
-		var devOnlineStatus = function() {
+		var devOnline = function() {
 			// data = '{ "online": [ "FFFF010203FCE000", "2E00000000000031", "2E00000000000030" ] }';
 			// request.get('dev-online-status', null, null, function(data) {
 			// 	var devices = JSON.parse(data);
 			// 	response.devStatus(devices);
-			// 	setTimeout(devOnlineStatus, 600000);
+			// 	setTimeout(devOnline, 600000);
 			// });
 
 			request.post('query-online-device-list', null, null, function(data) {
 				var devices = JSON.parse(data.replace(/-/g, ''));
 				response.queryStatus(devices.item);
-				setTimeout(devOnlineStatus, 600000);
+				setTimeout(devOnline, config.onlineTimeout);
 			});
-
 		};
-		//devOnlineStatus();
+		devOnline();
 
 		// 获取拓扑数据
 		var netTopo = function() {
@@ -46,17 +49,19 @@ exports.initialize = function() {
 					map[key] = value;
 				});
 				response.devTopo(devices, map);
-				setTimeout(netTopo, 150000);
+				setTimeout(netTopo, config.topoTimeout);
 			});
 		};
 		netTopo();
 		
 		connection.on('error', function(error) {
 			console.log("Connection Error: " + error.toString());
+			connectStatus = false;
 		});
 
 		connection.on('close', function() {
 			console.log('echo-protocol Connection Closed');
+			connectStatus = false;
 		});
 		
 		// Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"online-status":"offline"},"gateway":"000D6

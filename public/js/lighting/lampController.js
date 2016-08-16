@@ -207,7 +207,7 @@ function lampClick(obj){
 
     var _id = $(obj).attr('id');
     _commonId = _id;
-    socket.emit('nodeChanged', _commonId);
+    socket.emit('nodeLocked', _commonId);
     getEnergyInfo(_id);
     //getOnlineStatus();
 }

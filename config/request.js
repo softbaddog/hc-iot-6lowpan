@@ -7,7 +7,7 @@ exports.post = function(api, nodes, node, callback) {
 			contents = '';
 			path = 'device/action/' + config.gateway + '/urn:huawei:iotdm:device/huawei-iotdm-device-common:' + api;
 			break;
-			
+
 		case 'dim-level':
 			if (node) {
 				contents = JSON.stringify({
@@ -56,7 +56,7 @@ exports.post = function(api, nodes, node, callback) {
 			break;
 	}
 
-	console.log(contents);
+
 	var options = {
 		host: config.host,
 		port: config.port,
@@ -68,22 +68,28 @@ exports.post = function(api, nodes, node, callback) {
 		}
 	};
 
+	console.log('POST------%s-------start-', api);
 	console.log(options);
-	var req = http.request(options, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function(data) {
-			console.log(api, data);
-			if (callback) {
-				callback(data);
-			}
-		});
-		res.on('error', function(err) {
-			console.log(err);
-		});
-	});
+	console.log(contents);
+	console.log('POST------%s--------end--', api);
 
-	req.write(contents);
-	req.end();
+	if (connectStatus) {
+		var req = http.request(options, function(res) {
+			res.setEncoding('utf8');
+			res.on('data', function(data) {
+				console.log(api, data);
+				if (callback) {
+					callback(data);
+				}
+			});
+			res.on('error', function(err) {
+				console.log(err);
+			});
+		});
+
+		req.write(contents);
+		req.end();
+	}
 };
 
 exports.get = function(api, nodes, node, callback) {
@@ -95,11 +101,11 @@ exports.get = function(api, nodes, node, callback) {
 				path = 'system/action/urn:huawei:iotdm:advoper/' + api + '?domain=' + config.domain;
 			}
 			break;
-			
+
 		case 'net-topo':
 			path = 'device/get/' + config.gateway + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
-			
+
 		case 'voltage':
 		case 'current':
 		case 'active-power':
@@ -107,13 +113,13 @@ exports.get = function(api, nodes, node, callback) {
 		case 'total-energy':
 			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/group/huawei-iotdm-device-energy:' + api;
 			break;
-			
+
 		case 'switch-status':
 		case 'dim-level':
 			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 			break;
-			
-		case 'group-list':			
+
+		case 'group-list':
 			path = 'device/get/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
 		default:
@@ -127,20 +133,23 @@ exports.get = function(api, nodes, node, callback) {
 		path: '/iotdm/nb/v1/' + path,
 		method: 'GET'
 	};
-
+	console.log('POST------%s-------start-', api);
 	console.log(options);
-	var req = http.request(options, function(res) {
-		res.setEncoding('utf8');
-		res.on('data', function(data) {
-			console.log(api, data);
-			if (res.headers['content-type'] === 'application/json' && callback) {
-				callback(data);
-			}
-		});
-		res.on('error', function(err) {
-			console.log(err);
-		});
-	});
+	console.log('POST------%s--------end--', api);
 
-	req.end();
+	if (connectStatus) {
+		var req = http.request(options, function(res) {
+			res.setEncoding('utf8');
+			res.on('data', function(data) {
+				console.log(api, data);
+				if (res.headers['content-type'] === 'application/json' && callback) {
+					callback(data);
+				}
+			});
+			res.on('error', function(err) {
+				console.log(err);
+			});
+		});
+		req.end();
+	}
 };

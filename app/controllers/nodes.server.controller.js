@@ -58,12 +58,12 @@ exports.init = function(req, res) {
 	};
 
 	var gArray = {
-		0 : ['roots'],
-		1 : ['H1','H2','H3','I1','I2','I3','J1','J2','J3'],
-		2 : ['F4','F5','F6','G4','G5','G6','H4','H5','H6'],
-		3 : ['D7','D8','D9','E7','E8','E9','F7','F8','F9'],
-		4 : ['A10','A11','A12','A13','B10','B11','B12','B13','C10','C11','C12','C13','D10','D11','D12','D13'],
-		5 : ['devices1','devices2','devices3','devices4','devices5'],
+		0: ['roots'],
+		1: ['H1', 'H2', 'H3', 'I1', 'I2', 'I3', 'J1', 'J2', 'J3'],
+		2: ['F4', 'F5', 'F6', 'G4', 'G5', 'G6', 'H4', 'H5', 'H6'],
+		3: ['D7', 'D8', 'D9', 'E7', 'E8', 'E9', 'F7', 'F8', 'F9'],
+		4: ['A10', 'A11', 'A12', 'A13', 'B10', 'B11', 'B12', 'B13', 'C10', 'C11', 'C12', 'C13', 'D10', 'D11', 'D12', 'D13'],
+		5: ['devices1', 'devices2', 'devices3', 'devices4', 'devices5'],
 	};
 
 	Node.find({}, function(err, nodes) {
@@ -74,9 +74,9 @@ exports.init = function(req, res) {
 		} else {
 			nodes.forEach(function(element, index) {
 				element.status = 0;
-				element.parent = 'null';
-				element.level = 100;
-				element.switch = 1;
+				element.parent = null;
+				element.level = 0;
+				element.switch = 0;
 				element.params.voltage = 0;
 				element.params.current = 0;
 				element.params.power = 0;
@@ -94,8 +94,8 @@ exports.init = function(req, res) {
 				}
 
 				function findGroup(name) {
-					for(var i = 0; i <= 5; i++) {
-						for(j in gArray[i]) {
+					for (var i = 0; i <= 5; i++) {
+						for (j in gArray[i]) {
 							if (gArray[i][j] === name) {
 								return i;
 							}
@@ -103,7 +103,7 @@ exports.init = function(req, res) {
 					}
 				}
 				element.groupId = findGroup(element.name);
-				console.log(element.name, element.groupId);	
+				console.log(element.name, element.groupId);
 
 				// 为便于测试，新增随机路由
 				// if (element.name !== 'roots') {
@@ -130,9 +130,9 @@ exports.init = function(req, res) {
 };
 
 exports.gtest = function(req, res) {
-	var levelList = [10,20,30,40,50,60,70,80,90,100];
-	var i = 0;
-	[1,2,3,4].forEach(function(element) {
+	var levelList = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+	[1, 2, 3, 4].forEach(function(element) {
+		var i = 0;
 		Node.find({
 			groupId: element
 		}).exec(function(err, nodes) {
@@ -145,21 +145,21 @@ exports.gtest = function(req, res) {
 			}
 
 			var post = function() {
-				nodes[0].level = levelList[i++%levelList.length];
-				console.log(i, nodes[0].level);
+				nodes[0].level = levelList[i++ % levelList.length];
+				console.log(element, nodes[0].level);
 				request.post('dim-level', nodes, null);
 				if (i < levelList.length) {
-					setTimeout(post,5000);					
+					setTimeout(post, 5000);
 				}
 			};
-			post();			
+			post();
 		});
 	});
 	res.redirect('/bulbctrl#!/nodes');
-}
+};
 
 exports.dtest = function(req, res) {
-	var levelList = [10,20,30,40,50,60,70,80,90,100];
+	var levelList = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 	Node.find({}, function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
@@ -167,20 +167,20 @@ exports.dtest = function(req, res) {
 			});
 		} else {
 			nodes.forEach(function(node, index) {
-				if (node.name === 'roots' || node.name.substr(0,7) == 'devices') {
+				if (node.name === 'roots' || node.name.substr(0, 7) == 'devices') {
 					return new Error('无需处理');
 				}
 				var post = function() {
-					node.level = levelList[Math.floor(Math.random()*levelList.length)];
+					node.level = levelList[Math.floor(Math.random() * levelList.length)];
 					console.log(node.name, node.level);
 					request.post('dim-level', null, node);
 				};
-				post();	
+				post();
 			});
-		}	
+		}
 	});
 	res.redirect('/bulbctrl#!/nodes');
-}
+};
 
 exports.sync = function(req, res) {
 	var node = req.node;
@@ -195,13 +195,16 @@ exports.sync = function(req, res) {
 	node.params.frequency = 0;
 	node.params.energy = 0;
 
-	if (node.name === 'roots') { return; }
+	if (node.name === 'roots') {
+		return;
+	}
 
 	// 在线状态
 	request.get('dev-online-status', null, node, function(data) {
 		var obj = JSON.parse(data.replace(/-/g, ''));
 		response.devStatus(obj, node);
 
+		// 只有状态为online时才发送后续查询指令 
 		if (node.status === 1) {
 			// 将当前分组信息刷新到服务器
 			// request.post('group-list', null, node);
@@ -211,46 +214,45 @@ exports.sync = function(req, res) {
 				var obj = JSON.parse(data.replace(/-/g, ''));
 				response.devSwitch(obj, node);
 
-				if (node.switch === 1) {
-					// 调光级别
-					request.get('dim-level', null, node, function(data) {
+				// 调光级别
+				request.get('dim-level', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					response.devLevel(obj, node);
+
+					// 电流
+					request.get('current', null, node, function(data) {
 						var obj = JSON.parse(data.replace(/-/g, ''));
-						response.devLevel(obj, node);
+						response.devCurrent(obj, node);
 
-						// 电流
-						request.get('current', null, node, function(data) {
+						// 有功功率
+						request.get('active-power', null, node, function(data) {
 							var obj = JSON.parse(data.replace(/-/g, ''));
-							response.devCurrent(obj, node);
+							response.devPower(obj, node);
 
-							// 有功功率
-							request.get('active-power', null, node, function(data) {
+							// 电压
+							request.get('voltage', null, node, function(data) {
 								var obj = JSON.parse(data.replace(/-/g, ''));
-								response.devPower(obj, node);							
+								response.devVoltage(obj, node);
+
+								// 电能
+								request.get('total-energy', null, node, function(data) {
+									var obj = JSON.parse(data.replace(/-/g, ''));
+									response.devEnergy(obj, node);
+
+									// 频率
+									request.get('power-grid', null, node, function(data) {
+										var obj = JSON.parse(data.replace(/-/g, ''));
+										response.devFrequency(obj, node);
+
+										// 分组
+										request.get('group-list', null, node, function() {
+											console.log(node.name, node.groupId);
+										});
+									});
+
+								});
 							});
 						});
-					});
-				}
-
-				// 电压
-				request.get('voltage', null, node, function(data) {
-					var obj = JSON.parse(data.replace(/-/g, ''));
-					response.devVoltage(obj, node);		
-
-					// 电能
-					request.get('total-energy', null, node, function(data) {
-						var obj = JSON.parse(data.replace(/-/g, ''));
-						response.devEnergy(obj, node);
-
-						// 频率
-						request.get('power-grid', null, node, function(data) {
-							var obj = JSON.parse(data.replace(/-/g, ''));
-							response.devFrequency(obj, node);
-
-							// 分组
-							request.get('group-list', null, node, function() {
-								console.log(node.name, node.groupId);
-							});	
-						});		
 					});
 				});
 			});
