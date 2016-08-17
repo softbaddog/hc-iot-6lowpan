@@ -50,12 +50,14 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
     /**     * 更新网络拓扑图     */
     this.updateTopo=function(){
         /*         data         */
+        console.log('updateTopo');
         this.lineMana.loadTopoData("/api/mesh");
     };
 
     /**     * 设备在线状态更新    */
     this.onlineUpdate=function(){
         /*         data         */
+        console.log('onlineUpdate');
         this.lineMana.requestOnlineData("/api/online");
     };
 

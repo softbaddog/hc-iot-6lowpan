@@ -190,6 +190,7 @@ function timerForOnlineStatus(){
 timerForOnlineStatus();
 */
 $('.Jbutton-close').on('click',function(){
+    socket.emit('nodeUnlocked', _commonId);
     _commonId = '';
     $('.circle').removeClass('on');
     $('.text-box').show();
@@ -199,6 +200,9 @@ $('.Jbutton-close').on('click',function(){
 dynamicLoadLamp();
 
 function lampClick(obj){
+    if(_commonId != null && _commonId != ""){
+        socket.emit('nodeUnlocked', _commonId);
+    }
     $('.circle').removeClass('on');
     $(obj).addClass('on');
 

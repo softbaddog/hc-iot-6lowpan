@@ -1,16 +1,30 @@
 {
-  "mp3list":[
+  "mp3list": [
     "audio/AloneOnTheWay.mp3",
     "audio/Hello,myfriend.mp3",
     "audio/Spring.mp3"
   ],
-  "postBrightnessDelay":10000,
-  "defaultView":{
-      "autoRest":true,
-      "restTime":10000,
-      "lookTarget":{        "x":385,        "y":-124,        "z":666      },
-      "spherical":{"radius":2305, "phi":1.09, "theta":-0.8},
-      "lonRectangle":{"max":3.1415926,"min":0.0},
-      "distance":{"max":3000,"min":1000}
+  "postBrightnessDelay": 2000,
+  "defaultView": {
+    "autoRest": true,
+    "restTime": 10000,
+    "lookTarget": {
+      "x": 385,
+      "y": -124,
+      "z": 666
+    },
+    "spherical": {
+      "radius": 2305,
+      "phi": 1.09,
+      "theta": -0.8
+    },
+    "lonRectangle": {
+      "max": 3.1415926,
+      "min": 0.0
+    },
+    "distance": {
+      "max": 3000,
+      "min": 1000
+    }
   }
 }

@@ -50,7 +50,11 @@ exports.bulbctrl = function(req, res) {
 				return "设备离线";
 			}
 
-			node.level = element.brightness;
+			if (element.brightness < 100) {
+				node.level = (Math.floor(element.brightness/10)+1)*10;
+			} else {
+				node.level = 100;
+			}
 
 			// 如果查找到节点，不刷新数据库，直接下发指令到EEM
 			request.post('dim-level', null, node);
@@ -73,10 +77,15 @@ exports.groupctrl = function(req, res) {
 				return next(new Error('非法Group ' + element.name));
 			}
 
-			nodes[0].level = element.brightness;
+			if (element.brightness < 100) {
+				nodes[0].level = (Math.floor(element.brightness/10)+1)*10;
+			} else {
+				nodes[0].level = 100;
+			}
 
 			// 如果刷新了调光级别，需要下发http request到EEM平台
 			request.post('dim-level', nodes, null);
+
 		});
 	});
 	res.end();

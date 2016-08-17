@@ -73,10 +73,10 @@ exports.init = function(req, res) {
 			});
 		} else {
 			nodes.forEach(function(element, index) {
-				element.status = 0;
+				element.status = 1;
 				element.parent = null;
-				element.level = 0;
-				element.switch = 0;
+				element.level = 100;
+				element.switch = 1;
 				element.params.voltage = 0;
 				element.params.current = 0;
 				element.params.power = 0;
@@ -106,11 +106,11 @@ exports.init = function(req, res) {
 				console.log(element.name, element.groupId);
 
 				// 为便于测试，新增随机路由
-				// if (element.name !== 'roots') {
-				// 	// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
-				// 	element.parent = gArray[element.groupId-1][0];
-				// 	console.log(element.name, element.parent);					
-				// }
+				if (element.name !== 'roots') {
+					// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
+					element.parent = gArray[element.groupId-1][0];
+					console.log(element.name, element.parent);					
+				}
 
 				element.updated = new Date();
 				element.save(function(err) {
@@ -294,6 +294,8 @@ exports.read = function(req, res) {
 };
 
 exports.update = function(req, res) {
+	var topoChanged = false;
+	var onlineChanged = false;
 	var node = req.node;
 
 	node.name = req.body.name;
@@ -301,9 +303,7 @@ exports.update = function(req, res) {
 
 	if (node.parent != req.body.parent) {
 		node.parent = req.body.parent;
-
-		// 拓扑数据变更，同步数据到所有终端
-		io.emit('topoChanged', node);
+		topoChanged = true;
 	}
 
 	node.params = req.body.params;
@@ -315,7 +315,6 @@ exports.update = function(req, res) {
 		// 刷新分组信息
 		request.post('group-list', null, node);
 	}
-
 
 	if (node.level != req.body.level) {
 		node.level = req.body.level;
@@ -329,10 +328,11 @@ exports.update = function(req, res) {
 
 		// 如果状态转成离线，需要将路由节点置空，且需要将其作为父节点的Node状态同时置空
 		if (node.status === 0) {
-			node.parent = 'null';
+			node.parent = null;
 		}
 
-		io.emit('onlineChanged', node);
+		onlineChanged = true;
+		topoChanged = true;
 	}
 
 	if (node.switch != req.body.switch) {
@@ -356,6 +356,8 @@ exports.update = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
+			if (topoChanged) io.emit('topoChanged', node);
+			if (onlineChanged) io.emit('onlineChanged', node);			
 			res.json(node);
 		}
 	});
