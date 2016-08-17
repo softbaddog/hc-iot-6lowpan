@@ -17,7 +17,7 @@ angular.module('nodes').controller('NodesController', ['$scope', '$routeParams',
 				});
 			}
 		});
-		
+
 		$scope.create = function() {
 			var node = new Nodes({
 				name: this.name,

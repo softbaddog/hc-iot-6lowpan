@@ -1,4 +1,4 @@
-angular.module('bulbs').config(['$routeProvider',
+angular.module('admin').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
 		when('/', {

@@ -5,42 +5,42 @@
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <!-- IE兼容模式设置-->
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-    <title>INDEX</title>
-    <link rel="stylesheet" href="styles/base.css"/>
-    <link rel="stylesheet" href="styles/indexLogin.css"/>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/base.css"/>
+    <link rel="stylesheet" href="/styles/indexLogin.css"/>
 </head>
 <body>
 <nav class="fixed-top-nav">
-    <span class="logo-box"></span>
-    <span class="index-text">华为全联接大会IoT展点应用</span>
+    <a href="/"><span class="logo-box"></span></a>
+    <span class="index-text"><%= index %></span>
     <div class="toggle-box border-box">
-        <span class="Jtoggle-text toggle-text on"><a href="index2.html">中文</a></span>
-        <span class="Jtoggle-text toggle-text"><a href="index-en.html">EN</a></span>
+        <span class="Jtoggle-text toggle-text on"><a href="/zh/shows">中文</a></span>
+        <span class="Jtoggle-text toggle-text"><a href="/en/shows">EN</a></span>
     </div>
 </nav>
 <div class="main-box border-box">
     <div id="left_box" class="left-box floatLeft border-box animation">
-        <h1 class="text-h1">照明物联网</h1>
-        <h3 class="text-h3">点亮智慧城市</h3>
+        <h1 class="text-h1"><%- show1a %></h1>
+        <h3 class="text-h3"><%= show1b %></h3>
         <div class="icons-eyes-box">
             <span class="icons-eyes"></span>
             <span class="icons-eyes-text">156</span>
         </div>
-        <div class="bottom-text-box"><a href="lampController.html">查看更多</a></div>
+        <div class="bottom-text-box"><a href="/bulbctrl"><%= seemore %></a></div>
     </div>
     <div id="right_box" class="right-box floatLeft border-box animation">
-        <h1 class="text-h1">6LoWPAN大规模<br/>Mesh组网</h1>
-        <h3 class="text-h3">星际迷航: 银河</h3>
+        <h1 class="text-h1"><%- show2a %></h1>
+        <h3 class="text-h3"><%= show2b %></h3>
         <div class="icons-eyes-box">
             <span class="icons-eyes"></span>
             <span class="icons-eyes-text">156</span>
         </div>
-        <div class="bottom-text-box"><a href="\startrek">查看更多</a></div>
+        <div class="bottom-text-box"><a href="/startrek"><%= seemore %></a></div>
     </div>
 </div>
 
 
-<script src="js/jquery.min.js"></script>
-<script src="js/common.js"></script>
+<script src="/plug/jquery-3.0.0.min.js"></script>
+<script src="/js/lighting/common.js"></script>
 </body>
 </html>

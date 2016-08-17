@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<section ng-view></section>
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+	<script type="text/javascript" src="/lib/angular/angular.js"></script>
+	<script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="/lib/angular-resource/angular-resource.js"></script>
+
+	<script type="text/javascript" src="/modules/admin.client.module.js"></script>
+	<script type="text/javascript" src="/modules/nodes.client.module.js"></script>
+	<script type="text/javascript" src="/modules/users.client.module.js"></script>
+
+	<script type="text/javascript" src="/config/admin.client.routes.js"></script>
+	<script type="text/javascript" src="/config/nodes.client.routes.js"></script>
+
+	<script type="text/javascript" src="/services/nodes.client.service.js"></script>
+	<script type="text/javascript" src="/services/authentication.client.service.js"></script>
+	<script type="text/javascript" src="/services/socket.client.service.js"></script>
+
+	<script type="text/javascript" src="/controllers/admin.client.controller.js"></script>
+	<script type="text/javascript" src="/controllers/nodes.client.controller.js"></script>
+
+	<script type="text/javascript" src="/application.js"></script>
+</body>
+</html>

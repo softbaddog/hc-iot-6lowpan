@@ -67,8 +67,11 @@ module.exports = function(db) {
 	require('../app/routes/nodes.server.routes.js')(app);
 	require('../app/routes/index.server.routes.js')(app);
 	require('../app/routes/users.server.routes.js')(app);
+
+	require('../app/routes/shows.server.routes.js')(app);
 	require('../app/routes/manual.server.routes.js')(app);
 
+	require('../app/routes/admin.server.routes.js')(app);
 	require('../app/routes/bulbctrl.server.routes.js')(app);
 	require('../app/routes/startrek.server.routes.js')(app);
 

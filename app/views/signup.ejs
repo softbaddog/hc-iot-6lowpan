@@ -1,31 +1,31 @@
 <% for (var i in messages) { %>
 <div class="flash"><%= messages[i] %></div>
 <% } %>
-<form class="form-horizontal" method="post" action="/signup">
+<form class="form-horizontal" method="post">
 	<fieldset>
-		<legend>用户注册</legend>
+		<legend><%= usersingup%></legend>
 		<div class="control-group">
-			<label class="control-label" for="email">邮箱</label>
+			<label class="control-label" for="email"><%= email%></label>
 			<div class="controls">
 				<input type="text" class="input-xlarge" id="email" name="email">
-				<p class="help-block">使用一个合法的邮箱账户，用于登录。 </p>
+				<p class="help-block"><%= help%></p>
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="password">口令</label>
+			<label class="control-label" for="password"><%= password%></label>
 			<div class="controls">
 				<input type="password" class="input-xlarge" id="password" name="password">
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="password-repeat">重复输入口令</label>
+			<label class="control-label" for="password-repeat"><%= repeat%></label>
 			<div class="controls">
 				<input type="password" class="input-xlarge" id="password-repeat"
 				name="password-repeat">
 			</div>
 		</div>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary">注册</button>
+			<button type="submit" class="btn btn-primary"><%= signup%></button>
 		</div>
 	</fieldset>
 </form>

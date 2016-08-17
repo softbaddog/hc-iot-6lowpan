@@ -4,7 +4,8 @@ var fs = require('fs');
 
 exports.render = function(req, res) {
 	res.render('startrek', {
-		layout: false
+		layout: false,
+		title: '星际迷航 - 银河'
 	});
 };
 

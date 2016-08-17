@@ -4,14 +4,14 @@
 	<p><%= remark %></p>
 <% if (!user) { %>
 	<p>
-		<a class="btn btn-primary btn-large" href="/signin">登录</a>
-		<a class="btn btn-large" href="/signup">立即注册</a>
+		<a class="btn btn-primary btn-large" href="<%= lang %>/signin"><%= signin%></a>
+		<a class="btn btn-large" href="<%= lang %>/signup"><%= quicksignup%></a>
 	</p>
 <% } else { %>
 <ul>
-	<li><a href="/bulbctrl#!/nodes">灯控后台</a></li>
-	<li><a href="/index2.html">展示应用</a></li>
-	<li><a href="/manual">开发指南</a></li>
+	<li><a href="/admin#!/nodes"><%= admin%></a></li>
+	<li><a href="<%= lang%>/shows"><%= shows%></a></li>
+	<li><a href="<%= lang%>/manual"><%= manual%></a></li>
 </ul>
 <% } %>
 </div>
