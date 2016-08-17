@@ -1,11 +1,11 @@
 <div class="hero-unit">
-	<h2><%= welcome %></h2>
-	<h4><%= topic %></h4>
-	<p><%= remark %></p>
+	<h2><%= welcome%></h2>
+	<h4><%= topic%></h4>
+	<p><%= remark%></p>
 <% if (!user) { %>
 	<p>
-		<a class="btn btn-primary btn-large" href="<%= lang %>/signin"><%= signin%></a>
-		<a class="btn btn-large" href="<%= lang %>/signup"><%= quicksignup%></a>
+		<a class="btn btn-primary btn-large" href="<%= lang%>/signin"><%= signin%></a>
+		<a class="btn btn-large" href="<%= lang%>/signup"><%= quicksignup%></a>
 	</p>
 <% } else { %>
 <ul>
@@ -13,5 +13,5 @@
 	<li><a href="<%= lang%>/shows"><%= shows%></a></li>
 	<li><a href="<%= lang%>/manual"><%= manual%></a></li>
 </ul>
-<% } %>
+<% }%>
 </div>

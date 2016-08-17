@@ -13,7 +13,12 @@ var getErrorMessage = function(err) {
 
 exports.render = function(req, res) {
 	res.render('admin', {
+		lang: 'zh',
 		title: '后台管理',
+		home: '首页',
+		signin: '登录',
+		signup: '注册',
+		signout: '注销',
 		user: JSON.stringify(req.user)
 	});
 };

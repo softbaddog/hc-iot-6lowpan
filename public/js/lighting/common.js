@@ -4,10 +4,10 @@
 $(function(){
     //首页跳转进入不同页面
     $('#left_box').on('click',function(){
-        window.location.href='bulbctrl';
+        window.location.href='/bulbctrl';
     });
     $('#right_box').on('click',function(){
-        window.location.href='startrek';
+        window.location.href='/startrek';
     });
 
     //中英文切换

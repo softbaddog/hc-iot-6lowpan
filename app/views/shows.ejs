@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <!-- IE兼容模式设置-->
@@ -11,7 +11,12 @@
 </head>
 <body>
 <nav class="fixed-top-nav">
-    <a href="/"><span class="logo-box"></span></a>
+<% if (lang === "zh") { %>
+    <a href="/zh">
+    <% } else { %>
+    <a href="/en">
+    <% } %>
+<span class="logo-box"></span></a>
     <span class="index-text"><%= index %></span>
     <div class="toggle-box border-box">
         <span class="Jtoggle-text toggle-text on"><a href="/zh/shows">中文</a></span>

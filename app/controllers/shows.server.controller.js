@@ -5,7 +5,8 @@ exports.render = function(req, res) {
 exports.renderEn = function(req, res) {
 	res.render('shows', {
 		layout: false,
-		title: '展点应用',
+		lang: 'en',
+		title: 'Shows',
 		index: 'Huawei Connect 2016 IoT Applications Shows',
 		show1a: 'Connected City Lighting <br/> Solution',
 		show1b: 'Light up Smart City',
@@ -19,6 +20,7 @@ exports.renderEn = function(req, res) {
 exports.renderZh = function(req, res) {
 	res.render('shows', {
 		layout: false,
+		lang: 'zh',
 		title: '展点应用',
 		index: '华为全联接大会IoT展点应用',
 		show1a: '照明物联网',
