@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= title[lang] %></title>
+		<title><%= title[lang]%></title>
 		<link href="/css/bootstrap.css" rel="stylesheet">
 		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
 		<link href="/css/style.css" rel="stylesheet">
@@ -29,10 +29,10 @@
 						<ul class="nav">
 							<li class="active"><a href="/"><%= home[lang]%></a></li>
 							<% if (!user) { %>
-							<li><a href="/<%= lang%>/signin"><%= signin[lang]%></a></li>
-							<li><a href="/<%= lang%>/signup"><%= signup[lang]%></a></li>
+							<li><a href="/signin"><%= signin[lang]%></a></li>
+							<li><a href="/signup"><%= signup[lang]%></a></li>
 							<% } else { %>
-							<li><a href="/<%= lang%>/signout"><%= signout[lang]%></a></li>
+							<li><a href="/signout"><%= signout[lang]%></a></li>
 							<% } %>
 						</ul>
 					</div>

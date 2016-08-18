@@ -12,13 +12,29 @@ var getErrorMessage = function(err) {
 };
 
 exports.render = function(req, res) {
+	req.session.lastPage = '/admin';
 	res.render('admin', {
-		lang: 'zh',
-		title: '后台管理',
-		home: '首页',
-		signin: '登录',
-		signup: '注册',
-		signout: '注销',
+		lang: req.session.lang || 'zh',
+		title: {
+			'zh':'后台管理',
+			'en':'Admin'
+		},
+		home: {
+			'zh':'首页',
+			'en':'Home'
+		},
+		signin: {
+			'zh':'登录',
+			'en':'Login'
+		},
+		signup: {
+			'zh':'注册',
+			'en':'Register'
+		},
+		signout: {
+			'zh':'注销',
+			'en':'Logout'
+		},
 		user: JSON.stringify(req.user)
 	});
 };

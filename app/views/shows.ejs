@@ -5,42 +5,36 @@
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
     <!-- IE兼容模式设置-->
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-    <title><%= title %></title>
+    <title><%= title[lang]%></title>
     <link rel="stylesheet" href="/styles/base.css"/>
     <link rel="stylesheet" href="/styles/indexLogin.css"/>
 </head>
 <body>
 <nav class="fixed-top-nav">
-<% if (lang === "zh") { %>
-    <a href="/zh">
-    <% } else { %>
-    <a href="/en">
-    <% } %>
-<span class="logo-box"></span></a>
-    <span class="index-text"><%= index %></span>
+    <a href="/"><span class="logo-box"></span></a>
+    <span class="index-text"><%= index[lang]%></span>
     <div class="toggle-box border-box">
-        <span class="Jtoggle-text toggle-text on"><a href="/zh/shows">中文</a></span>
-        <span class="Jtoggle-text toggle-text"><a href="/en/shows">EN</a></span>
+        <span class="Jtoggle-text toggle-text"><a href="/<%= lang%>"><%= switchlang[lang]%></a></span>
     </div>
 </nav>
 <div class="main-box border-box">
     <div id="left_box" class="left-box floatLeft border-box animation">
-        <h1 class="text-h1"><%- show1a %></h1>
-        <h3 class="text-h3"><%= show1b %></h3>
+        <h1 class="text-h1"><%- show1a[lang]%></h1>
+        <h3 class="text-h3"><%= show1b[lang]%></h3>
         <div class="icons-eyes-box">
             <span class="icons-eyes"></span>
             <span class="icons-eyes-text">156</span>
         </div>
-        <div class="bottom-text-box"><a href="/bulbctrl"><%= seemore %></a></div>
+        <div class="bottom-text-box"><a href="/bulbctrl"><%= seemore[lang]%></a></div>
     </div>
     <div id="right_box" class="right-box floatLeft border-box animation">
-        <h1 class="text-h1"><%- show2a %></h1>
-        <h3 class="text-h3"><%= show2b %></h3>
+        <h1 class="text-h1"><%- show2a[lang]%></h1>
+        <h3 class="text-h3"><%= show2b[lang]%></h3>
         <div class="icons-eyes-box">
             <span class="icons-eyes"></span>
             <span class="icons-eyes-text">156</span>
         </div>
-        <div class="bottom-text-box"><a href="/startrek"><%= seemore %></a></div>
+        <div class="bottom-text-box"><a href="/startrek"><%= seemore[lang]%></a></div>
     </div>
 </div>
 

@@ -24,6 +24,7 @@ var getErrorMessage = function(err) {
 };
 
 exports.renderSignin = function(req, res, next) {
+	req.session.lastPage = '/signin';
 	if (!req.user) {
 		res.render('signin', {
 			lang: req.session.lang || 'zh',
@@ -67,6 +68,7 @@ exports.renderSignin = function(req, res, next) {
 };
 
 exports.renderSignup = function(req, res, next) {
+	req.session.lastPage = '/signup';
 	if (!req.user) {
 		res.render('signup', {
 			lang: req.session.lang || 'zh',
