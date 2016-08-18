@@ -6,20 +6,20 @@
             <div class="pricingTable">
                 <div class="pricingTable-header">
                     <i class="fa fa-adjust"></i>
-                    <div class="price-value"><%- m1a[lang]%><span class="month"><%= m1object[lang]%></span> </div>
+                    <div class="price-value"><%- m1a[lang]%><span class="month"><%- m1object[lang]%></span> </div>
                 </div>
                 <h3 class="heading">精彩内容</h3>
                 <div class="pricing-content">
                     <ul>
-                        <li>IEEE 802.15.4标准</li>
-                        <li>无线通信技术挑战</li>
-                        <li>6LoWPAN组网和路由技术</li>
-                        <li>应用场景：工商业，住宅，家居，汽车</li>
-                        <li>LR-WPAN和LPWAN技术对比</li>
+                        <li><%= m1topic1[lang]%></li>
+                        <li><%= m1topic2[lang]%></li>
+                        <li><%= m1topic3[lang]%></li>
+                        <li><%= m1topic4[lang]%></li>
+                        <li><%= m1topic5[lang]%></li>
                     </ul>
                 </div>
                 <div class="pricingTable-signup">
-                    <a href="/<%= lang%>/manual/6lowpan" target="_blank"><%= seemore%></a>
+                    <a href="/manual/6lowpan" target="_blank"><%- seemore[lang]%></a>
                 </div>
             </div>
         </div>
@@ -27,20 +27,20 @@
             <div class="pricingTable green">
                 <div class="pricingTable-header">
                     <i class="fa fa-briefcase"></i>
-                    <div class="price-value"><%- m2a[lang]%><span class="month"><%= m2object[lang]%></span> </div>
+                    <div class="price-value"><%- m2a[lang]%><span class="month"><%- m2object[lang]%></span> </div>
                 </div>
                 <h3 class="heading">内容简介</h3>
                 <div class="pricing-content">
                     <ul>
-                        <li>Huawei LiteOS操作系统</li>
-                        <li>6LoWPAN/uIP互联互通组件</li>
-                        <li>华为照明物联网技术架构</li>
-                        <li>应用场景：xxxx</li>
-                        <li>开源与技术合作讲解</li>
+                        <li><%= m2topic1[lang]%></li>
+                        <li><%= m2topic2[lang]%></li>
+                        <li><%= m2topic3[lang]%></li>
+                        <li><%= m2topic4[lang]%></li>
+                        <li><%= m2topic5[lang]%></li>
                     </ul>
                 </div>
                 <div class="pricingTable-signup">
-                    <a href="manual/liteos" target="_blank"><%= seemore%></a>
+                    <a href="/manual/liteos" target="_blank"><%- seemore[lang]%></a>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             <div class="pricingTable blue">
                 <div class="pricingTable-header">
                     <i class="fa fa-diamond"></i>
-                    <div class="price-value"><%- m3a[lang]%><span class="month"><%= m3object[lang]%></span> </div>
+                    <div class="price-value"><%- m3a[lang]%><span class="month"><%- m3object[lang]%></span> </div>
                 </div>
                 <h3 class="heading">嵌入式应用开发</h3>
                 <div class="pricing-content">
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
                 <div class="pricingTable-signup">
-                    <a href="manual/embedded" target="_blank"><%= challenge[lang]%></a>
+                    <a href="/manual/embeddedapp" target="_blank"><%- challenge[lang]%></a>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="pricingTable red">
                 <div class="pricingTable-header">
                     <i class="fa fa-cube"></i>
-                    <div class="price-value"><%- m4a[lang]%><span class="month"><%= m4object[lang]%></span> </div>
+                    <div class="price-value"><%- m4a[lang]%><span class="month"><%- m4object[lang]%></span> </div>
                 </div>
                 <h3 class="heading">Web应用开发</h3>
                 <div class="pricing-content">
@@ -82,7 +82,7 @@
                     </ul>
                 </div>
                 <div class="pricingTable-signup">
-                    <a href="manual/webapp" target="_blank"><%= challenge[lang]%></a>
+                    <a href="/manual/webapp" target="_blank"><%- challenge[lang]%></a>
                 </div>
             </div>
         </div>
