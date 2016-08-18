@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title><%= title[lang]%></title>
+		<link rel="stylesheet" href="/css/reset.css">
+		<link rel="stylesheet" href="/css/guide.css">
+		<link rel="stylesheet" href="/css/syntaxy.light.min.css" />
+		<script src="/js/modernizr.js"></script>
+	</head>
+	<body>
+		<div class="cd-image-block">
+			<ul class="cd-images-list">
+			<% JSON.parse(courses).forEach(function(course, index){ %>
+				<% if (index === 0) { %>
+				<li class="is-selected">
+				<% } else { %>
+				<li>
+				<% } %>
+					<a href="#0">
+						<h2><%- course.title%></h2>
+						<h3><%- course.description%></h3>
+					</a>
+				</li>
+			<% }); %>
+			</ul>
+		</div>
+		<div class="cd-content-block">
+			<ul>
+			<% JSON.parse(courses).forEach(function(course, index){ %>
+			<% if (index === 0) { %>
+				<li class="is-selected">
+				<% } else { %>
+				<li>
+				<% } %>
+					<h2><%- course.content%></h2>
+					<h3><%- course.detail%></h3>
+					<pre id="<%= 'codebox'+index%>" data-type="default"></pre>
+				</li>
+			<% }); %>
+			</ul>
+			<button class="cd-close"><%= close%></button>
+		</div>
+
+		<ul class="block-navigation">
+			<li><button class="cd-prev inactive">&larr; <%= prev[lang]%></button></li>
+			<li><button class="cd-next"><%= next[lang]%> &rarr;</button></li>
+		</ul>
+
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/syntaxy.min.js"></script>
+		<script src="/js/main.js"></script>
+		<script type="text/javascript">
+			var options = {};
+			<% JSON.parse(courses).forEach(function(course, index){ %>
+			$.get('<%= "/code/"+course.file%>', function(data, err) {
+				$('<%= "#codebox"+index%>').append(data);
+				$('<%= "#codebox"+index%>').syntaxy(options);
+			});
+			<% }); %>
+		</script>
+	</body>
+</html>

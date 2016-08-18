@@ -27,6 +27,7 @@
 			var sliderList = $('<ul></ul>');
 			var bulletList = $('<ul></ul');
 			var sliderJSON = JSON.parse('<%- sliderJSON%>');
+			console.log(sliderJSON);
 
 			sliderJSON.sort(function(a, b) {
 				return a.order - b.order;

@@ -64,7 +64,7 @@ exports.render = function(req, res) {
 		},
 		m2topic1: {
 			'zh': 'Huawei LiteOS操作系统',
-			'en': ''
+			'en': 'Huawei LiteOS Operating System'
 		},
 		m2topic2: {
 			'zh': '6LoWPAN/uIP互联互通组件',
@@ -111,6 +111,7 @@ exports.render = function(req, res) {
 };
 
 exports.slider = function(req, res) {
+	var titleJSON;
 	var sliderJSON;
 
 	if (req.session.lastPage) {
@@ -119,7 +120,11 @@ exports.slider = function(req, res) {
 	req.session.lastPage = req.path;
 
 	switch (req.path) {
-		case '/manual/6lowpan/':
+		case '/manual/6lowpan':
+			titleJSON = {
+				'zh': '无线嵌入式物联网',
+				'en': 'Wireless Embedded Internet'
+			};
 			sliderJSON = '[{' +
 				'"imagePath": "/img/6lowpan/幻灯片1.jpg", ' +
 				'"order": "1", ' +
@@ -141,29 +146,35 @@ exports.slider = function(req, res) {
 				'"url": "#", ' +
 				'"slideText": "标题4"' +
 				'}]';
+			console.log(JSON.parse(sliderJSON));
 			break;
-		case '/manual/liteos/':
-		sliderJSON = '[{' +
-			'"imagePath": "/img/liteos/幻灯片1.jpg", ' +
-			'"order": "1", ' +
-			'"url": "#", ' +
-			'"slideText": "标题1"' +
-			'},{' +
-			'"imagePath": "/img/liteos/幻灯片2.jpg", ' +
-			'"order": "2", ' +
-			'"url": "#", ' +
-			'"slideText": "标题2"' +
-			'},{' +
-			'"imagePath": "/img/liteos/幻灯片3.jpg", ' +
-			'"order": "3", ' +
-			'"url": "#", ' +
-			'"slideText": "标题3"' +
-			'},{' +
-			'"imagePath": "/img/liteos/幻灯片4.jpg", ' +
-			'"order": "4", ' +
-			'"url": "#", ' +
-			'"slideText": "标题4"' +
-			'}]';
+		case '/manual/liteos':
+			titleJSON = {
+				'zh': '物联网操作系统',
+				'en': 'Internet of Things OS'
+			};
+			sliderJSON = '[{' +
+				'"imagePath": "/img/liteos/幻灯片1.jpg", ' +
+				'"order": "1", ' +
+				'"url": "#", ' +
+				'"slideText": "标题1"' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片2.jpg", ' +
+				'"order": "2", ' +
+				'"url": "#", ' +
+				'"slideText": "标题2"' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片3.jpg", ' +
+				'"order": "3", ' +
+				'"url": "#", ' +
+				'"slideText": "标题3"' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片4.jpg", ' +
+				'"order": "4", ' +
+				'"url": "#", ' +
+				'"slideText": "标题4"' +
+				'}]';
+			console.log(JSON.parse(sliderJSON));
 			break;
 		default:
 			// statements_def
@@ -173,12 +184,113 @@ exports.slider = function(req, res) {
 	res.render('slider', {
 		layout: false,
 		lang: req.session.lang || 'zh',
-		title: {
-			'zh': 'IEEE 802.15.4 / 6LoWPAN 物联网标准',
-			'en': ''
-		},
+		title: titleJSON,
 		sliderJSON: sliderJSON
 	});
 };
 
-exports.code = function(req, res) {};
+exports.code = function(req, res) {
+	var titleJSON;
+	var courseJSON;
+
+	if (req.session.lastPage) {
+		console.log("Last Page: " + req.session.lastPage);
+	}
+	req.session.lastPage = req.path;
+
+	switch (req.path) {
+		case '/manual/embedapp':
+			titleJSON = {
+				'zh': '编程挑战-星际迷航',
+				'en': 'Wireless Embedded Internet'
+			};
+			courseJSON = '[{' +
+				'"title": "故事背景", ' +
+				'"description": "在无垠的银河系中，有5艘飞船由于通信故障与地球失去联系，由于相距遥远，无法直接联系到地球，只能通过多跳拓扑方式与地球取的联系，做为聪明的指挥官您，请尽快恢复通信，离开这个危险区域。", ' +
+				'"content": "uIP/6LoWPAN组件", ' +
+				'"detail": "是Huawei LiteOS物联网操作系统中在无线嵌入式物联网领域的互联互通通信中间件。", ' +
+				'"file": "", ' +
+				'"slideText": "标题1"' +
+				'},{' +
+				'"title": "组件架构", ' +
+				'"description": "编程手册2", ' +
+				'"content": "详细操作", ' +
+				'"detail": "编程手册2", ' +
+				'"file": "2.txt", ' +
+				'"slideText": "标题2"' +
+				'},{' +
+				'"title": "实际操作", ' +
+				'"description": "编程手册3", ' +
+				'"content": "编程手册3", ' +
+				'"detail": "编程手册3", ' +
+				'"file": "1.txt", ' +
+				'"slideText": "标题3"' +
+				'},{' +
+				'"title": "验证结果", ' +
+				'"description": "编程手册4", ' +
+				'"content": "编程手册4", ' +
+				'"detail": "编程手册4", ' +
+				'"file": "2.txt", ' +
+				'"slideText": "标题4"' +
+				'}]';
+			console.log(JSON.parse(courseJSON));
+			break;
+		case '/manual/webapp/':
+			titleJSON = {
+				'zh': '编程挑战-星星点灯',
+				'en': 'Wireless Embedded Internet'
+			};
+			courseJSON = '[{' +
+				'"title": "故事背景", ' +
+				'"description": "星际管理者，", ' +
+				'"content": "JSON接口", ' +
+				'"detail": "详细介绍", ' +
+				'"file": "", ' +
+				'"slideText": "标题1"' +
+				'},{' +
+				'"title": "组件架构", ' +
+				'"description": "编程手册2", ' +
+				'"content": "详细操作", ' +
+				'"detail": "编程手册2", ' +
+				'"file": "2.txt", ' +
+				'"slideText": "标题2"' +
+				'},{' +
+				'"title": "实际操作", ' +
+				'"description": "编程手册3", ' +
+				'"content": "编程手册3", ' +
+				'"detail": "编程手册3", ' +
+				'"file": "1.txt", ' +
+				'"slideText": "标题3"' +
+				'},{' +
+				'"title": "验证结果", ' +
+				'"description": "编程手册4", ' +
+				'"content": "编程手册4", ' +
+				'"detail": "编程手册4", ' +
+				'"file": "2.txt", ' +
+				'"slideText": "标题4"' +
+				'}]';
+			console.log(JSON.parse(courseJSON));
+			break;
+		default:
+			break;
+	}
+
+	res.render('code', {
+		layout: false,
+		lang: req.session.lang || 'zh',
+		title: titleJSON,
+		courses: courseJSON,
+		prev: {
+			'zh': '上一步',
+			'en': 'Prev'
+		},
+		next: {
+			'zh': '下一步',
+			'en': 'Next'
+		},
+		close: {
+			'zh': '关闭',
+			'en': 'Close'
+		}
+	});
+};
