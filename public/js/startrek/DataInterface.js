@@ -27,8 +27,8 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
     socket.on('connect', function () {
 
         socket.on('nodeChanged', function (msg) {
-            //console.log('nodeChanged-------------------------------------------------');
-            //console.log(msg);
+            // console.log('nodeChanged-------------------------------------------------');
+            // console.log(msg);
             //scope.lineMana.nodeChange(msg.name,msg.parent,msg.level,msg.status);
             scope.lineMana.nodeChange(msg);
             //scope.updateTopo();

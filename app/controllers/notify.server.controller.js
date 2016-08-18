@@ -8,35 +8,37 @@ module.exports = function(io, socket) {
 
 	socket.on('nodeLocked', function(name) {
 		console.log('node locked', name);
-		Node.findOne({
-			name: name
-		}).exec(function(err, node) {
-			if (err) {
-				return next(err);
-			}
+		socket.broadcast.emit('nodeLocked', name);
+		// Node.findOne({
+		// 	name: name
+		// }).exec(function(err, node) {
+		// 	if (err) {
+		// 		return err;
+		// 	}
 
-			if (!node) {
-				return next(new Error('非法Name ' + name));
-			}
+		// 	if (!node) {
+		// 		return new Error('非法Name ' + name);
+		// 	}
 
-			socket.broadcast.emit('nodeLocked', node);
-		});
+		// 	socket.broadcast.emit('nodeLocked', node);
+		// });
 	});
 
 	socket.on('nodeUnlocked', function(name) {
 		console.log('node unlocked', name);
-		Node.findOne({
-			name: name
-		}).exec(function(err, node) {
-			if (err) {
-				return next(err);
-			}
+		socket.broadcast.emit('nodeUnlocked', name);
+		// Node.findOne({
+		// 	name: name
+		// }).exec(function(err, node) {
+		// 	if (err) {
+		// 		return err;
+		// 	}
 
-			if (!node) {
-				return next(new Error('非法Name ' + name));
-			}
+		// 	if (!node) {
+		// 		return new Error('非法Name ' + name);
+		// 	}
 
-			socket.broadcast.emit('nodeUnlocked', node);
-		});
+		// 	socket.broadcast.emit('nodeUnlocked', node);
+		// });
 	});
 };

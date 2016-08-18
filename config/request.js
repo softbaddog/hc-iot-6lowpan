@@ -133,9 +133,9 @@ exports.get = function(api, nodes, node, callback) {
 		path: '/iotdm/nb/v1/' + path,
 		method: 'GET'
 	};
-	console.log('POST------%s-------start-', api);
+	console.log('GET------%s-------start-', api);
 	console.log(options);
-	console.log('POST------%s--------end--', api);
+	console.log('GET------%s--------end--', api);
 
 	if (connectStatus) {
 		var req = http.request(options, function(res) {

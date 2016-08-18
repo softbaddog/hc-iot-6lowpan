@@ -35,7 +35,7 @@ exports.initialize = function() {
 				setTimeout(devOnline, config.onlineTimeout);
 			});
 		};
-		devOnline();
+		//devOnline();
 
 		// 获取拓扑数据
 		var netTopo = function() {

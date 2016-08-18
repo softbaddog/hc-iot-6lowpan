@@ -16,9 +16,6 @@ exports.devStatusInit = function() {
 						return res.status(400).send({
 							message: '未知错误'
 						});
-					} else {
-						// 同步数据到所有终端
-						// io.emit('onlineChanged', node);
 					}
 				});
 			});
@@ -148,18 +145,23 @@ exports.devTopo = function(devices, map) {
 					return err;
 				}
 
-				if (!node) {
+				if (!node || node.name === 'roots') {
 					return new Error('非法deviceId ' + element);
 				}
 
+				var lastStatus = node.status;
 				node.status = element.status === 'online' ? 1 : 0;
+				if (lastStatus !== node.status) { io.emit('onlineChanged', node); console.log('onlineChanged', node.name, lastStatus, node.status);}
+
+				var lastParent = node.parent;
 				node.parent = map[element.parentnodeid];
+				if (lastParent !== node.parent) { io.emit('topoChanged', node); console.log('topoChanged', node.name, lastParent, node.parent);}
+
 				node.updated = new Date();
 				node.save(function(err) {
 					if (!err) {
 						console.log(node.name, node.parent);
 						io.emit('nodeChanged', node);
-						io.emit('onlineChanged', node);
 					}
 				});
 			});
