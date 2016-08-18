@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><%= title %> - Huawei Connect2016</title>
+		<title><%= title[lang] %></title>
 		<link href="/css/bootstrap.css" rel="stylesheet">
 		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
 		<link href="/css/style.css" rel="stylesheet">
@@ -24,19 +24,15 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</a>
-					<% if (lang === "zh") { %>
-						<a class="brand" href="javascript:void(0)" onclick="lang='en';location.href = location.href.replace('zh',lang);">HC2016</a>
-					<% } else { %>
-						<a class="brand" href="javascript:void(0)" onclick="lang='zh';location.href = location.href.replace('en',lang);">HC2016</a>
-					<% } %>
+					<a class="brand" href="/<%= lang%>">HC2016</a>
 					<div class="nav-collapse">
 						<ul class="nav">
-							<li class="active"><a href="/<%= lang%>"><%= home%></a></li>
+							<li class="active"><a href="/"><%= home[lang]%></a></li>
 							<% if (!user) { %>
-							<li><a href="/<%= lang%>/signin"><%= signin%></a></li>
-							<li><a href="/<%= lang%>/signup"><%= signup%></a></li>
+							<li><a href="/<%= lang%>/signin"><%= signin[lang]%></a></li>
+							<li><a href="/<%= lang%>/signup"><%= signup[lang]%></a></li>
 							<% } else { %>
-							<li><a href="/<%= lang%>/signout"><%= signout%></a></li>
+							<li><a href="/<%= lang%>/signout"><%= signout[lang]%></a></li>
 							<% } %>
 						</ul>
 					</div>
