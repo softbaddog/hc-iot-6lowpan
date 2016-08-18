@@ -342,4 +342,14 @@ socket.on('connect', function () {
             }
         }
     });
+
+    socket.on('nodeLocked', function (msg) {
+        $("#"+msg).attr("onclick","");
+        $("#"+msg).html('<span class="lock"></span>');
+    });
+
+    socket.on('nodeUnlocked', function (msg) {
+        $("#"+msg).attr("onclick","lampClick(this);");
+        $("#"+msg).html('');
+    });
 });

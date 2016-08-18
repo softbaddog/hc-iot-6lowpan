@@ -269,6 +269,12 @@ HCC_LIGHTS.StarSprites=function(color_){//???
     this.glow.rotation.z=Math.random()*Math.PI;
     this.sprites=this.glow;
 
+    this.nodeChange=function(intensity_,enabled_){
+        this.setEnabled(enabled_);
+        if(!enabled_)return;
+        this.glow.scale.set(intensity_,intensity_,intensity_);
+    }
+
     this.setEnabled=function(enabled_){
         this.enabled=enabled_;
         if(!this.enabled) {
@@ -305,8 +311,8 @@ HCC_LIGHTS.StarSprites=function(color_){//???
         }, 6000);
         */
         //var scale_=brithtness_*25;
-        var scale_=brithtness_;
-        this.glow.scale.set(scale_,scale_,scale_);
+        //var scale_=brithtness_;
+        //this.glow.scale.set(scale_,scale_,scale_);
     };
 
     this.openBrightness=function(){

@@ -349,3 +349,14 @@
   cursor: pointer;
   background-size: 100% 100%;
 }
+
+/***小锁样式***/
+.main-left-box table .lock{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  margin-left: 5px;
+  background: url("../images/lampController/icons_lock_1.png") no-repeat;
+  background-size: 100% 100%;
+}

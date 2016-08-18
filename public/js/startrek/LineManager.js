@@ -27,6 +27,45 @@ HCC_LIGHTS.LineManager=function(){
     }
 
     /**
+     * 节点更改
+     * @param name_
+     * @param intensity_
+     * @param enabled_
+     */
+    this.nodeChange=function(obj_){
+        var sprite_=this.getSpriteObject(obj_.name);
+        var enabled_=false;
+        var intensity_=obj_.level;
+        if(sprite_){
+            obj_.status == 0 ? enabled_ = false : enabled_ = true;
+            sprite_.nodeChange(intensity_,enabled_);
+        }
+    }
+
+    /**
+     * 连线更改
+     * @param obj_
+     */
+    this.topoChange=function(obj_){
+        var hisLine_=this.getSpriteLine(obj_.name);
+        if(hisLine_)hisLine_.close();//关闭当前连线
+        this.jsonConnect(obj_);
+    }
+
+    /**
+     * 在线更改
+     * @param obj_
+     */
+    this.onlineChange=function(obj_){
+        var sprite_=this.getSpriteObject(obj_.name);
+        var enabled_=false;
+        if(sprite_){
+            obj_.status==0?enabled_=false:enabled_=true;
+            sprite_.setEnabled(enabled_);
+        }
+    }
+
+    /**
      * ·µ»ØÒ»¸ö A ÓÐ  BÃ»ÓÐµÄÊý×é
      * @param a_
      * @param b_
@@ -126,10 +165,12 @@ HCC_LIGHTS.LineManager.prototype={
      * @param  {[type]} intensity_ [description]
      * @return {[type]}            [description]
      */
-    controlsBrightness:function(name_,intensity_,lock_){
+    //controlsBrightness:function(name_,intensity_,lock_){
+    controlsBrightness:function(name_,lock_){
         var starObj_=this.getSpriteObject(name_);
         if(!starObj_)return;
-        if(lock_)starObj_.controlBrightness(intensity_);
+        //if(lock_)starObj_.controlBrightness(intensity_);
+        if(lock_)starObj_.controlBrightness();
         else starObj_.openBrightness();
 
     }
@@ -217,6 +258,22 @@ HCC_LIGHTS.LineManager.prototype={
                 sprite_.amp=1;//Ôö·ùÖØÖÃ
             }
         }
+    },
+    /**     * 获取指定节点连线     * @param name_     */
+    getSpriteLine:function(name_){
+        var sprite_=this.getSpriteObject(name_);
+        if(!sprite_)return null;
+
+        var i_= 0,l_=this.lineList.length,tempLine_=null;
+        for(i_=0;i_<l_;i_++){
+            tempLine_=this.lineList[i_];
+            if(!tempLine_)continue;
+            if(tempLine_.initObject==sprite_){
+                return tempLine_;
+            }
+        }
+        return null;
+
     },
     /**     * ÅÐ¶ÏÁ½ÐÇÁ¬ÏßÊÇ·ñ´æÔÚ     */
     judgeConnect:function(s_,e_){

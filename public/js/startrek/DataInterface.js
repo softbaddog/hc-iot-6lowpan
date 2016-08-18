@@ -13,34 +13,45 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
     this.getOnlineDelay=10000;//获取获取在线间隔时间--------ms
 
     this.pushLightsIntensity=0;//上次推送亮度时间
-    this.pushLightsIntensityDelay=10000;//推送亮度间隔时间--------ms
+    //this.pushLightsIntensityDelay=10000;//推送亮度间隔时间--------ms
+    this.pushLightsIntensityDelay=HCC_LIGHTS.ViewIni.postBrightnessDelay;//推送亮度间隔时间--------ms
+    this.onPostIntensityChange=function(){
+        scope.pushLightsIntensityDelay=HCC_LIGHTS.effectController.postIntensityTime;
+    }
+    HCC_LIGHTS.effectController.postIntensityTime=HCC_LIGHTS.ViewIni.postBrightnessDelay;
+    HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "postIntensityTime",1000,600000,10000).onChange(this.onPostIntensityChange);
 
     var testEnabled=false;
 
     var socket = io('/');
     socket.on('connect', function () {
-        /*
+
         socket.on('nodeChanged', function (msg) {
-            console.log('nodeChanged-------------------------------------------------');
-            console.log(msg);
-            scope.updateTopo();
-            scope.onlineUpdate();
+            //console.log('nodeChanged-------------------------------------------------');
+            //console.log(msg);
+            //scope.lineMana.nodeChange(msg.name,msg.parent,msg.level,msg.status);
+            scope.lineMana.nodeChange(msg);
+            //scope.updateTopo();
+            //scope.onlineUpdate();
         });
-        */
+
 
         socket.on('topoChanged', function (msg) {
-            scope.updateTopo();
+            //scope.updateTopo();
+            scope.lineMana.topoChange(msg);
         });
         socket.on('onlineChanged', function (msg) {
-            scope.onlineUpdate();
+            //scope.onlineUpdate();
+            scope.lineMana.onlineChange(msg);
         });
 
         socket.on('nodeLocked', function (msg) {
-            scope.lineMana.controlsBrightness(msg.name,(msg.level),true);
+            //scope.lineMana.controlsBrightness(msg.name,(msg.level),true);
+            scope.lineMana.controlsBrightness(msg,true);
         });
 
         socket.on('nodeUnlocked', function (msg) {
-            scope.lineMana.controlsBrightness(msg.name,(msg.level),false);
+            scope.lineMana.controlsBrightness(msg,false);
         });
 
     });
@@ -50,14 +61,12 @@ HCC_LIGHTS.DataInterface=function(lineMana_){
     /**     * 更新网络拓扑图     */
     this.updateTopo=function(){
         /*         data         */
-        console.log('updateTopo');
         this.lineMana.loadTopoData("/api/mesh");
     };
 
     /**     * 设备在线状态更新    */
     this.onlineUpdate=function(){
         /*         data         */
-        console.log('onlineUpdate');
         this.lineMana.requestOnlineData("/api/online");
     };
 

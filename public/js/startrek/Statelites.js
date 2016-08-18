@@ -49,6 +49,11 @@ HCC_LIGHTS.Statelites=function(holder_,path_,name_,x_,y_,z_){
     this.openBrightness=function(){
     };
 
+
+    this.nodeChange=function(intensity_,enabled_){
+        this.setEnabled(enabled_);
+    }
+
     this.stateLitesName=name_;
     this.mesh=null;
     this.sprites=new THREE.Object3D();
