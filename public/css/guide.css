@@ -110,6 +110,15 @@ Images block
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.cd-images-list p {
+  font-size: 1.5rem;
+  color: #ffffff;
+  display: block;
+  line-height:1.5;
+}
+.cd-images-list img {
+  margin: 20px;
+}
 @media only screen and (min-width: 768px) {
   .cd-images-list::before {
     /* never visible - this is used in jQuery to check the current MQ */

@@ -75,8 +75,12 @@ exports.post = function(api, nodes, node, callback) {
 
 	if (connectStatus) {
 		var req = http.request(options, function(res) {
+			var data = '';
 			res.setEncoding('utf8');
-			res.on('data', function(data) {
+			res.on('data', function(chunk) {
+				data += chunk;
+			});
+			res.on('end', function() {
 				console.log(api, data);
 				if (callback) {
 					callback(data);
@@ -139,8 +143,12 @@ exports.get = function(api, nodes, node, callback) {
 
 	if (connectStatus) {
 		var req = http.request(options, function(res) {
+			var data = '';
 			res.setEncoding('utf8');
-			res.on('data', function(data) {
+			res.on('data', function(chunk) {
+				data += chunk;
+			});
+			res.on('end', function() {
 				console.log(api, data);
 				if (res.headers['content-type'] === 'application/json' && callback) {
 					callback(data);

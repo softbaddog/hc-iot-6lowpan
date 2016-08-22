@@ -21,7 +21,7 @@
 				<% } %>
 					<a href="#0">
 						<h2><%- course.title%></h2>
-						<h3><%- course.description%></h3>
+						<p><%- course.description%></p>
 					</a>
 				</li>
 			<% }); %>
@@ -36,7 +36,7 @@
 				<li>
 				<% } %>
 					<h2><%- course.content%></h2>
-					<h3><%- course.detail%></h3>
+					<p><%- course.detail%></p>
 					<pre id="<%= 'codebox'+index%>" data-type="default"></pre>
 				</li>
 			<% }); %>
