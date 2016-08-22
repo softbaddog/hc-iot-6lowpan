@@ -21,7 +21,7 @@ var getNodeResource = function(node) {
 		// 只有状态为online时才发送后续查询指令
 		if (node.status === 1) {
 			// 将当前分组信息刷新到服务器
-			// request.post('group-list', null, node);
+			request.post('group-list', null, node);
 
 			// 开光状态
 			request.get('switch-status', null, node, function(data) {

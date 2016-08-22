@@ -233,6 +233,8 @@ exports.init = function(req, res) {
 					} else {
 						// 同步数据到所有终端
 						// io.emit('onlineChanged', node);
+						// 将当前分组信息刷新到服务器
+						request.post('group-list', null, element);
 					}
 				});
 			});

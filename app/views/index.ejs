@@ -9,7 +9,9 @@
 	</p>
 <% } else { %>
 <ul>
+<% if (JSON.parse(user).role === 'admin') { %>
 	<li><a href="/admin#!/nodes"><%= admin[lang]%></a></li>
+<% } %>
 	<li><a href="shows"><%= shows[lang]%></a></li>
 	<li><a href="manual"><%= manual[lang]%></a></li>
 </ul>

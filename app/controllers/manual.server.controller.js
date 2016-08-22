@@ -36,10 +36,10 @@ exports.render = function(req, res) {
 		},
 		m1head: {
 			'zh': '精彩内容',
-			'en': ''
+			'en': 'Contents'
 		},
 		m1topic1: {
-			'zh': '为什么使用802.15.4/6LoWPAN？',
+			'zh': '为什么使用802.15.4、6LoWPAN/RPL？',
 			'en': ''
 		},
 		m1topic2: {
@@ -47,7 +47,7 @@ exports.render = function(req, res) {
 			'en': ''
 		},
 		m1topic3: {
-			'zh': '6LoWPAN架构、组网和路由技术',
+			'zh': '6LoWPAN核心技术解析',
 			'en': ''
 		},
 		m1topic4: {
@@ -55,7 +55,7 @@ exports.render = function(req, res) {
 			'en': ''
 		},
 		m1topic5: {
-			'zh': 'LPWAN会取代6LoWPAN吗？',
+			'zh': '',
 			'en': ''
 		},
 		m2a: {
@@ -67,27 +67,27 @@ exports.render = function(req, res) {
 			'en': 'Huawei LiteOS Connectivity Middleware'
 		},
 		m2head: {
-			'zh': 'Contents',
-			'en': ''
+			'zh': '精彩内容',
+			'en': 'Contents'
 		},
 		m2topic1: {
-			'zh': 'Huawei LiteOS操作系统',
-			'en': 'Huawei LiteOS Operating System'
-		},
-		m2topic2: {
-			'zh': '6LoWPAN/uIP互联互通组件',
-			'en': ''
-		},
-		m2topic3: {
 			'zh': '华为照明物联网技术架构',
 			'en': ''
 		},
+		m2topic2: {
+			'zh': 'Huawei LiteOS操作系统',
+			'en': ''
+		},
+		m2topic3: {
+			'zh': 'nStack/6LoWPAN互联互通组件',
+			'en': 'Huawei LiteOS Operating System'
+		},
 		m2topic4: {
-			'zh': '应用场景：xxxx',
+			'zh': '',
 			'en': ''
 		},
 		m2topic5: {
-			'zh': '开源与技术合作讲解',
+			'zh': '',
 			'en': ''
 		},
 		m3a: {
@@ -272,11 +272,10 @@ exports.code = function(req, res) {
 			};
 			courseJSON = '[{' +
 				'"title": "故事背景", ' +
-				'"description": "在无垠的银河系中，有5艘飞船由于通信故障与地球失去联系，由于相距遥远，无法直接联系到地球，只能通过多跳拓扑方式与地球取的联系，做为迷航飞船指挥官的您，请尽快安排恢复通信，离开这个危险区域。", ' +
-				'"content": "uIP/6LoWPAN组件", ' +
-				'"detail": "是Huawei LiteOS物联网操作系统中在无线嵌入式物联网领域的互联互通通信中间件。", ' +
-				'"file": "", ' +
-				'"slideText": "标题1"' +
+				'"description": "在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握Huawei LiteOS互联互通组件使用方法</p><p>任务二：打开编译工程，填写关键api，使用socket接口恢复网络通信。</p><p>任务三：将代码编译成二进制固件，并烧录到飞船通信模块中。</p>", ' +
+				'"content": "nStack/6LoWPAN组件介绍", ' +
+				'"detail": "是Huawei LiteOS物联网操作系统中在无线嵌入式物联网领域的互联互通通信中间件。<br/><img src=/img/ipvs6lowpan.png width=400 heigth=300>", ' +
+				'"file": ""' +
 				'},{' +
 				'"title": "组件架构", ' +
 				'"description": "编程手册2", ' +
@@ -289,15 +288,13 @@ exports.code = function(req, res) {
 				'"description": "编程手册3", ' +
 				'"content": "编程手册3", ' +
 				'"detail": "编程手册3", ' +
-				'"file": "1.txt", ' +
-				'"slideText": "标题3"' +
+				'"file": "1.txt"' +
 				'},{' +
 				'"title": "验证结果", ' +
 				'"description": "编程手册4", ' +
 				'"content": "编程手册4", ' +
 				'"detail": "编程手册4", ' +
-				'"file": "2.txt", ' +
-				'"slideText": "标题4"' +
+				'"file": "2.txt"' +
 				'}]';
 			console.log(JSON.parse(courseJSON));
 			break;
