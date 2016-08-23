@@ -52,7 +52,7 @@ exports.render = function(req, res) {
 		},
 		remark: {
 			'zh': '（ 基于Huawei LiteOS互联互通中间件打造超大规模Mesh网络 ）',
-			'en': '( Large scale Mesh Network Based on Huawei LiteOS Connectivity Middleware )'
+			'en': '( Large Scale Mesh Network Based on Huawei LiteOS Connectivity Middleware )'
 		},
 		admin: {
 			'zh': '灯控后台',

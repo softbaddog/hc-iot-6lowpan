@@ -2,18 +2,18 @@
 	<h2><%= welcome[lang]%></h2>
 	<h4><%= topic[lang]%></h4>
 	<p><%= remark[lang]%></p>
-<% if (!user) { %>
+	<% if (!user) { %>
 	<p>
 		<a class="btn btn-primary btn-large" href="signin"><%= signin[lang]%></a>
 		<a class="btn btn-large" href="signup"><%= quicksignup[lang]%></a>
 	</p>
-<% } else { %>
-<ul>
-<% if (JSON.parse(user).role === 'admin') { %>
-	<li><a href="/admin#!/nodes"><%= admin[lang]%></a></li>
-<% } %>
-	<li><a href="shows"><%= shows[lang]%></a></li>
-	<li><a href="manual"><%= manual[lang]%></a></li>
-</ul>
-<% }%>
+	<% } else { %>
+	<ul>
+		<% if (JSON.parse(user).role === 'admin') { %>
+		<li><a href="/admin#!/nodes"><%= admin[lang]%></a></li>
+		<li><a href="shows"><%= shows[lang]%></a></li>
+		<% } %>
+		<li><a href="manual"><%= manual[lang]%></a></li>
+	</ul>
+	<% }%>
 </div>

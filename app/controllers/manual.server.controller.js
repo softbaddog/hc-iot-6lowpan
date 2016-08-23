@@ -272,12 +272,12 @@ exports.code = function(req, res) {
 			};
 			courseJSON = '[{' +
 				'"title": "故事背景", ' +
-				'"description": "在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握Huawei LiteOS互联互通组件使用方法</p><p>任务二：打开编译工程，填写关键api，使用socket接口恢复网络通信。</p><p>任务三：将代码编译成二进制固件，并烧录到飞船通信模块中。</p>", ' +
-				'"content": "nStack/6LoWPAN组件介绍", ' +
-				'"detail": "是Huawei LiteOS物联网操作系统中在无线嵌入式物联网领域的互联互通通信中间件。<br/><img src=/img/ipvs6lowpan.png width=400 heigth=300>", ' +
-				'"file": ""' +
+				'"description": "在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳（Mesh）方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握Huawei LiteOS互联互通nStack IoT组件使用方法。</p><p>任务二：根据操作指导，打开IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/space_plane.jpg>", ' +
+				'"content": "nStack IoT组件介绍", ' +
+				'"detail": "nStack IoT组件是Huawei LiteOS在无线嵌入式物联网LR-WPAN领域的互联互通通信中间件，其中集成了IEEE 802.15.4，6LoWPAN和RPL等多个协议栈。再深入了解nStack IoT组件之前，我们先来看看基于6LoWPAN的IP协议栈与传统IP协议栈的差别。<br/><img src=/img/ip_vs_6lowpan.png width=60% heigth=60%><br>可以看到，6LoWPAN同样也可分为5层，由于nStack IoT组件良好的接口，只要曾经有过使用BSD socket套接字网络编程经验，可以在非常短的时间迅速掌握nStack IoT组件的使用。<br>下面先列出这些接口函数原型：", ' +
+				'"file": "socketApi.txt"' +
 				'},{' +
-				'"title": "组件架构", ' +
+				'"title": "6LoWPAN组件初始化", ' +
 				'"description": "编程手册2", ' +
 				'"content": "详细操作", ' +
 				'"detail": "编程手册2", ' +
@@ -305,7 +305,7 @@ exports.code = function(req, res) {
 			};
 			courseJSON = '[{' +
 				'"title": "故事背景", ' +
-				'"description": "公元3389年，人类早已经走出太阳系，并在多个小行星上创建殖民地。您做为一名优秀的星际管理员希望在任何时候监控小行星上的情况。请您基于Web技术实现远程管理，尝试获取各个行星（灯）上的能量数据。<img src=/img/look_star.jpg width=300 height=200>", ' +
+				'"description": "公元3389年，人类早已经走出太阳系，并在多个小行星上创建殖民地。您做为一名优秀的星际管理员希望在任何时候监控小行星上的情况。请您基于Web技术实现远程管理，尝试获取各个行星（灯）上的能量数据。<hr><p>任务一：快速掌握EEM JSON接口。</p><p>任务二：根据操作指导，打开IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/look_star.jpg width=80% height=60%>", ' +
 				'"content": "华为照明物联网方案", ' +
 				'"detail": "内容待补充", ' +
 				'"file": ""' +
