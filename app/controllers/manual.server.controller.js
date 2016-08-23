@@ -39,23 +39,23 @@ exports.render = function(req, res) {
 			'en': 'Contents'
 		},
 		m1topic1: {
-			'zh': '为什么使用802.15.4、6LoWPAN/RPL？',
+			'zh': '802.15.4、6LoWPAN和RPL',
 			'en': ''
 		},
 		m1topic2: {
-			'zh': '无线嵌入式物联网通信技术挑战有哪些？',
+			'zh': 'LR-WPAN通信技术挑战',
 			'en': ''
 		},
 		m1topic3: {
-			'zh': '6LoWPAN核心技术解析',
+			'zh': '802.15.4适用场景',
 			'en': ''
 		},
 		m1topic4: {
-			'zh': '无线嵌入式物联网应用场景',
+			'zh': '华为nStack IoT组件增强',
 			'en': ''
 		},
 		m1topic5: {
-			'zh': '',
+			'zh': '物联网通信3种芯片方案',
 			'en': ''
 		},
 		m2a: {
@@ -71,23 +71,23 @@ exports.render = function(req, res) {
 			'en': 'Contents'
 		},
 		m2topic1: {
-			'zh': '华为照明物联网技术架构',
+			'zh': '嵌入式设备需要强健的OS',
 			'en': ''
 		},
 		m2topic2: {
-			'zh': 'Huawei LiteOS操作系统',
+			'zh': '支持多芯片，多行业诉求',
 			'en': ''
 		},
 		m2topic3: {
-			'zh': 'nStack/6LoWPAN互联互通组件',
-			'en': 'Huawei LiteOS Operating System'
+			'zh': '支持多种协议混合接入',
+			'en': ''
 		},
 		m2topic4: {
-			'zh': '',
+			'zh': '华为nStack IoT组件架构',
 			'en': ''
 		},
 		m2topic5: {
-			'zh': '',
+			'zh': 'IoT智能硬件7大方面问题',
 			'en': ''
 		},
 		m3a: {
