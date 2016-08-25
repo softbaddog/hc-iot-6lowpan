@@ -272,7 +272,7 @@ exports.code = function(req, res) {
 			};
 			courseJSON = '[{' +
 				'"title": {"zh":"故事背景", "en":"Background Story"}, ' +
-				'"description": {"zh":"在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳（Mesh）方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握Huawei LiteOS互联互通nStack IoT组件使用方法。</p><p>任务二：根据操作指导，打开IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/space_plane.jpg>", "en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳（Mesh）方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握华为nStack 互联互通中间件使用方法。</p><p>任务二：根据操作指导，使用IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/space_plane.jpg>", "en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"nStack IoT组件介绍","en":"xxxxxxxxxxx"}, ' +
 				'"detail": {"zh":"nStack IoT组件是Huawei LiteOS在无线嵌入式物联网LR-WPAN领域的互联互通通信中间件，其中集成了IEEE 802.15.4，6LoWPAN和RPL等多个协议栈。再深入了解nStack IoT组件之前，我们先来看看基于6LoWPAN的IP协议栈与传统IP协议栈的差别。<br/><img src=/img/ip_vs_6lowpan.png width=60% heigth=60%><br>可以看到，6LoWPAN同样也可分为5层，由于nStack IoT组件良好的接口，只要曾经有过使用BSD socket套接字网络编程经验，可以在非常短的时间迅速掌握nStack IoT组件的使用。<br>下面先列出这些接口函数原型：","en":"xxxxxxxxxxx"}, ' +
 				'"file": "socketApi.txt"' +
