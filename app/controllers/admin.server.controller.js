@@ -11,6 +11,68 @@ var getErrorMessage = function(err) {
 	}
 };
 
+var getNodeResource = function(node) {
+	// 在线状态
+	request.get('dev-online-status', null, node, function(data) {
+		var obj = JSON.parse(data.replace(/-/g, ''));
+		response.devStatus(obj, node);
+
+		// 只有状态为online时才发送后续查询指令
+		if (node.status === 1) {
+			// 将当前分组信息刷新到服务器
+			request.post('group-list', null, node);
+
+			// 开光状态
+			request.get('switch-status', null, node, function(data) {
+				var obj = JSON.parse(data.replace(/-/g, ''));
+				response.devSwitch(obj, node);
+
+				// 调光级别
+				request.get('dim-level', null, node, function(data) {
+					var obj = JSON.parse(data.replace(/-/g, ''));
+					response.devLevel(obj, node);
+
+					// 电流
+					request.get('current', null, node, function(data) {
+						var obj = JSON.parse(data.replace(/-/g, ''));
+						response.devCurrent(obj, node);
+
+						// 有功功率
+						request.get('active-power', null, node, function(data) {
+							var obj = JSON.parse(data.replace(/-/g, ''));
+							response.devPower(obj, node);
+
+							// 电压
+							request.get('voltage', null, node, function(data) {
+								var obj = JSON.parse(data.replace(/-/g, ''));
+								response.devVoltage(obj, node);
+
+								// 电能
+								request.get('total-energy', null, node, function(data) {
+									var obj = JSON.parse(data.replace(/-/g, ''));
+									response.devEnergy(obj, node);
+
+									// 频率
+									request.get('power-grid', null, node, function(data) {
+										var obj = JSON.parse(data.replace(/-/g, ''));
+										response.devFrequency(obj, node);
+
+										// 分组
+										request.get('group-list', null, node, function() {
+											console.log(node.name, node.groupId);
+										});
+									});
+
+								});
+							});
+						});
+					});
+				});
+			});
+		}
+	});
+};
+
 exports.render = function(req, res) {
 	req.session.lastPage = '/admin';
 	res.render('admin', {
@@ -57,6 +119,7 @@ exports.nodeByName = function(req, res, next, name) {
 };
 
 exports.read = function(req, res) {
+	getNodeResource(req.node);
 	res.json(req.node);
 };
 
@@ -247,7 +310,7 @@ exports.init = function(req, res) {
 };
 
 exports.gtest = function(req, res) {
-	var levelList = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+	var levelList = [30, 40, 50, 60, 70, 80, 90, 100];
 	[1, 2, 3, 4].forEach(function(element) {
 		var i = 0;
 		Node.find({
@@ -276,7 +339,7 @@ exports.gtest = function(req, res) {
 };
 
 exports.dtest = function(req, res) {
-	var levelList = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+	var levelList = [30, 40, 50, 60, 70, 80, 90, 100];
 	Node.find({}, function(err, nodes) {
 		if (err) {
 			return res.status(400).send({
