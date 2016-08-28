@@ -20,8 +20,8 @@
 				<li>
 				<% } %>
 					<a href="#0">
-						<h2><%- course.title%></h2>
-						<p><%- course.description%></p>
+						<h2><%- course.title[lang]%></h2>
+						<p><%- course.description[lang]%></p>
 					</a>
 				</li>
 			<% }); %>
@@ -35,8 +35,8 @@
 				<% } else { %>
 				<li>
 				<% } %>
-					<h2><%- course.content%></h2>
-					<p><%- course.detail%></p>
+					<h2><%- course.content[lang]%></h2>
+					<p><%- course.detail[lang]%></p>
 					<pre id="<%= 'codebox'+index%>" data-type="default"></pre>
 				</li>
 			<% }); %>

@@ -1,0 +1,4 @@
+ int socket(int family, int type, int protocol); 
+ int bind(int sockfd, struct sockaddr *my_addr, int addrlen); 
+ int listen(int sockfd, int backlog); 
+ int connect(int sockfd, struct sockaddr *serv_addr, int addrlen); 
