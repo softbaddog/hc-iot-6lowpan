@@ -78,7 +78,9 @@ exports.groupctrl = function(req, res) {
 				return next(new Error('非法Group ' + element.name));
 			}
 
-			if (element.brightness < 100) {
+			if (element.brightness < 30) {
+				nodes[0].level = 30;
+			} else if (element.brightness < 100) {
 				nodes[0].level = (Math.floor(element.brightness/10)+1)*10;
 			} else {
 				nodes[0].level = 100;

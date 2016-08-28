@@ -229,7 +229,7 @@ HCC_LIGHTS.StarScene=function(scene_){
 
         //earth.earth.position.set(-110,0,0);
         //earth.earth.position.set(-100,-150,0);
-        earth.earth.position.set(-200,0,0);
+        earth.earth.position.set(500,200,-600);
         this.earth=earth;
 
         //Á¬Ïß

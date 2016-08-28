@@ -16,16 +16,28 @@ exports.post = function(api, nodes, node, callback) {
 				});
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 			} else if (nodes) {
-				contents = JSON.stringify({
-					'gid': nodes[0].groupId,
-					'type': 'set',
-					'path': '/huawei-iotdm-device:data/huawei-iotdm-device-sensor:' + api,
-					'body': {
-						'index': 0,
-						'level': nodes[0].level
-					}
+				var devices = [];
+				nodes.forEach(function(element, index) {
+					devices.push(element.deviceId);
 				});
-				path = 'device/action/' + config.gateway + '/urn:huawei:iotdm:device/huawei-iotdm-device-common:multicast';
+				contents = JSON.stringify({
+					"devices": devices,
+					"priority": 9,
+					"retry-times": 3,
+					"retry-intervals": 0,
+					"max-timeout": 20000,
+					"enable": true,
+					"action": [{
+						"name": "1",
+						'type': 'set',
+						'path': '/huawei-iotdm-device:data/huawei-iotdm-device-sensor:' + api,
+						'body': {
+							'index': 0,
+							'level': nodes[0].level
+						}
+					}]
+				});
+				path = 'system/action/urn:huawei:iotdm:task/bulk-ctl';
 			}
 			break;
 		case 'force-leave-net':
@@ -68,10 +80,12 @@ exports.post = function(api, nodes, node, callback) {
 		}
 	};
 
-	console.log('POST------%s-------start-', api);
-	console.log(options);
-	console.log(contents);
-	console.log('POST------%s--------end--', api);
+	if (api !== 'dim-level') {
+		console.log('POST------%s-------start-', api);
+		console.log(options);
+		console.log(contents);
+		console.log('POST------%s--------end--', api);
+	}
 
 	if (connectStatus) {
 		var req = http.request(options, function(res) {
@@ -81,7 +95,9 @@ exports.post = function(api, nodes, node, callback) {
 				data += chunk;
 			});
 			res.on('end', function() {
-				console.log(api, data);
+				if (api !== 'dim-level') {
+					console.log(api, data);
+				}
 				if (callback) {
 					callback(data);
 				}

@@ -64,7 +64,7 @@ exports.render = function(req, res) {
 		},
 		m2object: {
 			'zh': 'nStack互联互通中间件',
-			'en': 'nStack Interconnect Middleware'
+			'en': 'nStack Interconnection Middleware'
 		},
 		m2head: {
 			'zh': '精彩内容',
@@ -182,28 +182,63 @@ exports.slider = function(req, res) {
 				'en': 'Wireless Embedded Internet'
 			};
 			sliderJSON = '[{' +
-				'"imagePath": "/img/6lowpan/6lowpan.001.png", ' +
+				'"imagePath": "/img/6lowpan/幻灯片1.PNG", ' +
 				'"order": "1", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/6lowpan/6lowpan.002.png", ' +
+				'"imagePath": "/img/6lowpan/幻灯片2.PNG", ' +
 				'"order": "2", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/6lowpan/6lowpan.003.png", ' +
+				'"imagePath": "/img/6lowpan/幻灯片3.PNG", ' +
 				'"order": "3", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/6lowpan/6lowpan.004.png", ' +
+				'"imagePath": "/img/6lowpan/幻灯片4.PNG", ' +
 				'"order": "4", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/6lowpan/6lowpan.005.png", ' +
-				'"order": "4", ' +
+				'"imagePath": "/img/6lowpan/幻灯片5.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片6.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片7.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片8.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片9.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片10.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片11.PNG", ' +
+				'"order": "5", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/6lowpan/幻灯片5.PNG", ' +
+				'"order": "5", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'}]';
@@ -215,27 +250,47 @@ exports.slider = function(req, res) {
 				'en': 'Internet of Things OS'
 			};
 			sliderJSON = '[{' +
-				'"imagePath": "/img/liteos/liteos.001.png", ' +
+				'"imagePath": "/img/liteos/幻灯片1.PNG", ' +
 				'"order": "1", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/liteos/liteos.002.png", ' +
+				'"imagePath": "/img/liteos/幻灯片2.PNG", ' +
 				'"order": "2", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/liteos/liteos.003.png", ' +
+				'"imagePath": "/img/liteos/幻灯片3.PNG", ' +
 				'"order": "3", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/liteos/liteos.004.png", ' +
+				'"imagePath": "/img/liteos/幻灯片4.PNG", ' +
 				'"order": "4", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
-				'"imagePath": "/img/liteos/liteos.005.png", ' +
+				'"imagePath": "/img/liteos/幻灯片5.PNG", ' +
+				'"order": "4", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片6.PNG", ' +
+				'"order": "4", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片7.PNG", ' +
+				'"order": "4", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片8.PNG", ' +
+				'"order": "4", ' +
+				'"url": "#", ' +
+				'"slideText": ""' +
+				'},{' +
+				'"imagePath": "/img/liteos/幻灯片9.PNG", ' +
 				'"order": "4", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
@@ -304,34 +359,34 @@ exports.code = function(req, res) {
 			};
 			courseJSON = '[{' +
 				'"title": {"zh":"故事背景", "en":"Background Story"}, ' +
-				'"description": {"zh":"公元3389年，人类早已经走出太阳系，并在多个小行星上创建殖民地。您做为一名优秀的星际管理员希望在任何时候监控小行星上的情况。请您基于Web技术实现远程管理，尝试获取各个行星（灯）上的能量数据。<hr><p>任务一：快速掌握EEM JSON接口。</p><p>任务二：根据操作指导，打开IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/look_star.jpg width=80% height=60%>","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"公元3389年，人类早已经走出太阳系，分散定居在无数小行星上。您做为一名优秀的星际管理员希望实时监控小行星上的情况。请您使用Web技术实现对小行星（灯）远程能量采集功能，目标是从小行星（灯）上获取当前的能量数据。<hr><p>任务一：快速掌握华为物联网能效管理平台（EEM）JSON北向接口。</p><p>任务二：理解并选择一种数据采集方式（批量数据采集和逐条数据采集二选一）。</p><p>任务三：在app.js文件中填入关键json api，最终实现Ajax异步数据采集。</p><img src=/img/look_star.jpg width=60% height=40%>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"华为照明物联网方案","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"内容待补充","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"整个解决方案包括四个部分构成，主要是路灯控制器、华为物联网网关、EEM平台、APP（业务系统），各部分功能描述如下：<p><strong>路灯控制器</strong>：控制路灯调光、开光，支持计量功能，可采集电压、电流、功率、电量、频率数据。<br/><strong>物联网网关</strong>：连接路灯控制器，获取通过3G/LTE方式进行上行与EEM平台进行通信。<br/><strong>EEM平台</strong>：连接物联网网关，提供上行RESTCONF、WebSocket接口给第三方应用进行二次开发，可实现对路灯进行远程开关、调光等功能，也支持编制计划和策略控制。<br/><strong>APP</strong>：客户基于EEM平台开发的业务应用系统。</p><p><img src=/img/huawei_eem.png width=60% hegith=60%></p>","en":"xxxxxxxxxxx"}, ' +
 				'"file": ""' +
 				'},{' +
 				'"title": {"zh":"方案详解","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"Web应用早已被人们所接受，由于其跨平台能力，可以在任意尺寸设备上进行展示。做为一名Web应用开发者的您，一定尽快想大显身手，把<strong>小行星能量管理</strong>应用部署在Web服务器上。为了能让您快速掌握开发方法，我们先了解一下这一系统架构模型。<p><img src=/img/ar502.png width=500 heigth=75></p>","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"HTML/JS Web技术由于其跨平台能力，早已被人们所接受，它可以很容易地部署在任意尺寸设备上。做为一名Web应用开发者的您，一定尽快想大显身手，把<strong>小行星能量管理</strong>应用部署在Web服务器上。为了能让您快速掌握开发方法，我们先快速了解一下这一系统架构。<p><img src=/img/ar502.png width=500 heigth=75></p><p>为了快速体验开发过程，我们选取能量采集json接口来进行举例。</p><p>批量数据采集：</p><p>/iotdm/nb/v1/system/action/urn:huawei:iotdm:task/bulk-get</p><p>逐条数据采集：</p><p>/iotdm/nb/v1/device/get/网关ID/urn:huawei:iotdm:device/data</p>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"答题准备","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"我们已经为您准备好基于HTML5/JS的工程目录，最终效果如下图所示。您只需要按照提示，理解JSON格式数据模型，便能在数分钟完成应用开发。<br>由于我们华为工程师GG提供了多种JSON接口给我们使用，这里我们推荐使用2种编程方法，您可以根据需要选择其中一种来尝试解答。只要您能够<strong>读取3种以上能量数据</strong>，就能获得我们提供的精美小礼品。<p><img src=/img/lighting.jpg width=300 heigth=400></p>","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"我们已经为您准备好基于HTML5/JS的工程文件（<a href=/exam/web-developer/web-developer.rar>下载</a>）。您只需要按照提示，理解JSON格式数据模型，便能在数分钟完成应用开发。<p>由于我们华为工程师GG提供了多种JSON接口给我们使用，这里我们推荐使用2种数据采集接口，您可以根据需要选择其中一种来尝试解答。只要您能够<strong>读取3种以上能量数据</strong>，就能获得我们提供的精美小礼品。","en":"xxxxxxxxxxx"}, ' +
 				'"file": ""' +
 				'},{' +
-				'"title": {"zh":"批量读取能量数据","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"编程手册3","en":"xxxxxxxxxxx"}, ' +
+				'"title": {"zh":"批量数据采集方式","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"顾名思义，由于设备能量数据种类繁多，我们可以一次性将数据采集回来并进行解析。<p>您可以使用/iotdm/nb/v1/system/action/urn:huawei:iotdm:task/bulk-get</p><img src=/img/getBluk.png width=100% height=100%>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"开发指导","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"一次性将所有能量数据读取回来","en":"xxxxxxxxxxx"}, ' +
-				'"file": "bultGet.js"' +
+				'"detail": {"zh":"样例代码如下：","en":"xxxxxxxxxxx"}, ' +
+				'"file": "bultGet.txt"' +
 				'},{' +
-				'"title": {"zh":"逐条读取能量数据","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"编程手册4","en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"编程手册4","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"编程手册4","en":"xxxxxxxxxxx"}, ' +
-				'"file": "singleGet.js"' +
+				'"title": {"zh":"逐条数据采集方式","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"当然您也可以获取单个能量数据，这种方式灵活性更高。<p>您可以使用/iotdm/nb/v1/device/get/网关ID/urn:huawei:iotdm:device/data</p><img src=/img/getSingle.png width=90% height=90%>","en":"xxxxxxxxxxx"}, ' +
+				'"content": {"zh":"开发指导","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"样例代码如下：","en":"xxxxxxxxxxx"}, ' +
+				'"file": "singleGet.txt"' +
 				'},{' +
-				'"title": {"zh":"验证结果","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"编程手册4","en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"编程手册4","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"编程手册4","en":"xxxxxxxxxxx"}, ' +
-				'"file": "2.txt"' +
+				'"title": {"zh":"大功告成","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"","en":"xxxxxxxxxxx"}, ' +
+				'"content": {"zh":"验证结果","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"完成编码后，请将工程目录移至到XXX目录中，然后打开Chrome浏览器，在地址栏中输入http://localhost/，如果编写代码无误，您可以看到：<p><img src=/img/lighting.jpg width=300 heigth=400></p>","en":"xxxxxxxxxxx"}, ' +
+				'"file": ""' +
 				'}]';
 			console.log(JSON.parse(courseJSON));
 			break;

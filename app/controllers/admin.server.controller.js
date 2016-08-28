@@ -16,24 +16,24 @@ exports.render = function(req, res) {
 	res.render('admin', {
 		lang: req.session.lang || 'zh',
 		title: {
-			'zh':'后台管理',
-			'en':'Admin'
+			'zh': '后台管理',
+			'en': 'Admin'
 		},
 		home: {
-			'zh':'首页',
-			'en':'Home'
+			'zh': '首页',
+			'en': 'Home'
 		},
 		signin: {
-			'zh':'登录',
-			'en':'Login'
+			'zh': '登录',
+			'en': 'Login'
 		},
 		signup: {
-			'zh':'注册',
-			'en':'Register'
+			'zh': '注册',
+			'en': 'Register'
 		},
 		signout: {
-			'zh':'注销',
-			'en':'Logout'
+			'zh': '注销',
+			'en': 'Logout'
 		},
 		user: JSON.stringify(req.user)
 	});
@@ -140,7 +140,7 @@ exports.ctrl = function(req, res) {
 };
 
 exports.init = function(req, res) {
-	var mapX = {
+	var mapZ = {
 		'A': -900,
 		'B': -800,
 		'C': -700,
@@ -154,31 +154,35 @@ exports.init = function(req, res) {
 	};
 
 	var mapY = {
-		'1': -350,
-		'2': -350,
-		'3': -250,
-		'4': -250,
-		'5': -150,
-		'6': -150,
+		'1': -150,
+		'2': -150,
+		'3': -150,
+		'4': -150,
+		'5': -50,
+		'6': -50,
 		'7': -50,
 		'8': -50,
 		'9': 50,
 		'10': 50,
-		'11': 150,
-		'12': 150,
-		'13': 250,
-		'14': 250,
-		'15': 350,
-		'16': 350,
+		'11': 50,
+		'12': 50,
+		'13': 150,
+		'14': 150,
+		'15': 150,
+		'16': 150,
 	};
 
 	var gArray = {
 		0: ['roots'],
-		1: ['G1', 'G2', 'G3', 'G4', 'H1', 'H2', 'H3', 'H4', 'I1', 'I2', 'I3', 'I4', 'J1', 'J4'],
-		2: ['E5', 'E6', 'E7', 'E8', 'F5', 'F6', 'F7', 'F8', 'G5', 'G6', 'G7', 'G8', 'H5', 'H8'],
-		3: ['C9', 'C10', 'C11', 'C12', 'D9', 'D10', 'D11', 'D12', 'E9', 'E10', 'E11', 'E12', 'F9', 'F12'],
-		4: ['A13', 'A14', 'A15', 'A16', 'B13', 'B14', 'B15', 'B16', 'C13', 'C14', 'C15', 'C16', 'D13', 'D16'],
-		5: ['devices1', 'devices2', 'devices3', 'devices4', 'devices5'],
+		1: ['G1', 'H1', 'I1', 'J1', 'H2', 'I2'],
+		2: ['G4', 'H4', 'I4', 'J4', 'H3', 'I3'],
+		3: ['E5', 'F5', 'G5', 'H5', 'F6', 'G6'],
+		4: ['E8', 'F8', 'G8', 'H8', 'F7', 'G7'],
+		5: ['C9', 'D9', 'E9', 'F9', 'D10', 'E10'],
+		6: ['C12', 'D12', 'E12', 'F12', 'D11', 'E11'],
+		7: ['A13', 'B13', 'C13', 'D13', 'B14', 'C14'],
+		8: ['A16', 'B16', 'C16', 'D16', 'B15', 'C15'],
+		9: ['devices1', 'devices2', 'devices3', 'devices4', 'devices5'],
 	};
 
 	Node.find({}, function(err, nodes) {
@@ -202,14 +206,14 @@ exports.init = function(req, res) {
 
 				// 按规律刷新灯节点位置信息
 				if (element.name !== 'roots' && element.name.substr(0, 7) !== "devices") {
-					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100;
-					element.metadata.y = mapY[element.name.substr(1, element.name.length - 1)];
-					element.metadata.z = mapX[element.name.substr(0, 1)];
-					console.log(mapX[element.name.substr(0, 1)], mapY[element.name.substr(1, element.name.length - 1)], parseInt(element.name.substr(1, element.name.length - 1)) * 100);
+					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100 - 300;
+					element.metadata.y = mapY[element.name.substr(1, element.name.length - 1)] - 300;
+					element.metadata.z = mapZ[element.name.substr(0, 1)];
+					console.log(mapZ[element.name.substr(0, 1)], mapY[element.name.substr(1, element.name.length - 1)], parseInt(element.name.substr(1, element.name.length - 1)) * 100);
 				}
 
 				function findGroup(name) {
-					for (var i = 0; i <= 5; i++) {
+					for (var i = 0; i <= 9; i++) {
 						for (j in gArray[i]) {
 							if (gArray[i][j] === name) {
 								return i;
@@ -223,8 +227,8 @@ exports.init = function(req, res) {
 				// 为便于测试，新增随机路由
 				if (element.name !== 'roots') {
 					// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
-					element.parent = gArray[element.groupId-1][0];
-					console.log(element.name, element.parent);					
+					element.parent = gArray[element.groupId - 1][0];
+					console.log(element.name, element.parent);
 				}
 
 				element.updated = new Date();
@@ -247,8 +251,8 @@ exports.init = function(req, res) {
 };
 
 exports.gtest = function(req, res) {
-	var levelList = [30, 40, 50, 60, 70, 80, 90, 100];
-	[1, 2, 3, 4].forEach(function(element) {
+	var levelList = [30, 40, 50, 60, 70, 80, 90, 100, 90, 80, 70, 60, 50, 40, 30];
+	[1, 2, 3, 4, 5, 6, 7, 8].forEach(function(element) {
 		var i = 0;
 		Node.find({
 			groupId: element
@@ -266,7 +270,7 @@ exports.gtest = function(req, res) {
 				console.log(element, nodes[0].level);
 				request.post('dim-level', nodes, null);
 				if (i < levelList.length) {
-					setTimeout(post, 5000);
+					setTimeout(post, 15000);
 				}
 			};
 			post();
