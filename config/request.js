@@ -123,7 +123,7 @@ exports.get = function(api, nodes, node, callback) {
 			break;
 
 		case 'net-topo':
-			path = 'device/get/' + config.gateway + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
+			path = 'device/get/' + config.gateway[topoCount%2] + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
 
 		case 'voltage':

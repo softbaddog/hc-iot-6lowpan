@@ -3,6 +3,7 @@ var request = require('./request');
 var response = require('./response');
 
 connectStatus = false;
+topoCount = 0;
 
 exports.initialize = function() {
 	var WebSocketClient = require('websocket').client;
@@ -42,6 +43,8 @@ exports.initialize = function() {
 			// 先将设备在线和拓扑数据重置
 			// response.devStatusInit();
 			// data = '[ { "device-id": "FFFF010203FCE000", "status": "online", "node-id": 1, "parent-node-id": 0, "hop-count": 0 }, { "device-id": "2E00000000000030", "status": "online", "node-id": 2, "parent-node-id": 1, "hop-count": 1 }, { "device-id": "2E00000000000032", "status": "online", "node-id": 3, "parent-node-id": 2, "hop-count": 1 } ]';
+			topoCount++;
+			console.log(topoCount);
 			request.get('net-topo', null, null, function(data) {
 				var devices = JSON.parse(data.replace(/-/g, ''));
 				var map = {};
@@ -53,7 +56,7 @@ exports.initialize = function() {
 			});
 		};
 		netTopo();
-		
+
 		connection.on('error', function(error) {
 			console.log("Connection Error: " + error.toString());
 			connectStatus = false;
@@ -63,7 +66,7 @@ exports.initialize = function() {
 			console.log('echo-protocol Connection Closed');
 			connectStatus = false;
 		});
-		
+
 		// Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"online-status":"offline"},"gateway":"000D6
 		// F00052AE47E","timestamp":"2016-08-15T15:27:55Z","esn":"2E00216EFC000255"}'
 		// Received: '{"type":"huawei-iotdm-device:data-report","data":{"huawei-iotdm-device-common:online-status":"offline","huawe
@@ -77,7 +80,7 @@ exports.initialize = function() {
 		connection.on('message', function(message) {
 			if (message.type === 'utf8') {
 				var obj = JSON.parse(message.utf8Data.replace(/-/g, ''));
-				switch(obj.type) {
+				switch (obj.type) {
 					case 'huaweiiotdmdevicecommon:onlinestatuschange':
 						console.log("Received: '" + message.utf8Data + "'");
 						if (obj.data.onlinestatus === 'online') {
