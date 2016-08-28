@@ -47,7 +47,9 @@ function getEnergyInfo(id){
                 }
                 //进度条
                 $('#lifetime').html(msg.params.lifttime);
-                $('.Jprogess').css({width:msg.params.lifttime+'%'});
+            $('.Jprogess').css({
+                width: msg.params.lifttime + '%'
+            });
         }
     });
 }
@@ -226,8 +228,7 @@ function getAllOnlineDevices(){
         }
     });
 }
-function sortNumber(a,b)
-{
+function sortNumber(a, b) {
     return a - b;
 }
 function dynamicLoadLamp(){
@@ -267,7 +268,11 @@ function dynamicLoadLamp(){
                 tableHtml += '<tr class="head">';
                 tableHtml += '<td style="border-bottom: none;"></td>';
                 for(var k = 1;k <= columnNameArry[columnNameArry.length - 1];k++){
+                    if (k <= 9) {
+                        tableHtml += '<td class="bottom-line">0' + k + '</td>';
+                    } else {
                     tableHtml += '<td class="bottom-line">'+k+'</td>';
+                    }
                 }
                 tableHtml += '</tr>';
                 //table head e
