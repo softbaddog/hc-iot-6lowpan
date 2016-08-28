@@ -16,24 +16,24 @@ exports.render = function(req, res) {
 	res.render('admin', {
 		lang: req.session.lang || 'zh',
 		title: {
-			'zh':'后台管理',
-			'en':'Admin'
+			'zh': '后台管理',
+			'en': 'Admin'
 		},
 		home: {
-			'zh':'首页',
-			'en':'Home'
+			'zh': '首页',
+			'en': 'Home'
 		},
 		signin: {
-			'zh':'登录',
-			'en':'Login'
+			'zh': '登录',
+			'en': 'Login'
 		},
 		signup: {
-			'zh':'注册',
-			'en':'Register'
+			'zh': '注册',
+			'en': 'Register'
 		},
 		signout: {
-			'zh':'注销',
-			'en':'Logout'
+			'zh': '注销',
+			'en': 'Logout'
 		},
 		user: JSON.stringify(req.user)
 	});
@@ -154,22 +154,22 @@ exports.init = function(req, res) {
 	};
 
 	var mapY = {
-		'1': -350,
-		'2': -350,
-		'3': -250,
-		'4': -250,
-		'5': -150,
-		'6': -150,
+		'1': -150,
+		'2': -150,
+		'3': -150,
+		'4': -150,
+		'5': -50,
+		'6': -50,
 		'7': -50,
 		'8': -50,
 		'9': 50,
 		'10': 50,
-		'11': 150,
-		'12': 150,
-		'13': 250,
-		'14': 250,
-		'15': 350,
-		'16': 350,
+		'11': 50,
+		'12': 50,
+		'13': 150,
+		'14': 150,
+		'15': 150,
+		'16': 150,
 	};
 
 	var gArray = {
@@ -223,8 +223,8 @@ exports.init = function(req, res) {
 				// 为便于测试，新增随机路由
 				if (element.name !== 'roots') {
 					// element.parent = gArray[element.groupId-1][Math.floor(Math.random()*gArray[element.groupId-1].length)];
-					element.parent = gArray[element.groupId-1][0];
-					console.log(element.name, element.parent);					
+					element.parent = gArray[element.groupId - 1][0];
+					console.log(element.name, element.parent);
 				}
 
 				element.updated = new Date();
@@ -247,7 +247,7 @@ exports.init = function(req, res) {
 };
 
 exports.gtest = function(req, res) {
-	var levelList = [30, 40, 50, 60, 70, 80, 90, 100];
+	var levelList = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 	[1, 2, 3, 4].forEach(function(element) {
 		var i = 0;
 		Node.find({
