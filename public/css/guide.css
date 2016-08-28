@@ -157,6 +157,11 @@ Content block
   -moz-transition: -moz-transform 0.3s;
   transition: transform 0.3s;
 }
+
+.cd-content-block strong {
+   font-weight: 800;
+}
+
 .cd-content-block.is-visible {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);

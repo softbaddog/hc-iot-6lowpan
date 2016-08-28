@@ -4,12 +4,12 @@ function bultGet() {
     url: "/iotdm/nb/v1/system/action/urn:huawei:iotdm:task/bulk-get",
     dataType: 'json',
     data: {
-      "devices": ["2E0000000002"],      /*设备编号*/
-      "priority": 1,      /*必选，优先等级，1~10*/
-      "retry-times": 3,      /*必选，重试次数，0~100*/
-      "retry-intervals": 1000,      /*必选，重试间隔，0~65535，毫秒*/
-      "max-timeout": 10000,      /*必选，超时时间范围，1000~300000，毫秒*/
-      "enable": true,      /*可选，任务是否有效，默认值为true，表示任务有效*/
+      "devices": ["2E0000000002"],
+      "priority": 1,
+      "retry-times": 3,
+      "retry-intervals": 1000,
+      "max-timeout": 10000,
+      "enable": true,
       "action": [{
         "name": "energy",
         "type": "get",
