@@ -140,7 +140,7 @@ exports.ctrl = function(req, res) {
 };
 
 exports.init = function(req, res) {
-	var mapX = {
+	var mapZ = {
 		'A': -900,
 		'B': -800,
 		'C': -700,
@@ -202,10 +202,10 @@ exports.init = function(req, res) {
 
 				// 按规律刷新灯节点位置信息
 				if (element.name !== 'roots' && element.name.substr(0, 7) !== "devices") {
-					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100;
-					element.metadata.y = mapY[element.name.substr(1, element.name.length - 1)];
-					element.metadata.z = mapX[element.name.substr(0, 1)];
-					console.log(mapX[element.name.substr(0, 1)], mapY[element.name.substr(1, element.name.length - 1)], parseInt(element.name.substr(1, element.name.length - 1)) * 100);
+					element.metadata.x = parseInt(element.name.substr(1, element.name.length - 1)) * 100 - 300;
+					element.metadata.y = mapY[element.name.substr(1, element.name.length - 1)] - 300;
+					element.metadata.z = mapZ[element.name.substr(0, 1)];
+					console.log(mapZ[element.name.substr(0, 1)], mapY[element.name.substr(1, element.name.length - 1)], parseInt(element.name.substr(1, element.name.length - 1)) * 100);
 				}
 
 				function findGroup(name) {
