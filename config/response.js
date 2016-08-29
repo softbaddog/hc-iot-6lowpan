@@ -109,7 +109,7 @@ exports.queryStatus = function(devices) {
 			});
 		});
 	}
-}
+};
 
 // []
 // [ 
@@ -257,7 +257,7 @@ exports.devSwitch = function(devices, node) {
 			}
 		});
 	}
-}
+};
 
 // [{"index":0,"level":0}]
 exports.devLevel = function(devices, node) {
@@ -271,7 +271,7 @@ exports.devLevel = function(devices, node) {
 			}
 		});
 	}
-}
+};
 
 // Received: '{"type":"huawei-iotdm-device-common:online-status-change","data":{"online-status":"offline"},"gateway":"000D6
 // F00052AE47E","timestamp":"2016-08-15T15:27:55Z","esn":"2E00216EFC000255"}'
@@ -308,4 +308,4 @@ exports.devStatusChanged = function(status, deviceId) {
 			});			
 		}
 	});
-}
+};

@@ -1,31 +1,38 @@
 function singleGet() {
-  var fieldMapping = {
-    "huawei-iotdm-device-energy:total-active-energy": "energy",
-    "huawei-iotdm-device-energy:a-voltage": "voltage",
-    "huawei-iotdm-device-energy:a-current": "current",
-    "huawei-iotdm-device-energy:total-active-power": "power",
-    "huawei-iotdm-device-energy:frequency": "frequency"
-  };
-  var devData = {
-    "name": "2E0000000002",
-    "params": {
-      "location": "上海世博展览馆",
-      "energy": "N/A",
-      "voltage": "N/A",
-      "current": "N/A",
-      "power": "N/A",
-      "frequency": "N/A"
-    },
-    "status": 1
-  };
-  $.getJSON("/iotdm/nb/v1/device/get/2E0000000002/urn:huawei:iotdm:device/data", function(data) {
-    $.each(data, function(key, value) {
-      if (fieldMapping[key]) {
-        devData.params[fieldMapping[key]] = value;
-      }
+  var devData = $.extend({}, dataTemplate);
+  //能量采集数据（频率）
+  $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
+    "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:frequency",
+    function(data) {
+      devData.params.frequency = data;
+      showData(devData);
     });
-    showData(devData);
-  }).fail(function() {
-    alert('出错了');
-  });
+  //能量采集数据（电压）
+  $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
+    "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-voltage",
+    function(data) {
+      devData.params.voltage = data;
+      showData(devData);
+    });
+  //能量采集数据（电流）
+  $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
+    "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-current",
+    function(data) {
+      devData.params.current = data;
+      showData(devData);
+    });
+  //能量采集数据（功率）
+  $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
+    "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-power",
+    function(data) {
+      devData.params.power = data;
+      showData(devData);
+    });
+  //能量采集数据（能量）
+  $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
+    "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-energy",
+    function(data) {
+      devData.params.energy = data;
+      showData(devData);
+    });
 }

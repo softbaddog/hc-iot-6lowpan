@@ -371,7 +371,7 @@ exports.code = function(req, res) {
 				// '"file": "bultGet.txt"' +
 				'},{' +
 				'"title": {"zh":"逐条数据采集方式","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"当然您也可以获取单个能量数据，这种方式灵活性更高。<p>您可以使用/iotdm/nb/v1/device/get/网关ID/urn:huawei:iotdm:device/data</p><img src=/img/getSingle.png width=90% height=90%>","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"当然您也可以获取单个能量数据，这种方式灵活性更高。<p>您可以使用/iotdm/nb/v1/device/get/网关ID/urn:huawei:iotdm:device/data</p>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"开发指导","en":"xxxxxxxxxxx"}, ' +
 				'"detail": {"zh":"样例代码如下：","en":"xxxxxxxxxxx"}, ' +
 				'"file": "singleGet.txt"' +
