@@ -45,13 +45,24 @@ exports.initialize = function() {
 			// data = '[ { "device-id": "FFFF010203FCE000", "status": "online", "node-id": 1, "parent-node-id": 0, "hop-count": 0 }, { "device-id": "2E00000000000030", "status": "online", "node-id": 2, "parent-node-id": 1, "hop-count": 1 }, { "device-id": "2E00000000000032", "status": "online", "node-id": 3, "parent-node-id": 2, "hop-count": 1 } ]';
 			topoCount++;
 			console.log(topoCount);
-			request.get('net-topo', null, null, function(data) {
+			request.post('net-topo', null, null, function(data) {
 				var devices = JSON.parse(data.replace(/-/g, ''));
-				var map = {};
-				response.devMap(devices, function(key, value) {
-					map[key] = value;
+				devices.logs.forEach( function(element, index) {
+					// statements
+					if(element.status!="completed"){
+						console.log('gateway topo failed:*********', element.action[0].esn);
+						return;
+					}
+					var result = element.action[0].result;
+					// console.log(result);
+					var map = {};
+					response.devMap(result, function(key, value) {
+						map[key] = value;
+					});
+					console.log(JSON.stringify(map));
+					response.devTopo(result, map);
 				});
-				response.devTopo(devices, map);
+
 				setTimeout(netTopo, config.topoTimeout);
 			});
 		};

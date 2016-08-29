@@ -24,8 +24,8 @@ exports.post = function(api, nodes, node, callback) {
 				});
 				contents = JSON.stringify({
 					"devices": devices,
-					"priority": 9,
-					"retry-times": 3,
+					"priority": 100,
+					"retry-times": 1,
 					"retry-intervals": 0,
 					"max-timeout": 20000,
 					"enable": true,
@@ -60,6 +60,23 @@ exports.post = function(api, nodes, node, callback) {
 				});
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 			}
+			break;
+
+		case 'net-topo':
+			contents = JSON.stringify({
+				"devices": config.gateway,
+		    "priority": 1,
+		    "retry-times": 2,
+		    "retry-intervals": 0,
+		    "max-timeout": 30000,
+		    "enable": true,
+		    "action": [{
+		    	"name": "topo",
+		    	"type": "get",
+		    	"path": "/huawei-iotdm-device:data/huawei-iotdm-device-common:net-topo"
+		    }]
+			});
+			path = 'system/action/urn:huawei:iotdm:task/bulk-get';
 			break;
 
 		case 'group-list':

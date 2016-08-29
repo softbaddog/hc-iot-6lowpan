@@ -133,6 +133,7 @@ exports.devMap = function(devices, callback) {
 				if (!node) {
 					return new Error('非法deviceId ' + element);
 				}
+				// console.log(element.nodeid, node.name);
 				callback(element.nodeid, node.name);
 			});
 		});
@@ -297,6 +298,10 @@ exports.devStatusChanged = function(status, deviceId) {
 
 		if (node.status !== status) {
 			node.status = status;
+
+			if (node.status == 0) {
+				node.parent = null;
+			}
 
 			node.updated = new Date();
 			node.save(function(err) {
