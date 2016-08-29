@@ -41,7 +41,7 @@ exports.initialize = function() {
 		// 获取拓扑数据
 		var netTopo = function() {
 			// 先将设备在线和拓扑数据重置
-			response.devStatusInit();
+			// response.devStatusInit();
 			// data = '[ { "device-id": "FFFF010203FCE000", "status": "online", "node-id": 1, "parent-node-id": 0, "hop-count": 0 }, { "device-id": "2E00000000000030", "status": "online", "node-id": 2, "parent-node-id": 1, "hop-count": 1 }, { "device-id": "2E00000000000032", "status": "online", "node-id": 3, "parent-node-id": 2, "hop-count": 1 } ]';
 			topoCount++;
 			console.log(topoCount);

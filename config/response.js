@@ -120,7 +120,7 @@ exports.queryStatus = function(devices) {
 exports.devMap = function(devices, callback) {
 	if (devices.length > 0) {
 		devices.forEach(function(element) {
-			if (element.parentnodeid === 0) {
+			if (element.nodeid === 1) {
 				element.deviceid = config.gateway[0];
 			}
 			Node.findOne({
