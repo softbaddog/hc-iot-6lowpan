@@ -10,7 +10,6 @@ var pass = passport();
 
 app.listen(3000);
 
-// require('./config/socketio-client').initialize();
 require('./config/websocket-client').initialize();
 
 module.exports = app;

@@ -40,6 +40,7 @@ exports.post = function(api, nodes, node, callback) {
 				path = 'system/action/urn:huawei:iotdm:task/bulk-ctl';
 			}
 			break;
+
 		case 'force-leave-net':
 			if (node) {
 				contents = JSON.stringify({
@@ -48,6 +49,7 @@ exports.post = function(api, nodes, node, callback) {
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			}
 			break;
+
 		case 'switch-status':
 			if (node) {
 				contents = JSON.stringify({
@@ -57,17 +59,18 @@ exports.post = function(api, nodes, node, callback) {
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 			}
 			break;
+
 		case 'group-list':
 			if (node) {
 				contents = '[' + node.groupId + ']';
 				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			}
 			break;
+
 		default:
 			console.log('No Support!');
 			break;
 	}
-
 
 	var options = {
 		host: config.host,
@@ -123,7 +126,7 @@ exports.get = function(api, nodes, node, callback) {
 			break;
 
 		case 'net-topo':
-			path = 'device/get/' + config.gateway[topoCount%2] + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
+			path = 'device/get/' + config.gateway[topoCount % 2] + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-common:' + api;
 			break;
 
 		case 'voltage':
