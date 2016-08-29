@@ -7,5 +7,5 @@ module.exports = {
 	gateway: ["0000AA0203FCE000","0000A1EEEEEE0000"],
 	domain: "root",
 	onlineTimeout: 60000,
-	topoTimeout: 10000
+	topoTimeout: 30000
 };
