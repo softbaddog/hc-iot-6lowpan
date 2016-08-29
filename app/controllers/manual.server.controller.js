@@ -208,32 +208,32 @@ exports.slider = function(req, res) {
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/6lowpan/幻灯片6.PNG", ' +
-				'"order": "5", ' +
+				'"order": "6", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/6lowpan/幻灯片7.PNG", ' +
-				'"order": "5", ' +
+				'"order": "7", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/6lowpan/幻灯片8.PNG", ' +
-				'"order": "5", ' +
+				'"order": "8", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/6lowpan/幻灯片9.PNG", ' +
-				'"order": "5", ' +
+				'"order": "9", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/6lowpan/幻灯片10.PNG", ' +
-				'"order": "5", ' +
+				'"order": "10", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/6lowpan/幻灯片11.PNG", ' +
-				'"order": "5", ' +
+				'"order": "11", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'}]';
@@ -266,27 +266,27 @@ exports.slider = function(req, res) {
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/liteos/幻灯片5.PNG", ' +
-				'"order": "4", ' +
+				'"order": "5", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/liteos/幻灯片6.PNG", ' +
-				'"order": "4", ' +
+				'"order": "6", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/liteos/幻灯片7.PNG", ' +
-				'"order": "4", ' +
+				'"order": "7", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/liteos/幻灯片8.PNG", ' +
-				'"order": "4", ' +
+				'"order": "8", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'},{' +
 				'"imagePath": "/img/liteos/幻灯片9.PNG", ' +
-				'"order": "4", ' +
+				'"order": "9", ' +
 				'"url": "#", ' +
 				'"slideText": ""' +
 				'}]';

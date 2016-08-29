@@ -10,8 +10,8 @@ body{            padding: 0px;margin: 0px;            overflow-x: hidden;overflo
 
 #title_content{
   position:absolute;
-  left:10px;
-  top:10px;
+  left:50px;
+  top:50px;
   z-index: 10;
   color: #fff;
 }
@@ -19,5 +19,5 @@ body{            padding: 0px;margin: 0px;            overflow-x: hidden;overflo
 
 }
 #title_content p{
-  text-indent: 50px;
+  text-indent: 100px;
 }
