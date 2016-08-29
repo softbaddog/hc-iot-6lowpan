@@ -1,4 +1,5 @@
 var Node = require('mongoose').model('Node');
+var config = require('./config');
 
 exports.devStatusInit = function() {
 	Node.find({}, function(err, nodes) {
@@ -119,6 +120,9 @@ exports.queryStatus = function(devices) {
 exports.devMap = function(devices, callback) {
 	if (devices.length > 0) {
 		devices.forEach(function(element) {
+			if (element.parentnodeid === 0) {
+				element.deviceid = config.gateway[0];
+			}
 			Node.findOne({
 				deviceId: element.deviceid
 			}, function(err, node) {
