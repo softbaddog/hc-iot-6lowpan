@@ -355,13 +355,13 @@ exports.code = function(req, res) {
 				'"title": {"zh":"故事背景", "en":"Background Story"}, ' +
 				'"description": {"zh":"公元3389年，人类早已经走出太阳系，分散定居在无数小行星上。您做为一名优秀的星际管理员希望实时监控小行星上的情况。请您使用Web技术实现对小行星（灯）远程能量采集功能，目标是从小行星（灯）上获取当前的能量数据。<hr><p>任务一：快速掌握华为物联网能效管理平台（EEM）JSON北向接口。</p><p>任务二：理解并选择一种数据采集方式（批量数据采集和逐条数据采集二选一）。</p><p>任务三：在app.js文件中填入关键JSON api，最终实现Ajax异步数据采集。</p><img src=/img/look_star.jpg width=60% height=40%>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"华为照明物联网方案","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"整个解决方案包括四个部分构成，主要是路灯控制器、华为物联网网关、EEM平台、APP（业务系统），各部分功能描述如下：<p><strong>路灯控制器</strong>：控制路灯调光、开光，支持计量功能，可采集电压、电流、功率、电量、频率数据。<br/><strong>物联网网关</strong>：连接路灯控制器，获取通过3G/LTE方式进行上行与EEM平台进行通信。<br/><strong>EEM平台</strong>：连接物联网网关，提供上行RESTCONF、WebSocket接口给第三方应用进行二次开发，可实现对路灯进行远程开关、调光等功能，也支持编制计划和策略控制。<br/><strong>APP</strong>：客户基于EEM平台开发的业务应用系统。</p><p><img src=/img/huawei_eem.png width=60% hegith=60%></p>","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"整个解决方案包括四个部分构成，主要是路灯控制器、华为物联网网关、EEM平台、APP（业务系统），各部分功能描述如下：<p><strong>路灯控制器</strong>：控制路灯调光、开光，支持计量功能，可采集电压、电流、功率、电量、频率数据。<br/><strong>物联网网关</strong>：连接路灯控制器，获取通过3G/LTE方式进行上行与EEM进行通信。<br/><strong>EEM</strong>：连接物联网网关，提供上行RESTCONF、WebSocket接口给第三方应用进行二次开发，可实现对路灯进行远程开关、调光等功能，也支持编制计划和策略控制。<br/><strong>APP</strong>：客户基于EEM平台开发的业务应用系统。</p><p><img src=/img/huawei_eem.png width=60% hegith=60%></p>","en":"xxxxxxxxxxx"}, ' +
 				'"file": ""' +
 				'},{' +
 				'"title": {"zh":"方案详解","en":"xxxxxxxxxxx"}, ' +
 				'"description": {"zh":"HTML/JS Web技术由于其跨平台能力，早已被人们所接受，它可以很容易地部署在任意尺寸设备上。做为一名Web应用开发者的您，一定尽快想大显身手，把<strong>小行星能量管理</strong>应用部署在Web服务器上。为了能让您快速掌握开发方法，我们先快速了解一下这一系统架构。<p><img src=/img/ar502.png width=500 heigth=75></p><p>为了快速体验开发过程，我们选取能量采集JSON接口来进行实战。</p>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"答题准备","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"我们已经为您准备好基于HTML5/JS的工程文件（<a href=/exam/web/web-demo.zip>这里下载</a>）。您只需要将其解压到任意目录，然后按照开发提示，便可在数分钟内完成Web应用开发。<p>我们华为工程师GG们为了满足客户多样需求，专门设计了多种JSON接口给我们使用，这里我们选取其中2种数据采集接口进行体验，您可以根据需要选择任意一种来完成Demo。只要您能够<strong>读取3种以上能量数据</strong>，就能获得我们提供的精美小礼品，赶紧来体验吧！","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"我们已经为您准备好基于HTML5/JS的工程文件（<a href=/exam/web/web-demo.zip>这里下载</a>）。您只需要将其解压到任意目录，然后按照开发提示，便可在数分钟内完成Web应用开发。<p>我们华为工程师GG们为了满足客户多样需求，专门设计了多种JSON接口给我们使用，这里我们选取其中2种数据采集接口进行体验，您可以根据需要选择任意一种来完成Demo。只要您能够<strong>读取3种以上能量数据</strong>，就能获得我们提供的精美小礼品。<p>小伙伴们，赶紧来体验吧！</p>","en":"xxxxxxxxxxx"}, ' +
 				'"file": ""' +
 				// '},{' +
 				// '"title": {"zh":"批量数据采集方式","en":"xxxxxxxxxxx"}, ' +
@@ -371,15 +371,15 @@ exports.code = function(req, res) {
 				// '"file": "bultGet.txt"' +
 				'},{' +
 				'"title": {"zh":"逐条数据采集方式","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"当然您也可以获取单个能量数据，这种方式灵活性更高。<p>您可以使用/iotdm/nb/v1/device/get/网关ID/urn:huawei:iotdm:device/data</p>","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"该方法是所有数据采集接口中最容易使用的，适合有针对性，对网络要求敏感的场景。您可以使用诸如huawei-iotdm-device-energy:frequency接口查询设备电流频率。</p><p>Demo使用URL列表如下：</p><p>&nbsp;</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:frequency</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-voltage</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-current</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-power</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-energy</p><p>&nbsp;</p><p>获取JSON格式数据如下所示：</p><p>&nbsp;</p><p>{结果}，如{220}</p>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"开发指导","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"样例代码如下：","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"使用逐条数据采集方式获取数据方法非常简单，您只需要用编辑器打开js目录下的app.js文件，将其中???替换为所需要采集的电参数英文标识，完成能量数据获取后，返回json对象，获取相应的参数。<p>请参考如下样例代码完成Demo应用：</p>","en":"xxxxxxxxxxx"}, ' +
 				'"file": "singleGet.txt"' +
 				'},{' +
 				'"title": {"zh":"大功告成","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"<img src=/img/success.jpg width=100% heigth=100%></img>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"验证结果","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"完成编码后，请将工程目录移至到XXX目录中，然后打开Chrome浏览器，在地址栏中输入http://localhost/，如果编写代码无误，您可以看到：<p><img src=/img/lighting.jpg width=300 heigth=400></p>","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"编码完成后，运行工作目录下的start.bat，会自动打开Chrome浏览器，访问EEM。如果编码无误，您可以看到：<p><img src=/img/lighting.jpg width=300 heigth=400></p>","en":"xxxxxxxxxxx"}, ' +
 				'"file": ""' +
 				'}]';
 			console.log(JSON.parse(courseJSON));

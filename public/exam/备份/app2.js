@@ -23,7 +23,7 @@ var dataTemplate = {
 function singleGet() {
 	var devData = $.extend({}, dataTemplate);
 	//能量采集数据（频率）
-	$.getJSON(host + "/iotdm/nb/v1/device/<get></get>/" + esn +
+	$.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
 		"/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:frequency",
 		function(data) {
 			devData.params.frequency = data;

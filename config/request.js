@@ -18,7 +18,9 @@ exports.post = function(api, nodes, node, callback) {
 			} else if (nodes) {
 				var devices = [];
 				nodes.forEach(function(element, index) {
-					devices.push(element.deviceId);
+					if (element.priority == 0) {
+						devices.push(element.deviceId);
+					}
 				});
 				contents = JSON.stringify({
 					"devices": devices,
