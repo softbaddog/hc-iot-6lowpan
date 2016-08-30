@@ -299,7 +299,7 @@ exports.devStatusChanged = function(status, deviceId) {
 		if (node.status !== status) {
 			node.status = status;
 
-			if (node.status == 0) {
+			if (node.status === 0) {
 				node.parent = null;
 			}
 
@@ -309,6 +309,7 @@ exports.devStatusChanged = function(status, deviceId) {
 					console.log(node.name, node.status);
 					io.emit('nodeChanged', node);
 					io.emit('onlineChanged', node);
+					io.emit('topoChanged', node);
 				}
 			});			
 		}
