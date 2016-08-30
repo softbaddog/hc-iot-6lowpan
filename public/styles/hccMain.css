@@ -14,6 +14,7 @@ body{            padding: 0px;margin: 0px;            overflow-x: hidden;overflo
   top:30px;
   z-index: 10;
   color: #fff;
+  font-family: 'Microsoft YaHei';
 }
 #title_content h1{
   font-size: 3em;

@@ -249,7 +249,7 @@ HCC_LIGHTS.StarScene=function(scene_){
         scope.musicAni=false;
     };
     scope.musicAniFun=function(){
-        var templen=70;
+        var templen=lampLength;
         var time = Date.now() * 0.002;
         var tempGroup={};
         /** ¸ù¾ÝÒôÀÖÆµÆ× **/
@@ -267,11 +267,11 @@ HCC_LIGHTS.StarScene=function(scene_){
             var ary=tempGroup.ary;
             var i_ = 0,l_=ary.length;
             for(i_=0;i_<l_;i_++){
-                /*
+                
                 if(value<10) {
                     value = scope.lightsIntensity * ( 1 + Math.sin(0.5 * i_ + (time + ary[i_].intensity)) );
                 }
-                */
+                
                if(value<30){
                 value=30;
                 } 
