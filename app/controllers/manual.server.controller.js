@@ -28,7 +28,7 @@ exports.render = function(req, res) {
 		},
 		m1a: {
 			'zh': '短距无线物联网',
-			'en': 'Short-distance Wireless Embedded Internet'
+			'en': 'Short-distance Wireless Embedded IoT'
 		},
 		m1object: {
 			'zh': 'IEEE 802.15.4、6LoWPAN与RPL',
@@ -327,22 +327,22 @@ exports.code = function(req, res) {
 				'"file": ""' +
 				'},{' +
 				'"title": {"zh":"6LoWPAN协议栈网络编程","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"采用类似BSD Socket编程，只要您具备Linux网络编程经验，可以在非常短的时间内玩转nStack协议栈。<p/><img src=/img/socket.png width=450 height=450/>", "en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"采用类似BSD Socket编程，只要您具备Linux网络编程经验，可以在非常短的时间内玩转nStack协议栈。<p/><img src=/img/socket.png width=550 height=510/>", "en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"关键Socket API介绍","en":"xxxxxxxxxxx"}, ' +
 				'"detail": {"zh":"<p><strong>uint32_t vpp_udp_socket_register(udp_socket *udpSock, void *ptr, const vpp_udp_socket_input_callback_t recv_callback);</strong><br/>创建一个UDP Socket，并注册一个接收数据的回调函数，任何UDP消息都会在该回调函数中处理。</p><p><strong>uint32_t vpp_udp_socket_bind(udp_socket *udpSock, const uint16_t local_port);</strong><br/>绑定Socket到本地的端口。</p><p><strong>uint32_t vpp_udp_socket_connect(udp_socket *udpSock, const uip_ipaddr_t *remote_addr, const uint16_t remote_port);</strong><br/>连接UDP的Socket到指定的远端服务器IP地址和端口。注意，连接成功之后，才能接收到指定服务器发往该Socket的UDP报文，并且只能接收到该接口指定远端服务器的UDP报文。</p><p><strong>int vpp_udp_socket_sendto (udp_socket *udpSock, const void *data, uint16_t datalen, const uip_ipaddr_t *remotrAddr, uint16_t remotePort);</strong><br/>在该UDP Socket上发送数据到指定的远端IP地址和端口。发送数据之前，不需要显示调用vpp_udp_socket_connect()来建立连接。注意，send()和sendto()可以在同一个UDP Socket上使用。</p><p>typedef void (* vpp_udp_socket_input_callback_t)<br/>(<br/>&nbsp;&nbsp;struct _udp_socket *c,<br/>&nbsp;&nbsp;void *ptr,<br/>&nbsp;&nbsp;const uip_ipaddr_t *source_addr,<br/>&nbsp;&nbsp;uint16_t source_port,const uip_ipaddr_t *dest_addr,<br/>&nbsp;&nbsp;uint16_t dest_port,<br/>&nbsp;&nbsp;uint16_t datalen<br/>);<br/>用来接收数据的回调，回调函数在创建Socket时使用。</p><p>uint32_t vpp_udp_socket_close(udp_socket *udpSock);</strong><br/>关闭UDP Socket</p>","en":"xxxxxxxxxxx"}, ' +
 				'"file": "" ' +
 				'},{' +
 				'"title": {"zh":"实战指导","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"uStack IoT组件提供了大量的socket接口函数，我们这里只使用以下3个Socket API，用来实现设备入网：<p>&nbsp;</p><p>1.vpp_udp_socket_register（获取Socket）</p><p>2.vpp_udp_socket_bind（绑定端口）</p><p>3.vpp_udp_socket_sendto（发送UDP消息）","en":"xxxxxxxxxxx"}, ' +
+				'"description": {"zh":"uStack IoT组件提供了大量的socket接口函数，我们这里只使用以下3个Socket API，用来实现设备入网：<p>&nbsp;</p><p>1.vpp_udp_socket_register（获取Socket）</p><p>2.vpp_udp_socket_bind（绑定端口）</p><p>3.vpp_udp_socket_sendto（发送UDP消息）<p>&nbsp;</p><p>IAR Embedded Workbench 是瑞典 IAR Systems 公司为 微处理器开发的一个集成开发环境(下面简称IAR EW),支持ARM，AVR，MSP430等芯片内核平台。我们将使用该工具完成&quot;星际迷航&quot;编程游戏，快来体验吧！<img src=/img/iar_for_arm.jpg></img></p>","en":"xxxxxxxxxxx"}, ' +
 				'"content": {"zh":"编程手册","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"UDP消息由于其简单易用，对硬件资源要求少，非常适合在物联网上使用。我们这里只需要打开IAR编程工具，参考下面样例代码，找到对应的socket API函数即可完成编程开发。","en":"xxxxxxxxxxx"}, ' +
+				'"detail": {"zh":"UDP消息由于其简单易用，对硬件资源要求少，非常适合在物联网上使用。我们这里只需要打开IAR编程工具，参考下面样例代码，找到对应的socket API函数并替换UDPDEMO_Task函数中？？？部分，即可完成&quot;入网指示&quot;指令开发。","en":"xxxxxxxxxxx"}, ' +
 				'"file": "udpDemo.txt"' +
 				'},{' +
 				'"title": {"zh":"大功告成","en":"Complete"}, ' +
 				'"description": {"zh":"<img src=/img/success.jpg width=100% heigth=100%></img>","en":"<img src=/img/success.jpg width=100% heigth=100%></img>"}, ' +
 				'"content": {"zh":"验证结果","en":"Verification Result"}, ' +
 				'"detail": {"zh":"编码完成后，先执行Compile，将代码编译打包。确认无误后再执行Download and Run，您的固件包则会立即加载到桌面的小蓝头中。等待数分钟，您可以看到：<br/>1、飞船上线，并发光显示；<br/>2、飞船与地球之间的连线逐渐显示出来。<p><img src=/img/plane_ok.png width=400 height=300","en":"xxxxxxxxxxx"}, ' +
-				'"file": "2.txt"' +
+				'"file": ""' +
 				'}]';
 			console.log(JSON.parse(courseJSON));
 			break;

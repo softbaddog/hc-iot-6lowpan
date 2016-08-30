@@ -1,9 +1,6 @@
 .container {
     font-family: 'Microsoft YaHei'
 }
-table tr td {
-    color: #fff;
-}
 .demo {
     padding: 1.5em 0;
     background: linear-gradient(to right, #f3d08e, #afeb86);
