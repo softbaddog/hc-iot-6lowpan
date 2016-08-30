@@ -16,12 +16,27 @@ body{            padding: 0px;margin: 0px;            overflow-x: hidden;overflo
   color: #fff;
 }
 #title_content h1{
-  font-size: 1.3em;
+  font-size: 3em;
 }
-#title_content p{
+#title_content h2{
+  font-size: 2em;
+  text-indent: 85px;
+  margin-top: 20px;
+}
+#title_content .forh1{
+  font-size: 1em;
+  text-indent: 5px;
+  margin-top: 5px;
+}
+#title_content .forh2{
+  font-size: 1em;
+  text-indent: 90px;
+  margin-top: 5px;
+}
+#title_content .liteos{
   font-size: 0.9em;
   text-indent: 85px;
-  margin-top: 5px;
+  margin-top: 25px;
 }
 #description_content {
   position:absolute;
