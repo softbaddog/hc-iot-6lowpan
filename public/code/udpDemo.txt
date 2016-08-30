@@ -1,0 +1,51 @@
+VOID UDPDEMO_Task(VOID const* param)
+{
+    INT32 i32Ret = 0;
+    UINT32 u32EchoWaitCounter = 0;
+    char acDemoData[] = {0x28, 0x00, 0x01, 0x01, 0x01, 0x01}; /* 上线报文 */
+    BRIPv6Addr stBrAddr;
+    
+    udp_socket stSocket = {0};
+
+    /* 创建一个UDP的socket */
+    (VOID)memset_s(&stSocket, sizeof(udp_socket), 0x00, sizeof(stSocket));
+    i32Ret = vpp_udp_socket_register(&stSocket, NULL, UDPDEMO_RxDeal);
+    if (i32Ret < 0)
+    {
+        return;
+    }
+
+    /* 绑定UDP通道的本地端口号 */
+    i32Ret = vpp_udp_socket_bind(&stSocket, APPDEMO_UDP_PORT);
+    if (i32Ret < 0)
+    {
+        return;
+    }
+
+    /* 获取BR节点的IP地址 */
+    APP_GetBRAddrHelp(&stBrAddr);
+
+    while(1)
+    {
+        g_u32WaitEchoFlag = 0;
+        
+        /* 向BR节点发送测试数据 */
+        (VOID)vpp_udp_socket_sendto(&stSocket, acDemoData, sizeof(acDemoData), 
+                                    (uip_ipaddr_t *)&stBrAddr, APPDEMO_UDP_PORT);
+
+        /* 等待应答 */
+        g_u32WaitEchoFlag = 1;
+        
+        for (u32EchoWaitCounter = 0; u32EchoWaitCounter < 10; u32EchoWaitCounter++)
+        {
+            LOS_TaskDelay(20);
+
+            if (0 == g_u32WaitEchoFlag)
+            {
+                break;
+            }
+        }
+    }
+
+    return;
+}

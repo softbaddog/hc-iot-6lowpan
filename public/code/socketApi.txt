@@ -1,4 +1,149 @@
- int socket(int family, int type, int protocol); 
- int bind(int sockfd, struct sockaddr *my_addr, int addrlen); 
- int listen(int sockfd, int backlog); 
- int connect(int sockfd, struct sockaddr *serv_addr, int addrlen); 
+/**
+* @defgroup vpp_udp_socket_register
+* @ingroup  UDPSocket
+* @par Prototype
+* @code
+uint32_t vpp_udp_socket_register
+(
+  udp_socket *udpSock,
+  void *ptr,
+  const vpp_udp_socket_input_callback_t receive_callback
+);
+
+* @endcode
+*
+* @par Purpose
+* Registers an UDP Socket
+*
+* @par Description
+* User can use this API to register an UDP socket. It will be associate with the
+* user's UDP socket passed as parameter with a uIP UDP connection object.
+*
+* @param[in] udpSock    UDP socket object to be registered. [N/A]
+* @param[in] ptr  When a UDP request is received then the application data to be given to the user. [N/A]
+* @param[in] input_callback  User callback to be called when we receive any
+*                            UDP request on the socket. [N/A]
+*
+* @par Return values
+* uint32_t  Returns VPP_UIP_SUCCESS on success, Returns appropriate error code
+*           in case of failure.
+*
+* @par Required Header File
+* uip-udp-socket-interface.h
+*
+* @par Note
+\n None
+*
+* @par Related Topics
+* N/A
+* \n
+*/
+uint32_t vpp_udp_socket_register
+(
+  udp_socket *udpSock,
+  void *ptr,
+  const vpp_udp_socket_input_callback_t receive_callback
+);
+
+/*
+Func Name:  vpp_udp_socket_bind
+*/
+/**
+* @defgroup vpp_udp_socket_bind
+* @ingroup  UDPSocket
+* @par Prototype
+* @code
+uint32_t vpp_udp_socket_bind
+(
+  udp_socket *udpSock,
+  const uint16_t local_port
+);
+* @endcode
+*
+* @par Purpose
+* Bind a UDP socket to a local port
+*
+* @par Description
+* This function binds the UDP socket to a local port so that it will begin to
+* receive data that arrives on the specified port. A UDP socket will receive
+* data addressed to the specified port number on any IP address of the host.
+* A UDP socket that is bound to a local port will use this port number as a
+* source port in outgoing UDP messages.
+*
+* @param [in] udpSock udp socket object pointer. [N/A]
+* @param [in] local_port local port number that will be associated to the socket. [N/A]
+*
+* @par Return values
+* uint32_t   VPP_UIP_SUCCESS on success and appropriate error code on failure
+*
+* @par Required Header File
+* uip-udp-socket-interface.h
+*
+* @par Note
+* \n
+* None
+* @par Related Topics
+* N/A
+* \n
+*/
+uint32_t vpp_udp_socket_bind
+(
+  udp_socket *udpSock,
+  const uint16_t local_port
+);
+
+/*
+Func Name:  vpp_udp_socket_send
+*/
+/**
+* @defgroup vpp_udp_socket_send
+* @ingroup UDPSocket
+* @par Prototype
+* @code
+* int vpp_udp_socket_send
+* (
+*   udp_socket *udpSock,
+*   const void *data,
+*   uint16_t datalen
+* );
+*
+* @endcode
+*
+* @par Purpose
+* Send data on a UDP socket
+*
+* @par Description
+* This function sends data over a UDP socket. The UDP socket must have been
+* connected to a remote address and port .
+* If the length of the data to be sent is more than the available buffer size
+* (IPV6 MTU Size - (UDP Header + IPv6 Header + Any Extended Header)
+* we will drop the additional data.
+*
+* @param[in] udpSock UDP socket over which data has to be sent. [N/A]
+* @param[in] data    Data to be sent. [N/A]
+* @param[in] datalen Length of the data to be sent. [N/A]
+*
+* @par Return values
+* int   It will return number of bytes(Length) of the data that will be sent to
+*       the peer. An appropriate error code will be returned in case of failure
+*
+* @par Required Header File
+* uip-udp-socket-interface.h
+*
+* @par Note
+* -#  The UDP socket must have been connected to a remote address and port.
+* -#  To avoid unnecessary drop of data we suggest user not to send more than
+*     the configured MTU Size (By default 1280 Bytes)- UDP Header (8 Bytes)-
+*     IPv6 Header (40 Bytes) - RPL Extended Hedaer (Its a variable length
+*     Currently 8 bytes)
+*
+* @par Related Topics
+* N/A
+* \n
+*/
+int vpp_udp_socket_send
+(
+  udp_socket *udpSock,
+  const void *data,
+  uint16_t datalen
+);
