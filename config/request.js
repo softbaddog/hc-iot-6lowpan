@@ -18,8 +18,10 @@ exports.post = function(api, nodes, node, callback) {
 			} else if (nodes) {
 				var devices = [];
 				nodes.forEach(function(element, index) {
-					if (element.priority == 0) {
+					if (element.priority === 0) {
 						devices.push(element.deviceId);
+					} else {
+						console.log(element.name, 'is Locked.');
 					}
 				});
 				contents = JSON.stringify({

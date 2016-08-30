@@ -8,7 +8,7 @@ exports.render = function(req, res) {
 		lang: req.session.lang || 'zh',
 		title: {
 			'zh': '开发指导',
-			'en': 'Developer Manual'
+			'en': 'Development Guides'
 		},
 		home: {
 			'zh': '首页',
@@ -28,7 +28,7 @@ exports.render = function(req, res) {
 		},
 		m1a: {
 			'zh': '短距无线物联网',
-			'en': 'Wireless Embedded Internet'
+			'en': 'Short-distance Wireless Embedded Internet'
 		},
 		m1object: {
 			'zh': 'IEEE 802.15.4、6LoWPAN与RPL',
@@ -40,23 +40,23 @@ exports.render = function(req, res) {
 		},
 		m1topic1: {
 			'zh': '802.15.4、6LoWPAN和RPL来源',
-			'en': '802.15.4、6LoWPAN and RPL'
+			'en': 'IEEE 802.15.4, 6LoWPAN, and RPL'
 		},
 		m1topic2: {
 			'zh': 'LR-WPAN通信技术挑战',
-			'en': ''
+			'en': 'LR-WPAN communication technology challenges'
 		},
 		m1topic3: {
 			'zh': '短距无线适用场景举例',
-			'en': ''
+			'en': 'Examples of short-distance wireless IoT application scenarios'
 		},
 		m1topic4: {
 			'zh': '华为nStack IoT组件增强特性',
-			'en': ''
+			'en': 'Enhanced features of Huawei nStack IoT component'
 		},
 		m1topic5: {
 			'zh': '基于AR502E+AC-IoT打造IoT生态圈',
-			'en': ''
+			'en': 'Building IoT ecosystem based on AR502E and AC-IoT'
 		},
 		m2a: {
 			'zh': '物联网操作系统',
@@ -72,87 +72,87 @@ exports.render = function(req, res) {
 		},
 		m2topic1: {
 			'zh': '嵌入式设备需要强健的OS',
-			'en': ''
+			'en': 'Requiring robust OS for embedded devices'
 		},
 		m2topic2: {
 			'zh': '支持多芯片，多行业诉求',
-			'en': ''
+			'en': 'Supporting multiple chips and multiple-industry demands'
 		},
 		m2topic3: {
 			'zh': '支持多种协议混合接入',
-			'en': ''
+			'en': 'Supporting multi-protocol access'
 		},
 		m2topic4: {
 			'zh': '华为nStack IoT组件架构详解',
-			'en': ''
+			'en': 'Huawei nStack IoT component architecture details'
 		},
 		m2topic5: {
 			'zh': 'IoT智能硬件7大方面问题',
-			'en': ''
+			'en': '7 problems with the IoT intelligent hardware'
 		},
 		m3a: {
 			'zh': '编程挑战-星际迷航',
-			'en': 'Programming Challenge<br/>"Star Trex"'
+			'en': 'Programming Challenge<br/>Lost in Space'
 		},
 		m3object: {
 			'zh': '面向嵌入式开发者',
-			'en': 'For Embedded Application Developer'
+			'en': 'For Embedded Application Developers'
 		},
 		m3head: {
 			'zh': '嵌入式应用开发',
-			'en': ''
+			'en': 'Embedded Application Development'
 		},
 		m3topic1: {
 			'zh': '要求具备嵌入式C语言技术背景',
-			'en': ''
+			'en': 'Technical background required for the embedded C programming language'
 		},
 		m3topic2: {
 			'zh': '要求熟练掌握IAR嵌入式开发工具',
-			'en': ''
+			'en': 'Proficiency in IAR embedded development tools required'
 		},
 		m3topic3: {
 			'zh': '可快速掌握LiteOS网络组件开发方式',
-			'en': ''
+			'en': 'Capable of quickly mastering the development mode of the LiteOS network component'
 		},
 		m3topic4: {
 			'zh': '可体验固件开发与烧录流程',
-			'en': ''
+			'en': 'Capable of experiencing firmware development and burning process'
 		},
 		m3topic5: {
 			'zh': '实现物联网终端快速入网',
-			'en': ''
+			'en': 'Achieving fast network entry of IoT terminal'
 		},
 		m4a: {
 			'zh': '编程挑战-星际管家',
-			'en': 'Programming Challenge<br/>"Star Manager"'
+			'en': 'Programming Challenge<br/>Space Administrator'
 		},
 		m4object: {
 			'zh': '面向应用开发者',
-			'en': 'For Web Application Developer'
+			'en': 'For Web Application Developers'
 		},
 		m4head: {
 			'zh': 'Web应用开发',
-			'en': ''
+			'en': 'Web Application Development'
 		},
 		m4topic1: {
 			'zh': '要求具备HTML/JS语言技术背景',
-			'en': ''
+			'en': 'Technical background required for the HTML/JS programming language'
 		},
 		m4topic2: {
 			'zh': '要求熟悉Restful API和JSON数据模型',
-			'en': ''
+			'en': 'Familiar with the Restful API and JSON data models'
 		},
 		m4topic3: {
 			'zh': '可基于AC-IoT开发极具个性的Web应用',
-			'en': ''
+			'en': 'Developing unique Web application based on AC-IoT'
 		},
 		m4topic4: {
 			'zh': '可体验Web Ajax异步通信开发方式',
-			'en': ''
+			'en': 'Capable of experiencing the development mode Web Ajax asynchronous communication'
 		},
 		m4topic5: {
 			'zh': '实现物联网终端远程管理',
-			'en': ''
+			'en': 'Achieving remote management of IoT terminals'
 		},
 		seemore: {
 			'zh': '了解更多',
@@ -179,7 +179,7 @@ exports.slider = function(req, res) {
 		case '/manual/6lowpan':
 			titleJSON = {
 				'zh': '短距无线物联网',
-				'en': 'Wireless Embedded Internet'
+				'en': 'Short-distance Wireless Embedded Internets'
 			};
 			sliderJSON = '[{' +
 				'"imagePath": "/img/6lowpan/幻灯片1.PNG", ' +
@@ -320,10 +320,10 @@ exports.code = function(req, res) {
 				'en': ''
 			};
 			courseJSON = '[{' +
-				'"title": {"zh":"故事背景", "en":"Background Story"}, ' +
-				'"description": {"zh":"在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳（Mesh）方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握华为nStack 互联互通中间件使用方法。</p><p>任务二：根据操作指导，使用IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/space_plane.jpg>", "en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"nStack IoT组件介绍","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"nStack IoT组件是Huawei LiteOS在无线嵌入式物联网LR-WPAN领域的互联互通通信中间件，其中集成了IEEE 802.15.4，6LoWPAN和RPL等多个协议栈。再深入了解nStack IoT组件之前，我们先来看看基于6LoWPAN的IP协议栈与传统IP协议栈的差别。<br/><img src=/img/ip_vs_6lowpan.png width=60% heigth=60%><br>可以看到，6LoWPAN同样也可分为5层，由于nStack IoT组件良好的接口，只要曾经有过使用BSD socket套接字网络编程经验，可以在非常短的时间迅速掌握nStack IoT组件的使用。<br>下面先列出这些接口函数原型：","en":"xxxxxxxxxxx"}, ' +
+				'"title": {"zh":"故事背景", "en":"Background"}, ' +
+				'"description": {"zh":"在无垠的银河系中，有5艘宇宙飞船因通信故障与地球失去了联系，由于相距遥远，无法直接联系到地球，只能通过行星多跳（Mesh）方式才能与地球取的联系，做为其中一架飞船指挥官的您，请尽快尝试恢复通信，离开这一危险区域。<hr><p>任务一：快速掌握华为nStack协议栈（socket网络编程）使用方法。</p><p>任务二：根据操作指导，使用IAR编译工程，填入关键api，调用socket接口恢复网络通信。</p><p>任务三：将工程编译成二进制固件包，烧录到飞船通信模块中，当观察到设备接入到Mesh网络，即完成最终任务。</p><img src=/img/space_plane.jpg>", "en":"In the vast Milky Way galaxy, 5 spacecrafts lose contact with the earth as a result of communication failures. Long distances prevent direct contact, and a multi-hop mesh network provides the only potential solution. As a commander, you must restore communications, and escape from the danger zone.<hr><p>Task 1: Master the usage of Huawei nStack interconnection middleware as quickly as possible.</p><p>Task 2: Following the instruction and using an IAR compiling project, fill in key APIs, and call the socket interface to restore network communications.</p><p>Task 3: Compile the project into a binary firmware package, and burn it into the communication module of the spacecraft. Once the device is connected to the Mesh network, the final task is complete.</p>"}, ' +
+				'"content": {"zh":"nStack IoT组件介绍","en":"Introduction to nStack IoT Component"}, ' +
+				'"detail": {"zh":"nStack IoT组件是Huawei LiteOS在无线嵌入式物联网LR-WPAN领域的互联互通通信中间件，其中集成了IEEE 802.15.4，6LoWPAN和RPL等多个协议栈。再深入了解nStack IoT组件之前，我们先来看看基于6LoWPAN的IP协议栈与传统IP协议栈的差别。<br/><img src=/img/ip_vs_6lowpan.png width=60% heigth=60%><br>可以看到，6LoWPAN同样也可分为5层，由于nStack IoT组件良好的接口，只要曾经有过使用BSD socket套接字网络编程经验，可以在非常短的时间迅速掌握nStack IoT组件的使用。<br>下面先列出这些接口函数原型：","en":"The nStack IoT component is the interconnection middleware of Huawei LiteOS in the wireless embedded IoT LR-WPAN domain. It integrates protocol stacks such as IEEE 802.15.4, 6LoWPAN, and RPL. Before gaining a detailed understanding of the nStack IoT component, lets learn the differences between the 6LoWPAN-based IP protocol stack and the conventional IP protocol stack."}, ' +
 				'"file": "socketApi.txt"' +
 				'},{' +
 				'"title": {"zh":"6LoWPAN组件初始化","en":"xxxxxxxxxxx"}, ' +
@@ -352,16 +352,16 @@ exports.code = function(req, res) {
 				'en': ''
 			};
 			courseJSON = '[{' +
-				'"title": {"zh":"故事背景", "en":"Background Story"}, ' +
-				'"description": {"zh":"公元3389年，人类早已经走出太阳系，分散定居在无数小行星上。您做为一名优秀的星际管理员希望实时监控小行星上的情况。请您使用Web技术实现对小行星（灯）远程能量采集功能，目标是从小行星（灯）上获取当前的能量数据。<hr><p>任务一：快速掌握华为物联网能效管理平台（EEM）JSON北向接口。</p><p>任务二：理解并选择一种数据采集方式（批量数据采集和逐条数据采集二选一）。</p><p>任务三：在app.js文件中填入关键JSON api，最终实现Ajax异步数据采集。</p><img src=/img/look_star.jpg width=60% height=40%>","en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"华为照明物联网方案","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"整个解决方案包括四个部分构成，主要是路灯控制器、华为物联网网关、EEM平台、APP（业务系统），各部分功能描述如下：<p><strong>路灯控制器</strong>：控制路灯调光、开光，支持计量功能，可采集电压、电流、功率、电量、频率数据。<br/><strong>物联网网关</strong>：连接路灯控制器，获取通过3G/LTE方式进行上行与EEM进行通信。<br/><strong>EEM</strong>：连接物联网网关，提供上行RESTCONF、WebSocket接口给第三方应用进行二次开发，可实现对路灯进行远程开关、调光等功能，也支持编制计划和策略控制。<br/><strong>APP</strong>：客户基于EEM平台开发的业务应用系统。</p><p><img src=/img/huawei_eem.png width=60% hegith=60%></p>","en":"xxxxxxxxxxx"}, ' +
+				'"title": {"zh":"故事背景", "en":"Background"}, ' +
+				'"description": {"zh":"公元3389年，人类早已经走出太阳系，分散定居在无数小行星上。您做为一名优秀的星际管理员希望实时监控小行星上的情况。请您使用Web技术实现对小行星（灯）远程能量采集功能，目标是从小行星（灯）上获取当前的能量数据。<hr><p>任务一：快速掌握华为物联网能效管理平台（EEM）JSON北向接口。</p><p>任务二：理解并选择一种数据采集方式（批量数据采集和逐条数据采集二选一）。</p><p>任务三：在app.js文件中填入关键JSON api，最终实现Ajax异步数据采集。</p><img src=/img/look_star.jpg width=60% height=40%>","en":"In AD 3389, human beings have reached beyond the Milky Way galaxy, inhabiting numerous minor planets. As a leading space administrator, you wish to monitor these planets in real time. Use the Web technology to remotely collect energy from these minor planets (lamps). Your objective is to obtain the current energy data from these minor planets (lamps).<p>Task 1: Master the JSON northbound interface on Huawei&acute;s IoT energy efficiency management (EEM) software as quickly as possible.</p><p>Task 2: Understand and select a data collection method (choose from bulk data collection and data collection piece by piece).</p><p>Task 3: Key in the JSON API into the app.js file to achieve Ajax asynchronous data collection.</p>"}, ' +
+				'"content": {"zh":"华为照明物联网方案","en":"Huawei Connected City Lighting Solution"}, ' +
+				'"detail": {"zh":"整个解决方案包括四个部分构成，主要是路灯控制器、华为物联网网关、EEM、APP（业务系统），各部分功能描述如下：<p><strong>路灯控制器</strong>：控制路灯调光、开光，支持计量功能，可采集电压、电流、功率、电量、频率数据。<br/><strong>物联网网关</strong>：连接路灯控制器，获取通过3G/LTE方式进行上行与EEM进行通信。<br/><strong>EEM</strong>：连接物联网网关，提供上行RESTCONF、WebSocket接口给第三方应用进行二次开发，可实现对路灯进行远程开关、调光等功能，也支持编制计划和策略控制。<br/><strong>APP</strong>：客户基于EEM平台开发的业务应用系统。</p><p><img src=/img/huawei_eem.png width=60% hegith=60%></p>","en":"The solution consists of the street lamp controller, Huawei IoT gateway, EEM software, and SMS (Street lamp management system). Their respective functions are as follows:<p>Street lamp controller: adjusts lamp brightness, controls lamp on/off, supports metering, and collects voltage, current, power, electric energy, and frequency.</p><br/>IoT gateway: connects with the street lamp controller in the downstream direction, and communicates with the EEM software in the upstream direction through 3G or LTE.<br/>EEM software: connects with the IoT gateway in the downstream direction, and provides the RESTCONF and WebSocket APIs for third-party applications to perform secondary development, including remote on/off, light adjustment, plan development, and policy control.<br/>The SMS is the service application system developed by customers based on the EEM software."}, ' +
 				'"file": ""' +
 				'},{' +
-				'"title": {"zh":"方案详解","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"HTML/JS Web技术由于其跨平台能力，早已被人们所接受，它可以很容易地部署在任意尺寸设备上。做为一名Web应用开发者的您，一定尽快想大显身手，把<strong>小行星能量管理</strong>应用部署在Web服务器上。为了能让您快速掌握开发方法，我们先快速了解一下这一系统架构。<p><img src=/img/ar502.png width=500 heigth=75></p><p>为了快速体验开发过程，我们选取能量采集JSON接口来进行实战。</p>","en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"答题准备","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"我们已经为您准备好基于HTML5/JS的工程文件（<a href=/exam/web/web-demo.zip>这里下载</a>）。您只需要将其解压到任意目录，然后按照开发提示，便可在数分钟内完成Web应用开发。<p>我们华为工程师GG们为了满足客户多样需求，专门设计了多种JSON接口给我们使用，这里我们选取其中2种数据采集接口进行体验，您可以根据需要选择任意一种来完成Demo。只要您能够<strong>读取3种以上能量数据</strong>，就能获得我们提供的精美小礼品。<p>小伙伴们，赶紧来体验吧！</p>","en":"xxxxxxxxxxx"}, ' +
+				'"title": {"zh":"方案详解","en":"Solution Details"}, ' +
+				'"description": {"zh":"HTML/JS Web技术由于其跨平台能力，早已被人们所接受，它可以很容易地部署在任意尺寸设备上。做为一名Web应用开发者的您，一定尽快想大显身手，把<strong>小行星能量管理</strong>应用部署在Web服务器上。为了能让您快速掌握开发方法，我们先快速了解一下这一系统架构。<p><img src=/img/ar502.png width=500 heigth=75></p><p>为了快速体验开发过程，我们选取能量采集JSON接口来进行实战。</p>","en":"As a result of its cross-platform capabilities, the HTML/JS Web technology has already been accepted. It can easily be deployed for use with equipment of any dimension. As a Web application developer, you certainly want to give a good account of yourself as soon as possible, deploying the energy management application of minor planets on the Web server. To master the development approach as soon as possible, you must quickly obtain an understanding of the system architecture."}, ' +
+				'"content": {"zh":"答题准备","en":"Answer Preparation"}, ' +
+				'"detail": {"zh":"我们已经为您准备好基于HTML5/JS的工程文件（<a href=/exam/web/web-demo.zip>这里下载</a>）。您只需要将其解压到任意目录，然后按照开发提示，便可在数分钟内完成Web应用开发。<p>我们华为工程师GG们为了满足客户多样需求，专门设计了多种JSON接口给我们使用，这里我们选取其中2种数据采集接口进行体验，您可以根据需要选择任意一种来完成Demo。只要您能够<strong>读取3种以上能量数据</strong>，就能获得我们提供的精美小礼品。<p>小伙伴们，赶紧来体验吧！</p>","en":"We have prepared the HTML5/JS-based project files for you. As long as you have an understanding of the data model in JSON format as prompted, you will be able to complete the application development within minutes.<p>Since the Huawei engineer GG has provided several JSON interfaces, we hereby recommend 2 for data collection. You can answer with either one as required. Once you can read 3 or more kinds of energy data, you will receive a prize.</p>"}, ' +
 				'"file": ""' +
 				// '},{' +
 				// '"title": {"zh":"批量数据采集方式","en":"xxxxxxxxxxx"}, ' +
@@ -372,14 +372,14 @@ exports.code = function(req, res) {
 				'},{' +
 				'"title": {"zh":"逐条数据采集方式","en":"xxxxxxxxxxx"}, ' +
 				'"description": {"zh":"该方法是所有数据采集接口中最容易使用的，适合有针对性，对网络要求敏感的场景。您可以使用诸如huawei-iotdm-device-energy:frequency接口查询设备电流频率。</p><p>Demo使用URL列表如下：</p><p>&nbsp;</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:frequency</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-voltage</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-current</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-power</p><p>/iotdm/nb/v1/device/get/设备ID/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-energy</p><p>&nbsp;</p><p>获取JSON格式数据如下所示：</p><p>&nbsp;</p><p>{结果}，如{220}</p>","en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"开发指导","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"使用逐条数据采集方式获取数据方法非常简单，您只需要用编辑器打开js目录下的app.js文件，将其中???替换为所需要采集的电参数英文标识，完成能量数据获取后，返回json对象，获取相应的参数。<p>请参考如下样例代码完成Demo应用：</p>","en":"xxxxxxxxxxx"}, ' +
+				'"content": {"zh":"开发指导","en":"Development Guides"}, ' +
+				'"detail": {"zh":"使用逐条数据采集方式获取数据方法非常简单，您只需要用编辑器打开js目录下的app.js文件，将其中???替换为所需要采集的电参数英文标识，完成能量数据获取后，返回json对象，获取相应的参数。<p>请参考如下样例代码完成Demo应用：</p>","en":"The sample code is as follows:"}, ' +
 				'"file": "singleGet.txt"' +
 				'},{' +
-				'"title": {"zh":"大功告成","en":"xxxxxxxxxxx"}, ' +
-				'"description": {"zh":"<img src=/img/success.jpg width=100% heigth=100%></img>","en":"xxxxxxxxxxx"}, ' +
-				'"content": {"zh":"验证结果","en":"xxxxxxxxxxx"}, ' +
-				'"detail": {"zh":"编码完成后，运行工作目录下的start.bat，会自动打开Chrome浏览器，访问EEM。如果编码无误，您可以看到：<p><img src=/img/lighting.jpg width=300 heigth=400></p>","en":"xxxxxxxxxxx"}, ' +
+				'"title": {"zh":"大功告成","en":"Complete"}, ' +
+				'"description": {"zh":"<img src=/img/success.jpg width=100% heigth=100%></img>","en":"<img src=/img/success.jpg width=100% heigth=100%></img>"}, ' +
+				'"content": {"zh":"验证结果","en":"Verification Result"}, ' +
+				'"detail": {"zh":"编码完成后，运行工作目录下的start.bat，会自动打开Chrome浏览器，访问EEM。如果编码无误，您可以看到：<p><img src=/img/lighting.jpg width=300 heigth=400></p>","en":"After coding, please move the project directory to XXX directory. Then open Chrome and enter http://localhost/ in the address bar. If the coding is correct, you can find:"}, ' +
 				'"file": ""' +
 				'}]';
 			console.log(JSON.parse(courseJSON));

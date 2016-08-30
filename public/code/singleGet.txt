@@ -1,34 +1,34 @@
 function singleGet() {
   var devData = $.extend({}, dataTemplate);
-  //能量采集数据（频率）
+  //Energy data acquisition（Frequency）
   $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
     "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:frequency",
     function(data) {
       devData.params.frequency = data;
       showData(devData);
     });
-  //能量采集数据（电压）
+  //Energy data acquisition（Voltage）
   $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
     "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-voltage",
     function(data) {
       devData.params.voltage = data;
       showData(devData);
     });
-  //能量采集数据（电流）
+  //Energy data acquisition（Current）
   $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
     "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:a-current",
     function(data) {
       devData.params.current = data;
       showData(devData);
     });
-  //能量采集数据（功率）
+  //Energy data acquisition（Power）
   $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
     "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-power",
     function(data) {
       devData.params.power = data;
       showData(devData);
     });
-  //能量采集数据（能量）
+  //Energy data acquisition（Energy）
   $.getJSON(host + "/iotdm/nb/v1/device/get/" + esn +
     "/urn:huawei:iotdm:device/data/huawei-iotdm-device-energy:total-active-energy",
     function(data) {

@@ -22,6 +22,7 @@ module.exports = function(io, socket) {
 
 			// socket.broadcast.emit('nodeLocked', node);
 			node.priority = 1;
+			console.log(node.priority);
 		});
 	});
 
@@ -41,6 +42,7 @@ module.exports = function(io, socket) {
 
 			// socket.broadcast.emit('nodeUnlocked', node);
 			node.priority = 0;
+			console.log(node.priority);
 		});
 	});
 };
