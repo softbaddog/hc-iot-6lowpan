@@ -71,6 +71,7 @@ HCC_LIGHTS.StarScene=function(scene_){
     //分组
     this.starGroups=[];
     var groupslength=0;
+    var lampLength=0;
 
     //添加到指定分组
     function addToGroups(obj_,data_){
@@ -190,6 +191,7 @@ HCC_LIGHTS.StarScene=function(scene_){
         }
 
         groupslength=scope.starGroups.length;
+        lampLength=scope.lampGroups.length;
 
         //debug
         var span=document.createElement("span");
@@ -247,27 +249,32 @@ HCC_LIGHTS.StarScene=function(scene_){
         scope.musicAni=false;
     };
     scope.musicAniFun=function(){
-
+        var templen=70;
         var time = Date.now() * 0.002;
         var tempGroup={};
         /** ¸ù¾ÝÒôÀÖÆµÆ× **/
         var array = new Uint8Array(scope.analyser.frequencyBinCount);
         scope.analyser.getByteFrequencyData(array);
-        var step = Math.round(array.length / groupslength);//¼ÆËã´ÓanalyserÖÐµÄ²ÉÑù²½³¤
+        var step = Math.round(array.length / templen);//¼ÆËã´ÓanalyserÖÐµÄ²ÉÑù²½³¤
 
         //¶ÔÐÅÔ´Êý×é½øÐÐ³éÑù±éÀú£¬»­³öÃ¿¸öÆµÆ×Ìõ
-        for (var i = 0; i < groupslength; i++) {
+        for (var i = 0; i < lampLength; i++) {
             var value = array[i * step];
             //value/=20;
 
-            tempGroup=scope.starGroups[i];
+            tempGroup=scope.lampGroups[i];
 
             var ary=tempGroup.ary;
             var i_ = 0,l_=ary.length;
             for(i_=0;i_<l_;i_++){
+                /*
                 if(value<10) {
                     value = scope.lightsIntensity * ( 1 + Math.sin(0.5 * i_ + (time + ary[i_].intensity)) );
                 }
+                */
+               if(value<30){
+                value=30;
+                } 
                 ary[i_].setLightsScale(Math.round(value));
             }
 
