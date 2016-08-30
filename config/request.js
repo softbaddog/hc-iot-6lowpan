@@ -10,11 +10,29 @@ exports.post = function(api, nodes, node, callback) {
 
 		case 'dim-level':
 			if (node) {
+				// contents = JSON.stringify({
+				// 	'index': 0,
+				// 	'level': node.level,
+				// });
+				// path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 				contents = JSON.stringify({
-					'index': 0,
-					'level': node.level,
+					"devices": [node.deviceId],
+					"priority": 5,
+					"retry-times": 1,
+					"retry-intervals": 0,
+					"max-timeout": 5000,
+					"enable": true,
+					"action": [{
+						"name": "1",
+						'type': 'set',
+						'path': '/huawei-iotdm-device:data/huawei-iotdm-device-sensor:' + api,
+						'body': {
+							'index': 0,
+							'level': node.level
+						}
+					}]
 				});
-				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
+				path = 'system/action/urn:huawei:iotdm:task/bulk-ctl';
 			} else if (nodes) {
 				var devices = [];
 				nodes.forEach(function(element, index) {
@@ -56,27 +74,45 @@ exports.post = function(api, nodes, node, callback) {
 
 		case 'switch-status':
 			if (node) {
+				// contents = JSON.stringify({
+				// 	"index": 0,
+				// 	"status": node.switch == 1 ? 'on' : 'off'
+				// });
+				// path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
 				contents = JSON.stringify({
-					"index": 0,
-					"status": node.switch == 1 ? 'on' : 'off'
+					"devices": [node.deviceId],
+					"priority": 5,
+					"retry-times": 1,
+					"retry-intervals": 0,
+					"max-timeout": 5000,
+					"enable": true,
+					"action": [{
+						"name": "1",
+						'type': 'set',
+						'path': '/huawei-iotdm-device:data/huawei-iotdm-device-sensor:' + api,
+						'body': {
+							'index': 0,
+							'status': node.switch == 1 ? 'on' : 'off'
+						}
+					}]
 				});
-				path = 'device/set/' + node.deviceId + '/urn:huawei:iotdm:device/data/huawei-iotdm-device-sensor:' + api;
+				path = 'system/action/urn:huawei:iotdm:task/bulk-ctl';
 			}
 			break;
 
 		case 'net-topo':
 			contents = JSON.stringify({
 				"devices": config.gateway,
-		    "priority": 1,
-		    "retry-times": 2,
-		    "retry-intervals": 0,
-		    "max-timeout": 30000,
-		    "enable": true,
-		    "action": [{
-		    	"name": "topo",
-		    	"type": "get",
-		    	"path": "/huawei-iotdm-device:data/huawei-iotdm-device-common:net-topo"
-		    }]
+				"priority": 1,
+				"retry-times": 2,
+				"retry-intervals": 0,
+				"max-timeout": 30000,
+				"enable": true,
+				"action": [{
+					"name": "topo",
+					"type": "get",
+					"path": "/huawei-iotdm-device:data/huawei-iotdm-device-common:net-topo"
+				}]
 			});
 			path = 'system/action/urn:huawei:iotdm:task/bulk-get';
 			break;
@@ -104,12 +140,10 @@ exports.post = function(api, nodes, node, callback) {
 		}
 	};
 
-	if (api !== 'dim-level') {
-		console.log('POST------%s-------start-', api);
-		console.log(options);
-		console.log(contents);
-		console.log('POST------%s--------end--', api);
-	}
+	console.log('POST------%s-------start-', api);
+	console.log(options);
+	console.log(contents);
+	console.log('POST------%s--------end--', api);
 
 	if (connectStatus) {
 		var req = http.request(options, function(res) {
@@ -177,6 +211,7 @@ exports.get = function(api, nodes, node, callback) {
 		path: '/iotdm/nb/v1/' + path,
 		method: 'GET'
 	};
+
 	console.log('GET------%s-------start-', api);
 	console.log(options);
 	console.log('GET------%s--------end--', api);

@@ -13,7 +13,7 @@ HCC_LIGHTS.StarScene=function(scene_){
     scope.lineMana=null;
 
     scope.lightsIntensity=65;
-    scope.musicRate=false;
+    scope.musicRate=true;
 
     this.onLightsIntensityChange=function(){
         scope.lightsIntensity=HCC_LIGHTS.effectController.lightsIntensity;
@@ -27,7 +27,7 @@ HCC_LIGHTS.StarScene=function(scene_){
     }
 
     HCC_LIGHTS.effectController.lightsIntensity=65;
-    HCC_LIGHTS.effectController.musicRate=false;
+    HCC_LIGHTS.effectController.musicRate=true;
     HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "lightsIntensity",10,100,20).onChange(this.onLightsIntensityChange);
     HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "musicRate").onChange(this.onLightsIntensityChange);
 

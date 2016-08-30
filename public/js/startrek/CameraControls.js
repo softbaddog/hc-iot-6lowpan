@@ -120,6 +120,83 @@ HCC_LIGHTS.CameraContols=function() {
     var quat = new THREE.Quaternion().setFromUnitVectors(HCC_LIGHTS.three.main_camera.up, new THREE.Vector3(0, 1, 0));
     var quatInverse = quat.clone().inverse();
 
+    /**     * 摄像头移动动画     */
+    var moveAniSphericals=[];//摄像头移动数组
+
+/*
+
+1.2 
+-0.6
+
+
+1
+-1.5
+
+ */
+    moveAniSphericals.push(tweenLookSpherical);
+    moveAniSphericals.push(new THREE.Spherical(2305,1.2,-0.6));
+    moveAniSphericals.push(new THREE.Spherical(2305,1,-1.5));
+    moveAniSphericals.push(tweenLookSpherical);
+    moveAniSphericals.push(new THREE.Spherical(2305,1.2,-0.6));
+    moveAniSphericals.push(new THREE.Spherical(2305,1,-1.5));
+    moveAniSphericals.push(tweenLookSpherical);
+    moveAniSphericals.push(new THREE.Spherical(2305,1.2,-0.6));
+    moveAniSphericals.push(new THREE.Spherical(2305,1,-1.5));
+    moveAniSphericals.push(tweenLookSpherical);
+    moveAniSphericals.push(new THREE.Spherical(2305,1.2,-0.6));
+    moveAniSphericals.push(new THREE.Spherical(2305,1,-1.5));
+    
+    HCC_LIGHTS.effectController.cameraMoveAni=false;
+
+    var moveCurPointSpherical=new THREE.Spherical();//移动目标
+    var moveCameraDelayTime=20000;//摄像头归位后多少毫秒启动动画
+    var histmoveCamera=0;//摄像头是什么启动的
+    var moveAniEnabled=false;//是否开始移动
+    function moveCameraAni(){
+        if(!moveAniEnabled)return;
+        cameraPosition.setFromSpherical(curSpherical);
+        cameraPosition.applyQuaternion(quat);
+        HCC_LIGHTS.three.main_camera.position.copy(cameraPosition);
+        HCC_LIGHTS.three.main_camera.lookAt(lookTarget);
+        //到达目标位置
+        if (
+            (curSpherical.phi == moveCurPointSpherical.phi) &&
+            (curSpherical.radius == moveCurPointSpherical.radius) &&
+            (curSpherical.theta == moveCurPointSpherical.theta)
+        ) {
+            moveAniEnabled = false;
+        }
+    }
+
+    /**     * 启动移动动画     */
+    function startMoveCameraAni(){
+        cameraTween.stop();
+        var tempSpherical_=moveAniSphericals[Math.ceil(Math.random()*moveAniSphericals.length-1)];
+        moveCurPointSpherical.radius=tempSpherical_.radius;
+        moveCurPointSpherical.phi=tempSpherical_.phi;
+        moveCurPointSpherical.theta=tempSpherical_.theta;
+        var curVec3 = new THREE.Vector3();
+        curVec3.copy(HCC_LIGHTS.three.main_camera.position);
+
+        // rotate offset to "y-axis-is-up" space
+        curVec3.applyQuaternion(quat);
+
+        // angle from z-axis around y-axis
+        curSpherical.setFromVector3(curVec3);
+
+        HCC_LIGHTS.three.main_camera.position.copy(curVec3);
+        HCC_LIGHTS.three.main_camera.lookAt(controls_.target);
+
+        cameraTween.to({
+            phi: moveCurPointSpherical.phi,
+            theta: moveCurPointSpherical.theta,
+            radius: moveCurPointSpherical.radius
+        }, aniRunTime);
+        cameraTween.start();
+        moveAniEnabled = true;
+
+    }
+
 // 当前位置
     var curSpherical = new THREE.Spherical();
     var cameraPosition = new THREE.Vector3();
@@ -220,10 +297,10 @@ HCC_LIGHTS.CameraContols=function() {
         if(HCC_LIGHTS.effectController.CamreaLockCurPoint){
             tweenLookSpherical.setFromVector3(HCC_LIGHTS.three.main_camera.position);
             /*
-            tweenLookSpherical.radius=controls_.curSpherical.radius;
-            tweenLookSpherical.phi=controls_.curSpherical.phi;
-            tweenLookSpherical.theta=controls_.curSpherical.theta;
-            */
+             tweenLookSpherical.radius=controls_.curSpherical.radius;
+             tweenLookSpherical.phi=controls_.curSpherical.phi;
+             tweenLookSpherical.theta=controls_.curSpherical.theta;
+             */
         }else{
 
             tweenLookSpherical.radius=ini_.spherical.radius;
@@ -233,6 +310,7 @@ HCC_LIGHTS.CameraContols=function() {
     };
     HCC_LIGHTS.effectController.CamreaLockCurPoint=false;
     HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "CamreaLockCurPoint").onChange(this.lockCameraPoint);
+    HCC_LIGHTS.gui.add(HCC_LIGHTS.effectController, "cameraMoveAni").onChange(this.lockCameraPoint);
 
     this.changeCamera();
 
@@ -247,7 +325,17 @@ HCC_LIGHTS.CameraContols=function() {
             }
         }
 
+        if(HCC_LIGHTS.effectController.cameraMoveAni){
+            curTime = Date.now();
+            if ((curTime - histmoveCamera) > moveCameraDelayTime) {
+                histmoveCamera = curTime;
+                startMoveCameraAni();
+                mouseMutual=false;
+            }
+        }
+
         TWEEN.update();
+        if(moveAniEnabled)moveCameraAni();
         if(tweenAutoEnabled)tweenCameraPosition();
     }
 }

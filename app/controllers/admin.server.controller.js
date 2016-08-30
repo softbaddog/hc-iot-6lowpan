@@ -114,7 +114,9 @@ exports.ctrl = function(req, res) {
 		}
 
 		// 同步开光状态
-		request.post('switch-status', null, node);
+		request.post('switch-status', null, node, function(data) {
+			console.log(data);
+		});
 	}
 
 	if (data.brightness) {
