@@ -10,12 +10,7 @@ var userSchema = new Schema({
 		match: /.+\@.+\..+/
 	},
 	password: {
-		type: String,
-		validate: [
-			function(password) {
-				return password && password.length >= 6;
-			}, '密码必须大于6位'
-		]
+		type: String
 	},
 	role: {
 		type: String,
