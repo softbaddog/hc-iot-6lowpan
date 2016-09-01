@@ -10,11 +10,16 @@ exports.switchLanguage = function(req, res) {
 };
 
 exports.render = function(req, res) {
+	var email = '';
 	if (req.session.lastPage) {
 		console.log("Last Page: " + req.session.lastPage);
 	}
 
 	req.session.lastPage = '/';
+	console.log(req.user);
+	if (req.user !== undefined) {
+		email = req.user.email;
+	}
 
 	res.render('index', {
 		lang: req.session.lang || 'zh',
@@ -43,8 +48,8 @@ exports.render = function(req, res) {
 			'en': 'Register Quickly'
 		},
 		welcome: {
-			'zh': '欢迎来到华为全联接大会IoT展区',
-			'en': 'Welcome to Huawei Connect 2016 IoT Display Area'
+			'zh': '欢迎' + email + '来到华为全联接大会IoT展区',
+			'en': 'Welcome' + email + 'to Huawei Connect 2016 IoT Display Area'
 		},
 		topic: {
 			'zh': 'IEEE 802.15.4 / 6LoWPAN：短距无线嵌入式物联网应用展示',
