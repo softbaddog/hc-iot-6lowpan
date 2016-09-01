@@ -47,8 +47,8 @@ exports.render = function(req, res) {
 			'en': 'Welcome to Huawei Connect 2016 IoT Display Area'
 		},
 		topic: {
-			'zh': 'IEEE 802.15.4 / 6LoWPAN：无线嵌入式物联网应用展示',
-			'en': 'IEEE 802.15.4 / 6LoWPAN：Wireless Embeded Internet Applicaiton Shows'
+			'zh': 'IEEE 802.15.4 / 6LoWPAN：短距无线嵌入式物联网应用展示',
+			'en': 'IEEE 802.15.4 / 6LoWPAN：Wireless Embedded IoT Applicaiton Shows'
 		},
 		remark: {
 			'zh': '（ 基于Huawei LiteOS互联互通中间件打造超大规模Mesh网络 ）',
