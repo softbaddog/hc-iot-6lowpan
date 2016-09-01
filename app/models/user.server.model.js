@@ -5,7 +5,8 @@ var	crypto = require('crypto');
 var userSchema = new Schema({
 	email: {
 		type: String,
-		index: true,
+		trim: true,
+		unqiue: true,
 		required: '请填写合法邮箱',
 		match: /.+\@.+\..+/
 	},
@@ -66,7 +67,6 @@ userSchema.statics.findUniqueUsername = function(username, suffix, callback) {
 		}
 	});
 };
-
 
 userSchema.set('toJSON', {
 	getters: true,
