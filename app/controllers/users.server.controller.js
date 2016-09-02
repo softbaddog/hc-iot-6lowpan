@@ -29,36 +29,36 @@ exports.renderSignin = function(req, res, next) {
 		res.render('signin', {
 			lang: req.session.lang || 'zh',
 			title: {
-				'zh':'用户登录',
-				'en':'User Login'
+				'zh': '用户登录',
+				'en': 'User Login'
 			},
 			home: {
-				'zh':'首页',
-				'en':'Home'
+				'zh': '首页',
+				'en': 'Home'
 			},
 			signin: {
-				'zh':'登录',
-				'en':'Login'
+				'zh': '登录',
+				'en': 'Login'
 			},
 			signup: {
-				'zh':'注册',
-				'en':'Register'
+				'zh': '注册',
+				'en': 'Register'
 			},
 			userlogin: {
-				'zh':'用户登入',
-				'en':'User Login'
+				'zh': '用户登入',
+				'en': 'User Login'
 			},
 			email: {
-				'zh':'邮箱',
-				'en':'eMail'
+				'zh': '邮箱',
+				'en': 'eMail'
 			},
 			password: {
-				'zh':'口令',
-				'en':'Password'
+				'zh': '口令',
+				'en': 'Password'
 			},
 			login: {
-				'zh':'登录',
-				'en':'Login'
+				'zh': '登录',
+				'en': 'Login'
 			},
 			messages: req.flash('error') || req.flash('info')
 		});
@@ -73,40 +73,40 @@ exports.renderSignup = function(req, res, next) {
 		res.render('signup', {
 			lang: req.session.lang || 'zh',
 			title: {
-				'zh':'用户注册',
-				'en':'User Register'
+				'zh': '用户注册',
+				'en': 'User Register'
 			},
 			home: {
-				'zh':'首页',
-				'en':'Home'
+				'zh': '首页',
+				'en': 'Home'
 			},
 			signin: {
-				'zh':'登录',
-				'en':'Login'
+				'zh': '登录',
+				'en': 'Login'
 			},
 			signup: {
-				'zh':'注册',
-				'en':'Register'
+				'zh': '注册',
+				'en': 'Register'
 			},
 			usersingup: {
-				'zh':'用户注册',
-				'en':'User Register'
+				'zh': '用户注册',
+				'en': 'User Register'
 			},
 			email: {
-				'zh':'邮箱',
-				'en':'eMail'
+				'zh': '邮箱',
+				'en': 'eMail'
 			},
 			help: {
-				'zh':'使用一个合法的邮箱账户，用于登录。',
-				'en':'Please Use a Valid eMail for Login'
+				'zh': '使用一个合法的邮箱账户，用于登录。',
+				'en': 'Please Use a Valid eMail for Login'
 			},
 			password: {
-				 'zh':'口令',
-				 'en':'Password'
+				'zh': '口令',
+				'en': 'Password'
 			},
 			repeat: {
-				'zh':'重复输入口令',
-				'en':'Password Repeat'
+				'zh': '重复输入口令',
+				'en': 'Password Repeat'
 			},
 			messages: req.flash('error')
 		});
@@ -162,4 +162,14 @@ exports.requiresLogin = function(req, res, next) {
 		});
 	}
 	next();
+};
+
+exports.list = function(req, res, next) {
+	User.find({}, 'email created', function(err, users) {
+		if (err) {
+			return next(err);
+		} else {
+			res.json(users);
+		}
+	});
 };
