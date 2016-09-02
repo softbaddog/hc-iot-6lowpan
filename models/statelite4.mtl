@@ -1,0 +1,285 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# 创建的文件:04.08.2016 16:06:37
+
+newmtl uppersaucer
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1791 0.0654 0.0654
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\misup.png
+	map_Kd maps\misup.png
+	map_bump maps\misupb.png
+
+newmtl loweraucer
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1791 0.0654 0.0654
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\misdn.png
+	map_Kd maps\misdn.png
+	map_bump maps\misdnb.png
+
+newmtl Default
+	Ns 50.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.7000 0.7000 0.7000
+	Kd 0.7000 0.7000 0.7000
+	Ks 0.7070 0.7070 0.7070
+	Ke 0.0000 0.0000 0.0000
+
+newmtl def_react
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\default.png
+	map_Kd maps\default.png
+
+newmtl windows
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1817 0.0641 0.1725
+	Kd 0.5451 0.1922 0.5176
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\Map__6_Smoke.png
+	map_Kd maps\Map__6_Smoke.png
+	map_Ke maps\Map__6_Smoke.png
+
+newmtl default_hull
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\default.png
+	map_Kd maps\default.png
+	map_bump maps\mtophb.png
+
+newmtl ass
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\mrear.png
+	map_Kd maps\mrear.png
+	map_Ke maps\mreari.png
+	map_bump maps\mrearb.png
+
+newmtl reactor
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2131 0.1830 0.0641
+	Kd 0.3412 0.7608 0.9569
+	Ks 0.5000 0.5000 0.5000
+	Ke 0.3412 0.7608 0.9569
+	map_Ka maps\reactor.png
+	map_Kd maps\reactor.png
+	map_Ke maps\reactor.png
+
+newmtl tophull
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\mtoph.png
+	map_Kd maps\mtoph.png
+	map_bump maps\mtophb.png
+
+newmtl pylonleft
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_bump maps\mtophb.png
+
+newmtl pylonright
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\mpylonr.png
+	map_Kd maps\mpylonr.png
+	map_bump maps\mtophb.png
+
+newmtl Material__7
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0641 0.1582 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\mmain.png
+	map_Kd maps\mmain.png
+	map_bump maps\mmainb.png
+
+newmtl Material__3
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\msbtw.png
+	map_Kd maps\msbtw.png
+
+newmtl impulses
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.1817 0.0641 0.1725
+	Kd 0.5451 0.1922 0.5176
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\Map__6_Smoke.png
+	map_Kd maps\Map__6_Smoke.png
+	map_Ke maps\Map__6_Smoke.png
+
+newmtl turrets
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2157 0.0641 0.1255
+	Kd 0.7608 0.1725 0.1725
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+
+newmtl underside
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0641 0.1582 0.1817
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\mudside.png
+	map_Kd maps\mudside.png
+	map_bump maps\mudsideb.png
+
+newmtl coil
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2131 0.1830 0.0641
+	Kd 0.3412 0.7608 0.9569
+	Ks 0.5000 0.5000 0.5000
+	Ke 0.3412 0.7608 0.9569
+
+newmtl scoop
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2131 0.1830 0.0641
+	Kd 1.0000 0.3412 0.3412
+	Ks 0.5000 0.5000 0.5000
+	Ke 1.0000 0.3412 0.3412
+	map_Ka maps\Map__2_Smoke.png
+	map_Kd maps\Map__2_Smoke.png
+
+newmtl nacelle_r
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.2157 0.0641 0.1255
+	Kd 0.8392 0.9569 0.9529
+	Ks 0.0450 0.0450 0.0450
+	Ke 0.0000 0.0000 0.0000
+	map_Ka maps\mnacr.png
+	map_Kd maps\mnacr.png
+
+newmtl default_black
+	Ns 25.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 0.0889 0.0641 0.1817
+	Kd 0.2157 0.4235 0.3804
+	Ks 0.0000 0.0000 0.0000
+	Ke 0.0000 0.0000 0.0000
